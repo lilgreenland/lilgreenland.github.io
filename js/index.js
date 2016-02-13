@@ -1,3 +1,33 @@
+/*    TODO
+
+player spawning
+  Fix spawing inside map (it seems like it doesn't work)
+    add in a check for each point of the object
+  
+player collision
+  Add in four point collision detection for ships to avoid being half inside map
+
+bullet map collision
+  add velocity dependant radius addition like player collision
+
+guns
+  use switching for custom fire routines?
+  option: no bounce
+  option: area of effect damage on bullet explosion
+  option: bullet heat seeking
+  option: bullet thrust, like missiles.  player controlled, or heat seeking
+  option: lasers
+  option: map penetration
+  option: speed based damage
+  option: fiction/bounce based on bullet not map
+
+power ups
+  add them
+
+
+
+*/
+
 //set boundries to the browser window's size
 var container = {
   x: 0,
@@ -28,16 +58,25 @@ document.body.addEventListener("keyup", function(e) {
 });
 //object for game physics
 var physics = {
-  cycle: 0,
-  friction: 0.96,
-  wallBounce: 0.6,
-  playerKnockBack: 5,
+    cycle: 0,
+    friction: 0.96,
+    wallBounce: 0.6,
+    playerKnockBack: 5,
+    maxSpeed: 3,
+  }
+  //limits a value to below maxspeed
+function maxSpeed(speed) {
+  if (speed > physics.maxSpeed) {
+    return physics.maxSpeed;
+  } else {
+    return speed;
+  }
 }
 
 //map array x,y  10x10 plus a top and bottom layer so 10x12
 var map = [
   //top window is the off screen bounds
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -69,12 +108,13 @@ function drawMap() {
   for (var i = 0; i < map.length; i++) {
     for (var j = 0; j < map.length; j++) {
       if (map[i][j]) {
-        ctx.fillRect(j * 0.05 * container.width, (i - 1) * 0.05 * container.height, 0.05 * container.width+1, 0.05 * container.height+1);
+        ctx.fillRect(j * 0.05 * container.width, (i - 1) * 0.05 * container.height, 0.05 * container.width + 1, 0.05 * container.height + 1);
       }
     }
   };
 }
 
+//check for player collision with map
 function playerCollisionMap(i) {
   //check in future X-dir
   if (p[i].Vx > 0) { //find out direction
@@ -102,22 +142,43 @@ function playerCollisionMap(i) {
 
 //array of objects for bullets
 var b = [];
-//adds a new bullet object to array b
-function pushbullet(i) {
+//adds a new bullet object to array b  when player fires
+function bullet(i) {
+  for (var j = 0; j < p[i].B_number; j++) {
+    b.push({
+      x: p[i].x + (p[i].r + p[i].B_r) * Math.cos(p[i].dir * Math.PI / 180),
+      y: p[i].y + (p[i].r + p[i].B_r) * Math.sin(p[i].dir * Math.PI / 180),
+      r: p[i].B_r,
+      Vx: p[i].Vx + p[i].B_speed * Math.cos((p[i].dir + p[i].B_spread * (Math.random() - 0.5)) * Math.PI / 180),
+      Vy: p[i].Vy + p[i].B_speed * Math.sin((p[i].dir + p[i].B_spread * (Math.random() - 0.5)) * Math.PI / 180),
+      friction: p[i].B_friction,
+      dmg: p[i].B_dmg,
+      color: "white",
+      cycle: 0,
+      totalCycles: p[i].B_totalCycles,
+      alive: true,
+    })
+  }
+};
+
+//special bullets the spawn when a player dies
+function debris(i) {
   b.push({
-    x: p[i].x + (p[i].r + 2) * Math.cos(p[i].dir * Math.PI / 180),
-    y: p[i].y + (p[i].r + 2) * Math.sin(p[i].dir * Math.PI / 180),
-    r: 2, // ^ add bullet radius to starting position ^
-    Vx: p[i].Vx + 8 * Math.cos(p[i].dir * Math.PI / 180),
-    Vy: p[i].Vy + 8 * Math.sin(p[i].dir * Math.PI / 180),
-    dmg: 0.4,
+    x: p[i].x,
+    y: p[i].y,
+    r: 1+Math.random() * 2,
+    Vx: p[i].Vx + 20 * (Math.random() - 0.5),
+    Vy: p[i].Vx + 20 * (Math.random() - 0.5),
+    friction: 0.95, // 1 means no friction
+    dmg: 0.01,
     hitKnockBack: 0.5,
-    color: "white",
+    color: "grey",
     cycle: 0,
-    totalCycles: 400,
+    totalCycles: 25,
     alive: true,
   })
 };
+
 //object for player 0 and 1
 var p = [];
 //add player 0
@@ -134,10 +195,18 @@ p.push({
   alive: true,
   lives: 10,
   keys: [65, 68, 87, 83, 49], //left, right, forward, back, fire
-  fireDelay: 20, //time between bullets
-  lastFireCycle: 0, //used to keep track of last cycle you fired
-  fireKnockBack: 0.2,
   color: "#ffcc99",
+  lastFireCycle: 0, //used to keep track of last cycle you fired
+  //gun attributes
+  fireDelay: 4, //time between fire
+  fireKnockBack: 0.2,
+  B_dmg: 0.02,
+  B_speed: 12,
+  B_totalCycles: 200,
+  B_r: 2,
+  B_spread: 0,
+  B_number: 1,
+  B_friction: 1,
 });
 //add player 1
 p.push({
@@ -153,11 +222,86 @@ p.push({
   alive: true,
   lives: 10,
   keys: [37, 39, 38, 40, 80], //left, right, forward, back, fire
-  fireDelay: 20, //time between bullets
-  lastFireCycle: 0, //used to keep track of last cycle you fired
-  fireKnockBack: 0.2,
   color: "#ccffff",
+  lastFireCycle: 0, //used to keep track of last cycle you fired
+  //gun attributes
+  fireDelay: 20, //time between bullets
+  fireKnockBack: 0.2,
+  B_dmg: 0.2,
+  B_speed: 8,
+  B_totalCycles: 600,
+  B_r: 5,
+  B_spread: 0,
+  B_number: 1,
+  B_friction: 1,
 });
+
+function autoGun(i) {
+  p[i].fireDelay = 2;
+  p[i].fireKnockBack = 0;
+  p[i].B_dmg = 0.03;
+  p[i].B_speed = 22;
+  p[i].B_totalCycles = 32;
+  p[i].B_r = 1;
+  p[i].B_spread = 10;
+  p[i].B_number = 1;
+  p[i].B_friction = 0.98;
+}
+p
+
+function sniperGun(i) {
+  p[i].fireDelay = 60;
+  p[i].fireKnockBack = 1.5;
+  p[i].B_dmg = 0;
+  p[i].B_speed = 25;
+  p[i].B_totalCycles = 200;
+  p[i].B_r = 4;
+  p[i].B_spread = 0;
+  p[i].B_number = 1;
+  p[i].B_friction = 1;
+}
+
+function spiritBombGun(i) {
+  p[i].fireDelay = 100;
+  p[i].fireKnockBack = 0;
+  p[i].B_dmg = 1.5
+  p[i].B_speed = 3;
+  p[i].B_totalCycles = 600;
+  p[i].B_r = 20;
+  p[i].B_spread = 0;
+  p[i].B_number = 1;
+  p[i].B_friction = 1;
+}
+
+function shotGun(i) {
+  p[i].fireDelay = 90;
+  p[i].fireKnockBack = 2;
+  p[i].B_dmg = 0.02;
+  p[i].B_speed = 22;
+  p[i].B_totalCycles = 135;
+  p[i].B_r = 2;
+  p[i].B_spread = 50;
+  p[i].B_number = 7;
+  p[i].B_friction = 0.975;
+}
+
+function accelGun(i) {
+  p[i].fireDelay = 10;
+  p[i].fireKnockBack = 0;
+  p[i].B_dmg = 0.15;
+  p[i].B_speed = 3.6;
+  p[i].B_totalCycles = 120;
+  p[i].B_r = 3;
+  p[i].B_spread = 0;
+  p[i].B_number = 1;
+  p[i].B_friction = 1.02;
+}
+
+autoGun(1);
+shotGun(0);
+//sniperGun(0);
+//spiritBombGun(0);
+//accelGun(1)
 
 function bulletCollisionMap(i) {
   //check in future X-dir
@@ -177,11 +321,10 @@ function bulletCollisionMap(i) {
 
 //when life gets below zero
 function playerDead(i) {
+  for (var j = 0; j < 20; j++) {
+    debris(i);
+  }
   p[i].alive = false;
-  p[i].Vx = 0;
-  p[i].Vy = 0;
-  p[i].y = -1000;
-  p[i].x = -1000;
   document.getElementById('player' + i).setAttribute('visibility', "hidden");
   document.getElementById('tail' + i).setAttribute('visibility', "hidden");
   setTimeout(function() {
@@ -194,11 +337,19 @@ function playerAlive(i) {
   p[i].alive = true;
   p[i].y = container.height * Math.random();
   p[i].x = container.width * Math.random();
+  do { //give player random x and , but if player spawns inside map try again
+    p[i].y = container.height * Math.random();
+    p[i].x = container.width * Math.random();
+  } while (map[Math.floor((p[i].y) / container.width * 20)][Math.floor((p[i].x) / container.width * 20)]);
   p[i].Vx = 0;
   p[i].Vy = 0;
   p[i].health = 1;
   p[i].lives--
 };
+
+playerAlive(0); //this keeps players out of the map on spawn
+playerAlive(1);
+
 //moves players when keys are pressed
 function playerKeys(i) {
   if (keys[p[i].keys[0]]) { //rotate left
@@ -224,7 +375,7 @@ function playerKeys(i) {
       p[i].lastFireCycle = physics.cycle;
       p[i].Vx -= p[i].fireKnockBack * Math.cos(p[i].dir * Math.PI / 180);
       p[i].Vy -= p[i].fireKnockBack * Math.sin(p[i].dir * Math.PI / 180);
-      pushbullet(i);
+      bullet(i);
     }
   }
 
@@ -249,12 +400,12 @@ function draw() {
 
   //player life bars
   ctx.font = "20px Arial";
-  //player 0
+  //player 0 red
   ctx.fillStyle = "#ffcc99";
   ctx.fillRect(ctx.canvas.width - p[0].health * 200, 0, p[0].health * 200, 20);
   ctx.textAlign = "end";
   ctx.fillText(p[0].lives, ctx.canvas.width - 2, 40);
-  //player 1
+  //player 1 blue
   ctx.fillStyle = "#ccffff";
   ctx.fillRect(0, 0, p[1].health * 200, 20);
   ctx.textAlign = "start";
@@ -267,28 +418,10 @@ function draw() {
     if (b[i].alive) {
       //change position of each bullet
       bulletCollisionMap(i);
+      b[i].Vx *= b[i].friction;
+      b[i].Vy *= b[i].friction;
       b[i].x += b[i].Vx;
       b[i].y += b[i].Vy;
-      //check for player collision and explode
-      for (var j = 0; j < 2; j++) {
-        if ((b[i].x - p[j].x) * (b[i].x - p[j].x) + (b[i].y - p[j].y) * (b[i].y - p[j].y) < p[j].r * p[j].r + b[i].r * b[i].r) {
-          p[j].health -= b[i].dmg; //lower player health
-          p[j].Vx -= b[i].hitKnockBack * Math.cos(Math.atan2(b[i].y - p[j].y, b[i].x - p[j].x));
-          p[j].Vy -= b[i].hitKnockBack * Math.sin(Math.atan2(b[i].y - p[j].y, b[i].x - p[j].x));
-          if (p[j].health < 0) {
-            playerDead(j)
-          };
-          b[i].color = "red";
-          b[i].alive = false;
-          b[i].r = 25;
-          b[i].cycle = b[i].totalCycles - 5;
-          b[i].x -= b[i].Vx; //back up bullet
-          b[i].y -= b[i].Vy;
-        };
-      };
-      //check for map collision
-      //add here eventually
-
       //wall bounce X
       if (b[i].x > container.width - b[i].r) {
         b[i].x = container.width - b[i].r;
@@ -307,7 +440,37 @@ function draw() {
         b[i].y = container.y + b[i].r;
         b[i].Vy = -b[i].Vy * physics.wallBounce;
       };
-      //if not alive explode    
+      //check for player collision and explode
+      for (var j = 0; j < 2; j++) {
+        if (p[j].alive) {
+          if ((b[i].x - p[j].x) * (b[i].x - p[j].x) + (b[i].y - p[j].y) * (b[i].y - p[j].y) < p[j].r * p[j].r + b[i].r * b[i].r) {
+            //explosive damage
+            var damage = b[i].dmg + Math.sqrt((b[i].Vx * b[i].Vx + b[i].Vy * b[i].Vy)) * (b[i].r - 1) * 0.01
+            p[j].health -= damage; //lower player health
+            //speed and radius based damage
+            p[j].health -= Math.sqrt((b[i].Vx * b[i].Vx + b[i].Vy * b[i].Vy)) * (b[i].r - 1) * 0.01
+              //check if player dead
+            if (p[j].health < 0) {
+              playerDead(j)
+            };
+            //velocity based bullet knockback
+            p[j].Vx += 0.01 * b[i].r * b[i].Vx
+            p[j].Vy += 0.01 * b[i].r * b[i].Vy
+            //explosion based bullet knockback
+            p[j].Vx -= 2 * b[i].dmg * Math.cos(Math.atan2(b[i].y - p[j].y, b[i].x - p[j].x));
+            p[j].Vy -= 2 * b[i].dmg * Math.sin(Math.atan2(b[i].y - p[j].y, b[i].x - p[j].x));
+            //switch bullet to explosion
+            b[i].color = "red";
+            //make radius proportional to damage done from speed*Radius + dmg
+            b[i].r = Math.abs(damage * 100);
+            b[i].cycle = b[i].totalCycles - 5;
+            b[i].x -= b[i].Vx; //back up bullet position
+            b[i].y -= b[i].Vy;
+            b[i].alive = false;
+            j++ //ends the for loop
+          };
+        };
+      };
     }
     //draw bullet
     ctx.fillStyle = b[i].color;
@@ -324,12 +487,14 @@ function draw() {
   }; //end bullet loop
 
   //player to player collision
+  if (p[0].alive && p[1].alive) {
   if ((p[0].x - p[1].x) * (p[0].x - p[1].x) + (p[0].y - p[1].y) * (p[0].y - p[1].y) < (p[0].r + p[1].r) * (p[0].r + p[1].r)) {
     p[0].Vx += physics.playerKnockBack * Math.cos(Math.atan2(p[0].y - p[1].y, p[0].x - p[1].x));
     p[0].Vy += physics.playerKnockBack * Math.sin(Math.atan2(p[0].y - p[1].y, p[0].x - p[1].x));
     p[1].Vx += physics.playerKnockBack * Math.cos(Math.atan2(p[1].y - p[0].y, p[1].x - p[0].x));
     p[1].Vy += physics.playerKnockBack * Math.sin(Math.atan2(p[1].y - p[0].y, p[1].x - p[0].x));
-  }
+  };
+  };
   //player 0,1 control loop
   for (var i = 0; i < 2; i++) {
     //only if each player is alive
@@ -370,7 +535,6 @@ function draw() {
   } //end player loop
   //log info to console
   //console.log("p1.x = " + p[1].x.toFixed(5).substring(0, 5) + ", p1.y = " + p[1].y.toFixed(5).substring(0, 5) + "  |  p1.Vx = " + p[1].Vx.toFixed(5).substring(0, 5) + ", p1.Vy = " + p[1].Vy.toFixed(5).substring(0, 5) + " | p1.dir = " + p[1].dir.toFixed(5).substring(0, 5));
-
   //calls the loop recursively
   requestAnimationFrame(draw);
 }
