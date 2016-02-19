@@ -27,13 +27,6 @@ set a constant size ratio
 */
 
 //set boundries to the browser window's size
-
-var container = {
-  x: 0,
-  y: 0,
-  width: 400,
-  height: 300,
-};
 //object for game physics
 var physics = {
   cycle: 0,
@@ -44,7 +37,17 @@ var physics = {
   mapColor: "#788485",
   zoom: 1,
   relativePlayerSize: 15,
+  mapWidth: 16 * 2,
+  mapHeight: 9 * 2,
 }
+
+var container = {
+  x: 0,
+  y: 0,
+  width: physics.mapWidth*100,
+  height: physics.mapHeight*100,
+};
+
 
 //setup canvas
 var canvas = document.getElementById("myCanvas");
@@ -52,19 +55,19 @@ var ctx = canvas.getContext("2d");
 
 //set canvas and container to 98% of the width or height of the window at a 4:3 ratio
 function resize() {
-  if (window.innerWidth / window.innerHeight > 1.333333) {
-    container.width = window.innerHeight * 1.333333 * 0.98;
-    container.height = container.width * 0.75;
+  if (window.innerWidth / window.innerHeight > physics.mapWidth / physics.mapHeight) {
+    container.width = window.innerHeight * physics.mapWidth / physics.mapHeight //* 0.98;
+    container.height = container.width * physics.mapHeight / physics.mapWidth;
   } else {
-    container.height = window.innerWidth * 0.75 * 0.98
-    container.width = container.height * 1.333333;
+    container.height = window.innerWidth * physics.mapHeight / physics.mapWidth //* 0.98
+    container.width = container.height * physics.mapWidth / physics.mapHeight;
   }
-  //setminsize
-  if (container.width < 500){
+  //set min size
+  if (container.width < 500) {
     container.width = 500;
-    container.height = container.width * 0.75;
+    container.height = container.width * physics.mapHeight / physics.mapWidth;
   }
-  
+
   ctx.canvas.width = container.width;
   ctx.canvas.height = container.height;
   physics.zoom = container.width * 0.001;
@@ -94,31 +97,29 @@ function maxSpeed(speed) {
   }
 }
 
-//map array x,y  10x10 plus a top and bottom layer so 10x12
+//map array x,y  16*2 x 9*2
 var map = [
   //top window is the off screen bounds
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   //bottom window boundry
 ];
 
@@ -126,10 +127,10 @@ var map = [
 //currently disabled
 function drawMap() {
   ctx.fillStyle = physics.mapColor;
-  for (var i = 0; i < map.length; i++) {
-    for (var j = 0; j < map.length; j++) {
+  for (var i = 0; i < physics.mapHeight+1; i++) {
+    for (var j = 0; j < physics.mapWidth; j++) {
       if (map[i][j]) {
-        ctx.fillRect(j * 0.05 * container.width | 0, (i - 1) * 0.05 * container.height | 0, (0.05 * container.width + 1) | 0, (0.05 * container.height + 1) | 0); //  | 0 converts float to int for faster draw speeds
+        ctx.fillRect(j / 32 * container.width | 0, (i - 1) / 18 * container.height | 0, (container.width / 32 + 1) | 0, (container.height / 18 + 1) | 0); //  | 0 converts float to int for faster draw speeds
       }
     }
   };
@@ -190,14 +191,14 @@ p.push({
   Vy: 0,
   dir: 45, //direction of player
   r: 20, //needs to be the same as the player image radius
-  accel: 0.3,  //set in scale player function
+  accel: 0.3, //set in scale player function
   turnRate: 2,
   alive: true,
   lives: 10,
   keys: [65, 68, 87, 83, 49], //left, right, forward, back, fire
   color: "#ffcc99",
   lastFireCycle: 0, //used to keep track of last cycle you fired
-  
+
   //gun attributes  all these vales are reset when player gets a guntype
   fireDelay: 4, //time between fire
   fireKnockBack: 0.2,
@@ -219,14 +220,14 @@ p.push({
   Vy: 0,
   dir: 225, //direction of player
   r: 20, //needs to be the same as the player image radius
-  accel: 0.3,  //set in scale player function
+  accel: 0.3, //set in scale player function
   turnRate: 2,
   alive: true,
   lives: 10,
   keys: [37, 39, 38, 40, 80], //left, right, forward, back, fire
   color: "#ccffff",
   lastFireCycle: 0, //used to keep track of last cycle you fired
-  
+
   //gun attributes  all these vales are reset when player gets a guntype
   fireDelay: 20, //time between bullets
   fireKnockBack: 0.2, //pushes the player back after each shot
@@ -242,11 +243,10 @@ p.push({
 //scales player radius and acceleration  only called inside resize function
 function scalePlayer() {
   for (var i = 0; i < 2; i++) {
-    p[i].accel = 0.3 * physics.zoom  //scale player accleration
-    p[i].r = physics.relativePlayerSize * physics.zoom;  //scale calculated radius
+    p[i].accel = 0.3 * physics.zoom //scale player accleration
+    p[i].r = physics.relativePlayerSize * physics.zoom; //scale calculated radius
     //scales player size
-    document.getElementById('playersize'+ i).setAttribute('transform', "scale(" + p[i].r/20 + ")");
-
+    document.getElementById('playersize' + i).setAttribute('transform', "scale(" + p[i].r / 20 + ")");
   }
 }
 
@@ -319,12 +319,12 @@ function waveGun(i) {
   p[i].fireDelay = 23;
   p[i].fireKnockBack = 0;
   p[i].B_dmg = 0.02;
-  p[i].B_speed = 5;
-  p[i].B_totalCycles = 80;
+  p[i].B_speed = 8;
+  p[i].B_totalCycles = 100;
   p[i].B_r = 1.2;
   p[i].B_spread = 10;
   p[i].B_number = 13;
-  p[i].B_friction = 1.02;
+  p[i].B_friction = 1;
   p[i].B_penetrate = 0;
 }
 
@@ -384,8 +384,8 @@ for (var i = 0; i < 2; i++) {
   }
 }
 //whipGun(1);
-//waveGun(1);
-beamGun(1);
+waveGun(1);
+//beamGun(1);
 //shotGun(0);
 //sniperGun(0);
 //spiritBombGun(0);
@@ -396,21 +396,21 @@ beamGun(1);
 function playerCollisionMap(i) {
   //check in future X-dir
   if (p[i].Vx > 0) { //find out direction
-    var pX = Math.floor((p[i].x + p[i].Vx + p[i].r) / container.width * 20);
+    var pX = Math.floor((p[i].x + p[i].Vx + p[i].r) / container.width * physics.mapWidth);
   } else {
-    var pX = Math.floor((p[i].x + p[i].Vx - p[i].r) / container.width * 20);
+    var pX = Math.floor((p[i].x + p[i].Vx - p[i].r) / container.width * physics.mapWidth);
   }
-  var pY = Math.floor(p[i].y / container.height * 20);
+  var pY = Math.floor(p[i].y / container.height * physics.mapHeight);
   if (map[pY + 1][pX]) {
     p[i].x -= p[i].Vx; //move back to last position
     p[i].Vx *= -1 * physics.wallBounce; //flip velocity
   }
-  pX = Math.floor(p[i].x / container.width * 20);
+  pX = Math.floor(p[i].x / container.width * physics.mapWidth);
   //check in future Y-dir
   if (p[i].Vy > 0) { //find out direction
-    pY = Math.floor((p[i].y + p[i].Vy + p[i].r) / container.height * 20);
+    pY = Math.floor((p[i].y + p[i].Vy + p[i].r) / container.height * physics.mapHeight);
   } else {
-    pY = Math.floor((p[i].y + p[i].Vy - p[i].r) / container.height * 20);
+    pY = Math.floor((p[i].y + p[i].Vy - p[i].r) / container.height * physics.mapHeight);
   }
   if (map[pY + 1][pX]) {
     p[i].y -= p[i].Vy; //move back to last position
@@ -439,7 +439,7 @@ function playerAlive(i) {
     p[i].y = container.height * Math.random();
     p[i].x = container.width * Math.random();
     j++
-  } while (j < 100 && map[1 + Math.floor(p[i].y / container.height * 20)][Math.floor((p[i].x + p[i].r) / container.width * 20)] || map[Math.floor((p[i].y) / container.height * 20) + 1][Math.floor((p[i].x - p[i].r) / container.width * 20)] || map[Math.floor((p[i].y + p[i].r) / container.height * 20) + 1][Math.floor((p[i].x) / container.width * 20)] || map[Math.floor((p[i].y - p[i].r) / container.height * 20) + 1][Math.floor((p[i].x) / container.width * 20)]);
+  } while (j < 100 && map[1 + Math.floor(p[i].y / container.height * physics.mapHeight)][Math.floor((p[i].x + p[i].r) / container.width * physics.mapWidth)] || map[Math.floor((p[i].y) / container.height * physics.mapHeight) + 1][Math.floor((p[i].x - p[i].r) / container.width * physics.mapWidth)] || map[Math.floor((p[i].y + p[i].r) / container.height * physics.mapHeight) + 1][Math.floor((p[i].x) / container.width * physics.mapWidth)] || map[Math.floor((p[i].y - p[i].r) / container.height * physics.mapHeight) + 1][Math.floor((p[i].x) / container.width * physics.mapWidth)]);
   p[i].alive = true;
   p[i].Vx = 0;
   p[i].Vy = 0;
@@ -470,8 +470,8 @@ function playerKeys(i) {
   if (keys[p[i].keys[4]]) { //fire bullet
     if (physics.cycle > p[i].lastFireCycle + p[i].fireDelay) {
       p[i].lastFireCycle = physics.cycle;
-      p[i].Vx -= p[i].fireKnockBack*physics.zoom * Math.cos(p[i].dir * Math.PI / 180);
-      p[i].Vy -= p[i].fireKnockBack*physics.zoom * Math.sin(p[i].dir * Math.PI / 180);
+      p[i].Vx -= p[i].fireKnockBack * physics.zoom * Math.cos(p[i].dir * Math.PI / 180);
+      p[i].Vy -= p[i].fireKnockBack * physics.zoom * Math.sin(p[i].dir * Math.PI / 180);
       bullet(i);
     }
   }
@@ -540,13 +540,13 @@ function draw() {
 
       //map collision detection (this needs to come after wall bounce to prevent out of array checks)
       if (b[i].penetrate === 0) {
-        var arrayY = Math.floor(b[i].y / container.height * 20) + 1;
-        var arrayX = Math.floor((b[i].x + b[i].Vx) / container.width * 20);
+        var arrayY = Math.floor(b[i].y / container.height * physics.mapHeight) + 1;
+        var arrayX = Math.floor((b[i].x + b[i].Vx) / container.width * physics.mapWidth);
         if (map[arrayY][arrayX]) {
           b[i].Vx *= -1; //flip X velocity if touching map
         } else {
-          arrayY = Math.floor((b[i].y + b[i].Vy) / container.height * 20) + 1;
-          arrayX = Math.floor(b[i].x / container.width * 20);
+          arrayY = Math.floor((b[i].y + b[i].Vy) / container.height * physics.mapHeight) + 1;
+          arrayX = Math.floor(b[i].x / container.width * physics.mapWidth);
           //check for out of bounds of array, oddly this seems to only matter for Y direction
           if (arrayY >= map.length || arrayY < 0) {
             b[i].cycle = b[i].totalCycles
@@ -564,7 +564,7 @@ function draw() {
         if (p[j].alive) {
           if ((b[i].x - p[j].x) * (b[i].x - p[j].x) + (b[i].y - p[j].y) * (b[i].y - p[j].y) < (p[j].r + b[i].r) * (p[j].r + b[i].r)) {
             //damamge from relative velocity times raidus + dmg
-            var damage = b[i].dmg + Math.sqrt((b[i].Vx - p[j].Vx) * (b[i].Vx - p[j].Vx) + (b[i].Vy - p[j].Vy) * (b[i].Vy - p[j].Vy)) * (b[i].r/physics.zoom - 1) * 0.005;
+            var damage = b[i].dmg + Math.sqrt((b[i].Vx - p[j].Vx) * (b[i].Vx - p[j].Vx) + (b[i].Vy - p[j].Vy) * (b[i].Vy - p[j].Vy)) * (b[i].r / physics.zoom - 1) * 0.005;
             //velocity and raidus^2 based bullet knockback
             p[j].Vx += 0.01 * b[i].r * b[i].r * b[i].Vx;
             p[j].Vy += 0.01 * b[i].r * b[i].r * b[i].Vy;
