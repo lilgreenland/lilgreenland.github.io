@@ -383,8 +383,8 @@ for (var i = 0; i < 2; i++) {
       break;
   }
 }
-//whipGun(1);
-waveGun(1);
+//whipGun(0);
+//waveGun(1);
 //beamGun(1);
 //shotGun(0);
 //sniperGun(0);
