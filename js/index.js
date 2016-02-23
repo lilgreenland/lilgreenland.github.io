@@ -35,6 +35,9 @@ switch to around the world edge collision
 
 destroy bullet if it spawns inside the map
 
+mouse controls for one player to help with ghosting?
+  or to make it 3 players
+
 */
 
 //set boundries to the browser window's size
