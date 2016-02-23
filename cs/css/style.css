@@ -1,0 +1,25 @@
+body {
+  font: 15px arial, sans-serif;
+  background-color: white;
+}
+
+h2 {
+  font-size: 120%;
+}
+
+h3 {
+  font-size: 110%;
+}
+
+
+pre {
+  font: 15px "Courier New", Courier, monospace;
+  background-color: lightblue;
+}
+
+canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
