@@ -8,8 +8,6 @@ player collision
 procedurally generated maps
   use cellular automata rule to generate?
 
-pop up damage numbers?
-
 use switching for custom fire routines?
 is it possible to have custom loops for different bullets types liek clones in scratch?
 
@@ -23,7 +21,20 @@ power ups
 
 set a constant size ratio
   zoom in svg and canvas to scale with window size.
- 
+  
+damage and maybe other things? seem to scale with size, they shouldn't
+
+make it so sliders can't show up?
+
+use max speed function after taking damage to help prevent out of bounds for an array
+
+map block take damage and can die
+  set them to a value for life and they drop on player hit
+  
+switch to around the world edge collision
+
+destroy bullet if it spawns inside the map
+
 */
 
 //set boundries to the browser window's size
@@ -32,22 +43,25 @@ var physics = {
   cycle: 0,
   friction: 0.96,
   wallBounce: 0.6,
-  playerKnockBack: 5,
+  playerKnockBack: 5, //set in resize function
   maxSpeed: 20,
-  mapColor: "#788485",
-  zoom: 1,
+  mapColor: "#60696a",
+  zoom: 1, //set in resize function
+  //scales player/bullet size and acceleration, used in resize function
+  relativeSize: 0.03, //small 0.01  ->   0.06 big
   relativePlayerSize: 15,
-  mapWidth: 16 * 2,
-  mapHeight: 9 * 2,
+  mapWidth: 30, //number of blocks in maps width
+  mapHeight: 30, //mapWidth:mapHeight defines the aspect ratio of the window  might need to be equal
+  blockSize: 1,
+  mapDepth: 9  // 1 is a full maze each higher number is one less depth
 }
 
 var container = {
   x: 0,
   y: 0,
-  width: physics.mapWidth*100,
-  height: physics.mapHeight*100,
+  width: physics.mapWidth * 100, //size of container in pixels
+  height: physics.mapHeight * 100,
 };
-
 
 //setup canvas
 var canvas = document.getElementById("myCanvas");
@@ -56,21 +70,22 @@ var ctx = canvas.getContext("2d");
 //set canvas and container to 98% of the width or height of the window at a 4:3 ratio
 function resize() {
   if (window.innerWidth / window.innerHeight > physics.mapWidth / physics.mapHeight) {
-    container.width = window.innerHeight * physics.mapWidth / physics.mapHeight //* 0.98;
+    container.width = window.innerHeight * physics.mapWidth / physics.mapHeight;
     container.height = container.width * physics.mapHeight / physics.mapWidth;
   } else {
-    container.height = window.innerWidth * physics.mapHeight / physics.mapWidth //* 0.98
+    container.height = window.innerWidth * physics.mapHeight / physics.mapWidth;
     container.width = container.height * physics.mapWidth / physics.mapHeight;
   }
   //set min size
-  if (container.width < 500) {
-    container.width = 500;
+  if (container.width < 400) {
+    container.width = 400;
     container.height = container.width * physics.mapHeight / physics.mapWidth;
   }
-
   ctx.canvas.width = container.width;
   ctx.canvas.height = container.height;
-  physics.zoom = container.width * 0.001;
+  //sets the relative size of the player
+  physics.zoom = container.width / physics.mapWidth * physics.relativeSize;
+  physics.blockSize = container.width / physics.mapWidth
   scalePlayer();
 };
 
@@ -88,52 +103,141 @@ document.body.addEventListener("keyup", function(e) {
   keys[e.keyCode] = false;
 });
 
-//limits a value to below maxspeed
-function maxSpeed(speed) {
-  if (speed > physics.maxSpeed) {
-    return physics.maxSpeed;
-  } else {
-    return speed;
+//map array for somereason needs to have all the arrays set up
+/*var map = [
+  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0],  [0]
+];
+//fill with zeros
+function mapZeros() {
+  for (var i = 0; i < physics.mapHeight; i++) {
+    for (var j = 0; j < physics.mapWidth; j++) {
+      map[i][j] = 0;
+    }
   }
 }
+function chooseOrientation(width, height){
+  if (width<height){
+    return "horizontal"
+  } else if (height<width){
+    return "vertical"
+  } else if (Math.random() > 0.5 ){
+      return "vertical"
+  } else {
+    return "horizontal"
+  }
+}
+function recursiveDivision() {
+  for(var i = 0; i<physics.mapHeight;i++){
+    map[i][Math.ceil(physics.mapWidth*0.5)] = 1;
+  }
+  var holeY = Math.ceil(Math.random()*physics.mapHeight)
+  var holeX = Math.ceil(physics.mapWidth*0.5)
+  for (var j = 0; j<5; j++){
+    map[holeY+j][holeX] = 0  
+  }
+}
+mapZeros()
+//recursiveDivision()
+//generate random map   
+function randomMap() {
+  for (var i = 0; i < physics.mapHeight+1; i++) {
+    for (var j = 0; j < physics.mapWidth+1; j++) {
+      map[i][j] = Math.floor(Math.random() + 0.05);
+    }
+  }
+}
+//randomMap()
+*/
 
-//map array x,y  16*2 x 9*2
-var map = [
-  //top window is the off screen bounds
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  //bottom window boundry
-];
+//build map with  Maze "Recursive Division" algorithm 
+var grid;
+function generate(dimensions, numDoors) {
+  grid = new Array();
+  for (var i = 0; i < dimensions; i++) {
+    grid[i] = new Array();
+    for (var j = 0; j < dimensions; j++) {
+      grid[i][j] = 0;
+    }
+  }
+  //addOuterWalls();
+  addInnerWalls(true, 1, grid.length - 0, 1, grid.length - 2);
+}
+function addOuterWalls() {
+  for (var i = 0; i < grid.length; i++) {
+    if (i == 0 || i == (grid.length - 1)) {
+      for (var j = 0; j < grid.length; j++) {
+        grid[i][j] = 1;
+      }
+    } else {
+      grid[i][0] = 1;
+      grid[i][grid.length - 1] = 1;
+    }
+  }
+}
+function addInnerWalls(h, minX, maxX, minY, maxY) {
+  if (h) {
+    if (maxX - minX < 1) {
+      return;
+    }
+    var y = Math.floor(randomNumber(minY, maxY) / 2) * 2;
+    addHWall(minX, maxX, y);
+    addInnerWalls(!h, minX, maxX, minY, y - 1);
+    addInnerWalls(!h, minX, maxX, y + 1, maxY);
+  } else {
+    if (maxY - minY < physics.mapDepth) {
+      return;
+    }
+    var x = Math.floor(randomNumber(minX, maxX) / 2) * 2;
+    addVWall(minY, maxY, x);
+    addInnerWalls(!h, minX, x - 1, minY, maxY);
+    addInnerWalls(!h, x + 1, maxX, minY, maxY);
+  }
+}
+function addHWall(minX, maxX, y) {
+  var hole = Math.floor(randomNumber(minX, maxX) / 2) * 2 + 1;
+  for (var i = minX; i <= maxX; i++) {
+    if (i == hole  || i == hole+1|| i == hole-1) grid[y][i] = 0;
+    //if (i == hole) grid[y][i] = 0;
+    else grid[y][i] = 1;
+  }
+}
+function addVWall(minY, maxY, x) {
+  var hole = Math.floor(randomNumber(minY, maxY) / 2) * 2 + 1;
+  for (var i = minY; i <= maxY; i++) {
+    if (i == hole || i == hole+1|| i == hole-1) grid[i][x] = 0;
+    //if (i == hole) grid[i][x] = 0;
+    else grid[i][x] = 1;
+  }
+}
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+generate(physics.mapWidth, 0);
+
+var map = grid;
+function setupMap() {
+  var array1 = []
+  for (var i = 0; i < physics.mapWidth; i++) {
+    array1.push(1);
+  }
+  //adding a top and bottom layer seems to help prevent out of bounds checks in other parts of the game
+  map.splice(0, 0, array1);
+  map.splice(map.length, 0, array1);
+  
+}
+setupMap()
 
 //drawMap is called in the draw loop
 //currently disabled
 function drawMap() {
   ctx.fillStyle = physics.mapColor;
-  for (var i = 0; i < physics.mapHeight+1; i++) {
+  for (var i = 0; i < physics.mapHeight + 1; i++) {
     for (var j = 0; j < physics.mapWidth; j++) {
       if (map[i][j]) {
-        ctx.fillRect(j / 32 * container.width | 0, (i - 1) / 18 * container.height | 0, (container.width / 32 + 1) | 0, (container.height / 18 + 1) | 0); //  | 0 converts float to int for faster draw speeds
+        ctx.fillRect(j / physics.mapWidth * container.width | 0, (i - 1) / physics.mapHeight * container.height | 0, (physics.blockSize + 1) | 0, (physics.blockSize + 1) | 0); //  | 0 converts float to int for faster draw speeds
       }
     }
-  };
+  }
 }
 
 //array of objects for bullets
@@ -142,8 +246,8 @@ var b = [];
 function bullet(i) {
   for (var j = 0; j < p[i].B_number; j++) {
     b.push({
-      x: p[i].x + (p[i].r + p[i].B_r) * Math.cos(p[i].dir * Math.PI / 180),
-      y: p[i].y + (p[i].r + p[i].B_r) * Math.sin(p[i].dir * Math.PI / 180),
+      x: p[i].x + (p[i].r + p[i].B_r * physics.zoom) * Math.cos(p[i].dir * Math.PI / 180),
+      y: p[i].y + (p[i].r + p[i].B_r * physics.zoom) * Math.sin(p[i].dir * Math.PI / 180),
       r: p[i].B_r * physics.zoom,
       Vx: p[i].Vx + p[i].B_speed * physics.zoom * Math.cos((p[i].dir + p[i].B_spread * (Math.random() - 0.5)) * Math.PI / 180),
       Vy: p[i].Vy + p[i].B_speed * physics.zoom * Math.sin((p[i].dir + p[i].B_spread * (Math.random() - 0.5)) * Math.PI / 180),
@@ -247,6 +351,7 @@ function scalePlayer() {
     p[i].r = physics.relativePlayerSize * physics.zoom; //scale calculated radius
     //scales player size
     document.getElementById('playersize' + i).setAttribute('transform', "scale(" + p[i].r / 20 + ")");
+    physics.playerKnockBack = physics.zoom * 5
   }
 }
 
@@ -419,7 +524,7 @@ function playerCollisionMap(i) {
 }
 //when player life gets below zero
 function playerDead(i) {
-  for (var j = 0; j < 20; j++) {
+  for (var j = 0; j < 50; j++) {
     debris(i);
   }
   p[i].alive = false;
@@ -497,6 +602,7 @@ function draw() {
 
   //player life bars
   ctx.font = "20px Arial";
+  ctx.globalAlpha = 0.9;
   //player 0 red
   ctx.fillStyle = p[1].color;
   ctx.fillRect((ctx.canvas.width - p[1].health * 200) | 0, 0, (p[1].health * 200) | 0, 20);
@@ -507,7 +613,7 @@ function draw() {
   ctx.fillRect(0, 0, (p[0].health * 200) | 0, 20);
   ctx.textAlign = "start";
   ctx.fillText(p[0].lives, 2, 40);
-
+  ctx.globalAlpha = 1;
   //bullet loop
   i = b.length;
   while (i--) {
@@ -555,16 +661,14 @@ function draw() {
               b[i].Vy *= -1; //flip Y velocity if touching map
             }
           }
-
         }
-
       } else if (b[i].penetrate === -1) {};
       //check for player collision and explode
       for (var j = 0; j < 2; j++) {
         if (p[j].alive) {
           if ((b[i].x - p[j].x) * (b[i].x - p[j].x) + (b[i].y - p[j].y) * (b[i].y - p[j].y) < (p[j].r + b[i].r) * (p[j].r + b[i].r)) {
             //damamge from relative velocity times raidus + dmg
-            var damage = b[i].dmg + Math.sqrt((b[i].Vx - p[j].Vx) * (b[i].Vx - p[j].Vx) + (b[i].Vy - p[j].Vy) * (b[i].Vy - p[j].Vy)) * (b[i].r / physics.zoom - 1) * 0.005;
+            var damage = b[i].dmg + Math.sqrt((b[i].Vx - p[j].Vx) * (b[i].Vx - p[j].Vx) + (b[i].Vy - p[j].Vy) * (b[i].Vy - p[j].Vy)) * (Math.abs(b[i].r - 1)) * 0.005 / physics.zoom;
             //velocity and raidus^2 based bullet knockback
             p[j].Vx += 0.01 * b[i].r * b[i].r * b[i].Vx;
             p[j].Vy += 0.01 * b[i].r * b[i].r * b[i].Vy;
