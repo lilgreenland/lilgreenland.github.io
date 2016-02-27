@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>SPACETIME?</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body id="body">
+    <canvas id="myCanvas"></canvas>
+    <svg id="svg">
+      <g id="player0">
+        <g id="playerdir0">
+          <g id="playersize0">
+            <polygon class="tail" id="tail0" points="0,10 -50,0 0,-10" fill="#ffcc99" visibility="hidden"/>
+            <rect x="15" y="-2.5" width="10" height="5" fill="#ffcc99"/>
+            <circle r="20" fill="#333333" stroke="#ffcc99" stroke-width="2"/>
+            <rect x="-1.5" y="-19.5" width="2.5" height="39" fill="#ffcc99"/>
+            <circle r="6" fill="#ffcc99"/>
+          </g>
+        </g>
+      </g>
+      <g id="player1">
+        <g id="playerdir1">
+          <g id="playersize1">
+            <polygon class="tail" id="tail1" points="0,10 -50,0 0,-10" fill="#ccffff" visibility="hidden"/>
+            <rect x="15" y="-2.5" width="10" height="5" fill="#ccffff"/>
+            <circle r="20" fill="#333333" stroke="#ccffff" stroke-width="2"/>
+            <rect x="-1.5" y="-19.5" width="2.5" height="39" fill="#ccffff"/>
+            <circle r="6" fill="#ccffff"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <script src="js/scene.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/powerups.js"></script>
+    <script src="js/loop.js"></script>
+    <script src="js/init.js"></script>
+  </body>
+</html>
