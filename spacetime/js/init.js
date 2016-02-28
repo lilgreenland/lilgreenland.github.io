@@ -40,7 +40,6 @@ function splashPage() {
   ctx.fillText("TIME?", container.width * 0.5 + 7, container.height * 0.4 + 7);
   ctx.textAlign = "end";
   ctx.fillText("SPACE", container.width * 0.5 + 7, container.height * 0.4 + 7);
-  ctx.strokeStyle = "#222222";
 }
 
 
@@ -75,3 +74,9 @@ randomGun(1);
 //spiritBombGun(0);
 //regularGun(1)
 //rocketGun(1);
+
+spawnPowerUp();
+spawnPowerUp();
+spawnPowerUp();
+spawnPowerUp();
+spawnPowerUp();

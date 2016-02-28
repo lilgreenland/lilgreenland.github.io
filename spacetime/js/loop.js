@@ -1,15 +1,15 @@
 /*    TODO
-grey out ship center circle to show fire CD?
+change ship center circle to show fire CD?
   or some other method
 
 player collision
   Add in four point collision detection for ships to avoid being half inside map
 
 procedurally generated maps
-  use cellular automata rule to generate?
 
 use switching for custom fire routines?
 is it possible to have custom loops for different bullets types like clones in scratch?
+  I think not without threads look into useing multiple cores
 
 option: area of effect damage on bullet explosion
 option: bullet heat seeking
@@ -35,11 +35,7 @@ switch to around the world edge collision
 
 destroy bullet if it spawns inside the map
 
-
-
 */
-
-
 
 //main loop
 function draw() {
@@ -53,6 +49,8 @@ function draw() {
   lifeBars();
     //bullet loop
   bullets();
+  //power ups loop
+  powerUpsLoop();
   //player to player collision
   playerCollision();
   //player 0,1 control loop

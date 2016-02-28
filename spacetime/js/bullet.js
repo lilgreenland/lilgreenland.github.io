@@ -185,7 +185,7 @@ function randomGun(i){
 
 
 function bullets(){
-  i = b.length;
+  var i = b.length;
   while (i--) {
     //check if active or exploding
     if (b[i].alive) {

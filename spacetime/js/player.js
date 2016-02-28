@@ -180,6 +180,7 @@ function mouseControl(i) {
     document.getElementById('tail' + i).setAttribute('visibility', "hidden");
   }
   //outlines mouse move range
+  ctx.strokeStyle = "#222222";
   ctx.beginPath();
   ctx.arc(p[i].x, p[i].y, physics.mouseControlRange, 0, 2 * Math.PI);
   ctx.stroke();
