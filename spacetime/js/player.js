@@ -20,6 +20,7 @@ p.push({
   //gun attributes  all these vales are reset when player gets a guntype
   fireDelay: 4, //time between fire
   fireKnockBack: 0.2,
+  B_type: 'none',
   B_dmg: 0.02,
   B_speed: 12,
   B_totalCycles: 200,
@@ -50,6 +51,7 @@ p.push({
   //gun attributes  all these vales are reset when player gets a guntype
   fireDelay: 20, //time between bullets
   fireKnockBack: 0.2, //pushes the player back after each shot
+  B_type: 'none',
   B_dmg: 0.2, //raw damage done per bullet, damage also comes from (radius-1)*speed*0.005
   B_speed: 8, //speed in pixels leaving the player, bullets also gain player's speed on fire
   B_totalCycles: 600, //time on map 60 = 1 second

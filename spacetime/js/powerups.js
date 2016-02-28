@@ -1,33 +1,83 @@
 /*TODO
 scale with map
 use custom SVG images
-collision detection
-switch statement for different power ups
 on spawn avoid map
-switch statement on spawn for different types?   or just use random numbers for types
+randomly spawn new powers
+
 
 */
 
-var powerUps = [];
+var powerUp = [];
+//randomly add a new power up
+function spawnPowerUp(type) {
+var color;
+//if type isn't passed a random type is choosen
+if (!type){
+  type = Math.ceil(Math.random()*2);
+}
 
-function spawnPowerUp() {
-  powerUps.push({
+  switch(type) {
+    case 1:
+      type = 'heal';
+      color = 'green';
+      break;
+    case 2:
+      type = 'gun_random';
+      color = 'white';
+      break;
+    case 3:
+      type = 'damage';
+      color = 'red';
+      break;
+    default:
+      type = 'heal';
+      color = 'green';
+  }
+  //push to powerUp array
+  powerUp.push({
     x: Math.random()*container.width,
     y: Math.random()*container.height,
-    name: 'H',
-    color: 'rgb(125, 255, 119)'
+    r: physics.blockSize*0.3,
+    type: type,
+    color: color,
   });
 }
 
 function powerUpsLoop() {
   ctx.font = "29px Arial";
-  var i = powerUps.length;
+  ctx.textAlign="center";
+  var i = powerUp.length;
   while (i--) {
     //draw power up
-    ctx.fillStyle = powerUps[i].color;
-    ctx.strokeStyle = powerUps[i].color;
-    ctx.strokeRect(powerUps[i].x,powerUps[i].y,physics.blockSize,physics.blockSize);
-    ctx.fillText(powerUps[i].name,powerUps[i].x+1,powerUps[i].y+physics.blockSize-1);
+    ctx.fillStyle = powerUp[i].color;
+    //ctx.strokeStyle = powerUp[i].color;
+    ctx.beginPath();
+    ctx.arc(powerUp[i].x,powerUp[i].y,powerUp[i].r,0,2*Math.PI);
+    ctx.fill();
     //collision check
-}
+    for(var j=0;j<2;j++){  //j is player number
+      if (distance(powerUp[i].x,powerUp[i].y,p[j].x,p[j].y)< powerUp[i].r + p[j].r) {
+        //switch statement for various power up effects
+        switch(powerUp[i].type) {
+          case 'heal':   //heal
+            p[j].health = 1;
+            break;
+          case 'damage':   //damage
+            p[j].health = 0.2;
+            break;
+          case 'gun_random':   //random gun
+            var currentType = p[j].B_type;
+            do{
+            randomGun(j);
+            } while(currentType==p[j].B_type);
+            break;
+        default:  //heal
+            p[j].health = 1;
+        }
+        //removes from array
+        j++; //makes sure to exit player for loop
+        powerUp.splice(i, 1);
+      }
+    }
+  }
 }

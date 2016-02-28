@@ -35,6 +35,9 @@ switch to around the world edge collision
 
 destroy bullet if it spawns inside the map
 
+add in lighting effects
+  use additive canvas fill
+
 */
 
 //main loop
@@ -43,6 +46,21 @@ function draw() {
   physics.cycle++;
   //clear canvas
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); //normal clear
+
+//player flashlights fun
+/*  ctx.globalCompositeOperation="multiply";
+  ctx.fillStyle="#000000";
+  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  ctx.globalCompositeOperation="source-over";
+  ctx.fillStyle="#d6d6d6";
+for (var i =0;i<2;i++){
+  ctx.beginPath();
+  ctx.arc(p[i].x,p[i].y,200,0,2*Math.PI);
+  ctx.fill();
+}
+ctx.globalCompositeOperation="multiply";
+*/
+
   //draw map
   drawMap();
   //show player health
@@ -61,7 +79,8 @@ function draw() {
     playerLoop(0);
   }
   if (p[1].alive) {
-    mouseControl(1);
+    playerKeys(1);
+    //mouseControl(1);
     playerCollisionMap(1);
     playerLoop(1);
   }

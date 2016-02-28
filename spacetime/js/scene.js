@@ -32,6 +32,13 @@ var container = {
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
+//pythagorian theorm pure function
+function distance(x1,y1,x2,y2){
+  return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+}
+
+console.log(distance(10,10,100,100));
+
 //set canvas and container to 98% of the width or height of the window at a 4:3 ratio
 function resize() {
   if (window.innerWidth / window.innerHeight > physics.mapWidth / physics.mapHeight) {

@@ -43,6 +43,7 @@ function debris(i) {
 }
 
 function regularGun(i) {
+  p[i].B_type = "regular";
   p[i].fireDelay = 10;
   p[i].fireKnockBack = 0.1;
   p[i].B_dmg = 0.05;
@@ -57,6 +58,7 @@ function regularGun(i) {
 }
 
 function beamGun(i) {
+  p[i].B_type = "beam";
   p[i].fireDelay = 1;
   p[i].fireKnockBack = 0;
   p[i].B_dmg = 0.016;
@@ -71,6 +73,7 @@ function beamGun(i) {
 }
 
 function sniperGun(i) {
+  p[i].B_type = "sniper";
   p[i].fireDelay = 60;
   p[i].fireKnockBack = 1.5;
   p[i].B_dmg = 0.3;
@@ -85,6 +88,7 @@ function sniperGun(i) {
 }
 
 function spiritBombGun(i) {
+  p[i].B_type = "spiritBomb";
   p[i].fireDelay = 140;
   p[i].fireKnockBack = 1;
   p[i].B_dmg = 0.5;
@@ -99,20 +103,22 @@ function spiritBombGun(i) {
 }
 
 function shotGun(i) {
-  p[i].fireDelay = 80;
+  p[i].B_type = "shot";
+  p[i].fireDelay = 70;
   p[i].fireKnockBack = 7;
   p[i].B_dmg = 0.04;
-  p[i].B_speed = 18;
+  p[i].B_speed = 20;
   p[i].B_totalCycles = 135;
   p[i].B_r = 2;
-  p[i].B_spread = 0.6;
-  p[i].B_number = 10;
+  p[i].B_spread = 0.5;
+  p[i].B_number = 12;
   p[i].B_friction = 0.985;
   p[i].B_penetrate = 0;
   p[i].B_color = "#d9d9d9";
 }
 
 function waveGun(i) {
+  p[i].B_type = "wave";
   p[i].fireDelay = 23;
   p[i].fireKnockBack = 0;
   p[i].B_dmg = 0.02;
@@ -123,10 +129,11 @@ function waveGun(i) {
   p[i].B_number = 13;
   p[i].B_friction = 1;
   p[i].B_penetrate = 0;
-  p[i].B_color = "rgba(89, 255, 0, 1)";
+  p[i].B_color = "rgb(255, 255, 255)";
 }
 
 function rocketGun(i) {
+  p[i].B_type = "rocket";
   p[i].fireDelay = 0;
   p[i].fireKnockBack = 0.36;
   p[i].B_dmg = 0.03;
@@ -141,17 +148,18 @@ function rocketGun(i) {
 }
 
 function whipGun(i) {
+  p[i].B_type = "whip";
   p[i].fireDelay = 0;
   p[i].fireKnockBack = 0;
   p[i].B_dmg = 0.02;
   p[i].B_speed = 7;
-  p[i].B_totalCycles = 50;
+  p[i].B_totalCycles = 40;
   p[i].B_r = 1;
   p[i].B_spread = 0;
   p[i].B_number = 1;
   p[i].B_friction = 0.99;
   p[i].B_penetrate = 1;
-  p[i].B_color = "rgba(255, 255, 255, 0.76)";
+  p[i].B_color = "rgba(227, 0, 255, 1)";
 }
 
 
@@ -254,7 +262,7 @@ function bullets(){
             //switch bullet to explosion
             b[i].color = "rgba(255, 0, 0, 0.88)";
             //make radius proportional to damage done from speed*Radius + dmg
-            b[i].r = Math.abs(damage * 100);
+            b[i].r = Math.abs(damage * 300+5);
             b[i].cycle = b[i].totalCycles - 5; // end bullet in a few cycles
             b[i].x -= b[i].Vx; //back up bullet position for looks
             b[i].y -= b[i].Vy;

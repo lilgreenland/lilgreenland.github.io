@@ -75,8 +75,6 @@ randomGun(1);
 //regularGun(1)
 //rocketGun(1);
 
-spawnPowerUp();
-spawnPowerUp();
-spawnPowerUp();
-spawnPowerUp();
-spawnPowerUp();
+for(var i=0;i<4;i++){
+  spawnPowerUp(2);
+}
