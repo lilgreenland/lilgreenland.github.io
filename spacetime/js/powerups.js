@@ -2,12 +2,21 @@
 scale with map
 use custom SVG images
 on spawn avoid map
-randomly spawn new powers
+randomly spawn new power ups
 
 
 */
 
 var powerUp = [];
+
+//spawn a random power up every 15seconds if total powers on screen is less then 5
+function spawnNewPowerUpCheck(){
+  if (physics.cycle % 900 === 0 && powerUp.length<5){
+    spawnPowerUp();
+  }
+}
+
+
 //randomly add a new power up
 function spawnPowerUp(type) {
 var color;

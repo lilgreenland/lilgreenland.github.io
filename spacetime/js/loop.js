@@ -67,6 +67,8 @@ ctx.globalCompositeOperation="multiply";
   lifeBars();
     //bullet loop
   bullets();
+  //every few seconds spawns a new power up if total power ups is less then 10
+  spawnNewPowerUpCheck();
   //power ups loop
   powerUpsLoop();
   //player to player collision

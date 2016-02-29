@@ -43,7 +43,7 @@ p.push({
   accel: 0.3, //set in scale player function
   turnRate: 0.03,
   alive: true,
-  lives: 1,
+  lives: 5,
   keys: [37, 39, 38, 40, 80], //left, right, forward, back, fire
   color: "#ccffff",
   lastFireCycle: 0, //used to keep track of last cycle you fired
