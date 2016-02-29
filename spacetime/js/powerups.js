@@ -19,11 +19,11 @@ if (!type){
   switch(type) {
     case 1:
       type = 'heal';
-      color = 'green';
+      color = 'lightgreen';
       break;
     case 2:
       type = 'gun_random';
-      color = 'white';
+      color = 'rgb(75, 58, 179)';
       break;
     case 3:
       type = 'damage';
@@ -31,13 +31,13 @@ if (!type){
       break;
     default:
       type = 'heal';
-      color = 'green';
+      color = 'lightgreen';
   }
   //push to powerUp array
   powerUp.push({
     x: Math.random()*container.width,
     y: Math.random()*container.height,
-    r: physics.blockSize*0.3,
+    r: physics.blockSize*0.6,
     type: type,
     color: color,
   });
@@ -51,9 +51,7 @@ function powerUpsLoop() {
     //draw power up
     ctx.fillStyle = powerUp[i].color;
     //ctx.strokeStyle = powerUp[i].color;
-    ctx.beginPath();
-    ctx.arc(powerUp[i].x,powerUp[i].y,powerUp[i].r,0,2*Math.PI);
-    ctx.fill();
+    ctx.fillRect(powerUp[i].x,powerUp[i].y,powerUp[i].r,powerUp[i].r);
     //collision check
     for(var j=0;j<2;j++){  //j is player number
       if (distance(powerUp[i].x,powerUp[i].y,p[j].x,p[j].y)< powerUp[i].r + p[j].r) {

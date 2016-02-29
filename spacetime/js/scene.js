@@ -4,6 +4,7 @@ var begin = false;
 //object for game physics
 var physics = {
   cycle: 0,
+  gameOver: false,
   friction: 0.96,
   wallBounce: 0.6,
   playerKnockBack: 5, //set in resize function
@@ -267,89 +268,9 @@ function randomLinesMap() {
 }
 
 mapZeros();
-  //recursiveDivision()
-  //randomMap()
+//recursiveDivision()
+//randomMap()
 randomLinesMap();
-
-/*
-//build map with  Maze "Recursive Division" algorithm
-var grid;
-function generate(dimensions, numDoors) {
-  grid = new Array();
-  for (var i = 0; i < dimensions; i++) {
-    grid[i] = new Array();
-    for (var j = 0; j < dimensions; j++) {
-      grid[i][j] = 0;
-    }
-  }
-  //addOuterWalls();
-  addInnerWalls(true, 1, grid.length - 0, 1, grid.length - 2);
-}
-function addOuterWalls() {
-  for (var i = 0; i < grid.length; i++) {
-    if (i == 0 || i == (grid.length - 1)) {
-      for (var j = 0; j < grid.length; j++) {
-        grid[i][j] = 1;
-      }
-    } else {
-      grid[i][0] = 1;
-      grid[i][grid.length - 1] = 1;
-    }
-  }
-}
-function addInnerWalls(h, minX, maxX, minY, maxY) {
-  if (h) {
-    if (maxX - minX < 1) {
-      return;
-    }
-    var y = Math.floor(randomNumber(minY, maxY) / 2) * 2;
-    addHWall(minX, maxX, y);
-    addInnerWalls(!h, minX, maxX, minY, y - 1);
-    addInnerWalls(!h, minX, maxX, y + 1, maxY);
-  } else {
-    if (maxY - minY < physics.mapDepth) {
-      return;
-    }
-    var x = Math.floor(randomNumber(minX, maxX) / 2) * 2;
-    addVWall(minY, maxY, x);
-    addInnerWalls(!h, minX, x - 1, minY, maxY);
-    addInnerWalls(!h, x + 1, maxX, minY, maxY);
-  }
-}
-function addHWall(minX, maxX, y) {
-  var hole = Math.floor(randomNumber(minX, maxX) / 2) * 2 + 1;
-  for (var i = minX; i <= maxX; i++) {
-    if (i == hole  || i == hole+1|| i == hole-1) grid[y][i] = 0;
-    //if (i == hole) grid[y][i] = 0;
-    else grid[y][i] = 1;
-  }
-}
-function addVWall(minY, maxY, x) {
-  var hole = Math.floor(randomNumber(minY, maxY) / 2) * 2 + 1;
-  for (var i = minY; i <= maxY; i++) {
-    if (i == hole || i == hole+1|| i == hole-1) grid[i][x] = 0;
-    //if (i == hole) grid[i][x] = 0;
-    else grid[i][x] = 1;
-  }
-}
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-generate(physics.mapWidth, 0);
-
-var map = grid;
-function setupMap() {
-  var array1 = []
-  for (var i = 0; i < physics.mapWidth; i++) {
-    array1.push(1);
-  }
-  //adding a top and bottom layer seems to help prevent out of bounds checks in other parts of the game
-  map.splice(0, 0, array1);
-  map.splice(map.length, 0, array1);
-
-}
-setupMap()
-*/
 
 //drawMap is called in the draw loop
 function drawMap() {
@@ -362,6 +283,8 @@ function drawMap() {
     }
   }
 }
+
+
 
 
 

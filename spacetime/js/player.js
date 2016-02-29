@@ -12,7 +12,7 @@ p.push({
   accel: 0.3, //set in scale player function
   turnRate: 0.03,
   alive: true,
-  lives: 10,
+  lives: 5,
   keys: [65, 68, 87, 83, 49], //left, right, forward, back, fire
   color: "#ffcc99",
   lastFireCycle: 0, //used to keep track of last cycle you fired
@@ -43,7 +43,7 @@ p.push({
   accel: 0.3, //set in scale player function
   turnRate: 0.03,
   alive: true,
-  lives: 10,
+  lives: 1,
   keys: [37, 39, 38, 40, 80], //left, right, forward, back, fire
   color: "#ccffff",
   lastFireCycle: 0, //used to keep track of last cycle you fired
@@ -108,6 +108,19 @@ function playerDead(i) {
   p[i].alive = false;
   p[i].x = 0;
   p[i].y = 0;
+  if(p[i].lives < 1 && !physics.gameOver){
+    physics.gameOver = true;
+    ctx.font = container.width * 0.1 + "px Arial Black";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#000000";
+    if (i === 0){
+      alert("BLUE player wins");
+      console.log("player "+1+" wins");
+    } else{
+      alert("ORANGE player wins");
+      console.log("player "+0+" wins");
+    }
+  }
   document.getElementById('player' + i).setAttribute('visibility', "hidden");
   document.getElementById('tail' + i).setAttribute('visibility', "hidden");
   setTimeout(function() {
@@ -116,18 +129,22 @@ function playerDead(i) {
 }
 //respawn after time is up.
 function playerAlive(i) {
+  if (physics.gameOver){
+    location.reload();
+  }
   document.getElementById('player' + i).setAttribute('visibility', "visible");
+  p[i].alive = true;
+  p[i].Vx = 0;
+  p[i].Vy = 0;
+  p[i].health = 1;
+  p[i].lives--;
+  //spawn player
   var j = 0;
   do { //give player random x and y, but if player spawns inside map try again
     p[i].y = container.height * Math.random();
     p[i].x = container.width * Math.random();
     j++;
   } while (j < 100 && map[1 + Math.floor(p[i].y / container.height * physics.mapHeight)][Math.floor((p[i].x + p[i].r) / container.width * physics.mapWidth)] || map[Math.floor((p[i].y) / container.height * physics.mapHeight) + 1][Math.floor((p[i].x - p[i].r) / container.width * physics.mapWidth)] || map[Math.floor((p[i].y + p[i].r) / container.height * physics.mapHeight) + 1][Math.floor((p[i].x) / container.width * physics.mapWidth)] || map[Math.floor((p[i].y - p[i].r) / container.height * physics.mapHeight) + 1][Math.floor((p[i].x) / container.width * physics.mapWidth)]);
-  p[i].alive = true;
-  p[i].Vx = 0;
-  p[i].Vy = 0;
-  p[i].health = 1;
-  p[i].lives--;
 }
 
 

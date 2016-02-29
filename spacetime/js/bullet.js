@@ -49,7 +49,7 @@ function regularGun(i) {
   p[i].B_dmg = 0.05;
   p[i].B_speed = 8;
   p[i].B_totalCycles = 300;
-  p[i].B_r = 2.5;
+  p[i].B_r = 3;
   p[i].B_spread = 0;
   p[i].B_number = 1;
   p[i].B_friction = 1;
@@ -63,7 +63,7 @@ function beamGun(i) {
   p[i].fireKnockBack = 0;
   p[i].B_dmg = 0.016;
   p[i].B_speed = 10;
-  p[i].B_totalCycles = 70;
+  p[i].B_totalCycles = 80;
   p[i].B_r = 1;
   p[i].B_spread = 0.052;
   p[i].B_number = 1;
@@ -74,7 +74,7 @@ function beamGun(i) {
 
 function sniperGun(i) {
   p[i].B_type = "sniper";
-  p[i].fireDelay = 60;
+  p[i].fireDelay = 55;
   p[i].fireKnockBack = 1.5;
   p[i].B_dmg = 0.3;
   p[i].B_speed = 27;
@@ -94,7 +94,7 @@ function spiritBombGun(i) {
   p[i].B_dmg = 0.5;
   p[i].B_speed = 2;
   p[i].B_totalCycles = 600;
-  p[i].B_r = 20;
+  p[i].B_r = 23;
   p[i].B_spread = 0;
   p[i].B_number = 1;
   p[i].B_friction = 1;
@@ -122,8 +122,8 @@ function waveGun(i) {
   p[i].fireDelay = 23;
   p[i].fireKnockBack = 0;
   p[i].B_dmg = 0.02;
-  p[i].B_speed = 8;
-  p[i].B_totalCycles = 100;
+  p[i].B_speed = 9;
+  p[i].B_totalCycles = 110;
   p[i].B_r = 1.2;
   p[i].B_spread = 0.17;
   p[i].B_number = 13;

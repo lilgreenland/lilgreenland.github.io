@@ -42,9 +42,6 @@ function splashPage() {
   ctx.fillText("SPACE", container.width * 0.5 + 7, container.height * 0.4 + 7);
 }
 
-
-
-
 function beginLoop() {
   if (!begin) {
     begin = true;
@@ -78,3 +75,5 @@ randomGun(1);
 for(var i=0;i<4;i++){
   spawnPowerUp(2);
 }
+spawnPowerUp(1);
+spawnPowerUp(1);
