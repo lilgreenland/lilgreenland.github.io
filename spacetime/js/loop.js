@@ -17,19 +17,22 @@ option: bullet thrust, like missiles.  player controlled, or heat seeking
 option: lasers
 
 power ups
-  add them
+  custom graphics
+  separate power ups for each gun type
+  shield (damamge immunity)
+
 
 set a constant size ratio
   zoom in svg and canvas to scale with window size.
 
 damage and maybe other things? seem to scale with size, they shouldn't
 
-make it so sliders can't show up?
-
 use max speed function after taking damage to help prevent out of bounds for an array
 
-map block take damage and can die
-  set them to a value for life and they drop on player hit
+different map block types:
+  map block takes damage and can die
+  map block only allow bullets to passed
+  
 
 switch to around the world edge collision
 

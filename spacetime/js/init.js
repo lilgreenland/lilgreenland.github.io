@@ -63,6 +63,7 @@ playerAlive(1);
 //pick a gun for each player
 randomGun(0);
 randomGun(1);
+
 //whipGun(0);
 //waveGun(1);
 //beamGun(1);
@@ -71,9 +72,11 @@ randomGun(1);
 //spiritBombGun(0);
 //regularGun(1)
 //rocketGun(1);
+//seekingGun(1);
+//seekingGun(0);
+//missilesGun(1);
+//ghostGun(1);
 
-for(var i=0;i<4;i++){
-  spawnPowerUp(2);
+for(var i=0;i<3;i++){
+  spawnPowerUp(0);
 }
-spawnPowerUp(1);
-spawnPowerUp(1);

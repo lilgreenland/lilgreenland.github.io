@@ -1,4 +1,45 @@
-//set boundries to the browser window's size
+//getting help from    http://apike.ca/prog_svg_js_create.html
+//  http://apike.ca/media/svg/exampleJavaScriptCreate.svg
+// remove SVG http://jsfiddle.net/cATqz/
+
+var xmlns = "http://www.w3.org/2000/svg";
+var xlinkns = "http://www.w3.org/1999/xlink";
+
+function addElement() {
+    //var starGroup = document.getElementById("map");
+    var useElem = document.createElementNS(xmlns, "use");
+    useElem.setAttributeNS(null, "x", 1000*Math.random());
+    useElem.setAttributeNS(null, "y", 100);
+    //useElem.setAttributeNS(null, "transform", "scale(.1)");
+    //useElem.setAttributeNS(null, "fill", "white");
+    //useElem.setAttributeNS(null, "stroke", "white");
+    //useElem.setAttributeNS(null, "opacity", 1);
+    useElem.setAttributeNS(xlinkns, "xlink:href", "#star");
+    document.getElementById("spawn").appendChild(useElem);
+}
+
+
+
+
+function addRectangle() {
+    var useElem = document.createElementNS(xmlns, "use");
+    useElem.setAttributeNS(null, "x", 1000*Math.random());
+    useElem.setAttributeNS(null, "y", 200);
+    useElem.setAttributeNS(null, "height", 1000);
+    useElem.setAttributeNS(null, "width", 100);
+    //useElem.setAttributeNS(null, "transform", "scale(.1)");
+    useElem.setAttributeNS(null, "fill", "white");
+    //useElem.setAttributeNS(null, "stroke", "white");
+    //useElem.setAttributeNS(null, "opacity", 1);
+    useElem.setAttributeNS(xlinkns, "xlink:href", "#rect");
+    document.getElementById("map").appendChild(useElem);
+}
+
+
+
+
+
+
 //stops the game from running several loops
 var begin = false;
 //object for game physics
@@ -19,9 +60,10 @@ var physics = {
   blockSize: 1,
   mapDepth: 9, // 1 is a full maze each higher number is one less depth
   mouseControlRange: 60,
-  playerNumber: 3
+  playerNumber: 3,
 };
 
+//set boundries to the browser window's size
 var container = {
   x: 0,
   y: 0,

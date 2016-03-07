@@ -2,7 +2,6 @@
 scale with map
 use custom SVG images
 on spawn avoid map
-randomly spawn new power ups
 
 
 */
@@ -11,7 +10,7 @@ var powerUp = [];
 
 //spawn a random power up every 15seconds if total powers on screen is less then 5
 function spawnNewPowerUpCheck(){
-  if (physics.cycle % 900 === 0 && powerUp.length<5){
+  if (physics.cycle % 700 === 0 && powerUp.length<5){
     spawnPowerUp();
   }
 }
@@ -20,9 +19,10 @@ function spawnNewPowerUpCheck(){
 //randomly add a new power up
 function spawnPowerUp(type) {
 var color;
+var totalTypes=3;
 //if type isn't passed a random type is choosen
 if (!type){
-  type = Math.ceil(Math.random()*2);
+  type = Math.ceil(Math.random()*totalTypes);
 }
 
   switch(type) {
@@ -42,10 +42,30 @@ if (!type){
       type = 'heal';
       color = 'lightgreen';
   }
+  //find a place to spawn not touching the map
+  var x;
+  var y;
+  var r;
+  var j = 0;
+    do { //give player random x and y, but if player spawns inside map try again
+      x = container.width * Math.random();
+      y = container.height * Math.random();
+      r = physics.blockSize;
+      j++;
+    } while (j < 10 &&
+     map[1 + Math.floor(y / container.height * physics.mapHeight)][Math.floor((x + r) / container.width * physics.mapWidth)] ||
+     map[Math.floor((y) / container.height * physics.mapHeight) + 1][Math.floor((x - r) / container.width * physics.mapWidth)] ||
+     map[Math.floor((y + r) / container.height * physics.mapHeight) + 1][Math.floor((x) / container.width * physics.mapWidth)] ||
+     map[Math.floor((y - r) / container.height * physics.mapHeight) + 1][Math.floor((x) / container.width * physics.mapWidth)] ||
+     (((Math.abs(x-p[0].x)) < p[0].r * p[0].r) && ((Math.abs(y-p[0].y)) < p[0].r * p[0].r)) ||
+     (((Math.abs(x-p[1].x)) < p[1].r * p[1].r) && ((Math.abs(y-p[1].y)) < p[1].r * p[1].r))
+    );
+
+
   //push to powerUp array
   powerUp.push({
-    x: Math.random()*container.width,
-    y: Math.random()*container.height,
+    x: x,
+    y: y,
     r: physics.blockSize*0.6,
     type: type,
     color: color,
@@ -70,7 +90,7 @@ function powerUpsLoop() {
             p[j].health = 1;
             break;
           case 'damage':   //damage
-            p[j].health = 0.2;
+            playerDamage(j,0.2);
             break;
           case 'gun_random':   //random gun
             var currentType = p[j].B_type;

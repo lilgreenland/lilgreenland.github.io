@@ -4,6 +4,7 @@ var b = [];
 function bullet (i) {
   for (var j = 0; j < p[i].B_number; j++) {
     b.push({
+      player: i, // who owns the bullet (used in seeking)
       x: p[i].x + (p[i].r + p[i].B_r * physics.zoom) * Math.cos(p[i].dir),
       y: p[i].y + (p[i].r + p[i].B_r * physics.zoom) * Math.sin(p[i].dir),
       r: p[i].B_r * physics.zoom,
@@ -16,6 +17,7 @@ function bullet (i) {
       cycle: 0,
       totalCycles: p[i].B_totalCycles,
       alive: true,
+      seeking: p[i].B_seeking,
     });
   }
 }
@@ -23,6 +25,7 @@ function bullet (i) {
 function debris(i) {
   var angle = Math.random() * 2 * Math.PI;
   b.push({
+    player: -1,  // -1 means no owner
     x: p[i].x,
     y: p[i].y,
     r: 0.5 + Math.random() * 2 * physics.zoom,
@@ -38,7 +41,8 @@ function debris(i) {
     color: p[i].color,
     cycle: 0,
     totalCycles: 100,
-    alive: true
+    alive: true,
+    seeking: 0,
   });
 }
 
@@ -53,8 +57,9 @@ function regularGun(i) {
   p[i].B_spread = 0;
   p[i].B_number = 1;
   p[i].B_friction = 1;
-  p[i].B_penetrate = 0;
+  p[i].B_penetrate = false;
   p[i].B_color = 'white';
+  p[i].B_seeking = 0;
 }
 
 function beamGun(i) {
@@ -68,8 +73,9 @@ function beamGun(i) {
   p[i].B_spread = 0.052;
   p[i].B_number = 1;
   p[i].B_friction = 1;
-  p[i].B_penetrate = 0;
+  p[i].B_penetrate = false;
   p[i].B_color = 'rgb(255, 255, 255)';
+  p[i].B_seeking = 0;
 }
 
 function sniperGun(i) {
@@ -83,8 +89,9 @@ function sniperGun(i) {
   p[i].B_spread = 0;
   p[i].B_number = 1;
   p[i].B_friction = 0.99;
-  p[i].B_penetrate = 0;
+  p[i].B_penetrate = false;
   p[i].B_color = "rgb(221, 221, 221)";
+  p[i].B_seeking = 0;
 }
 
 function spiritBombGun(i) {
@@ -98,8 +105,9 @@ function spiritBombGun(i) {
   p[i].B_spread = 0;
   p[i].B_number = 1;
   p[i].B_friction = 1;
-  p[i].B_penetrate = 1;
+  p[i].B_penetrate = true;
   p[i].B_color = "rgba(242, 0, 255, 0.6)";
+  p[i].B_seeking = 0;
 }
 
 function shotGun(i) {
@@ -113,8 +121,9 @@ function shotGun(i) {
   p[i].B_spread = 0.5;
   p[i].B_number = 12;
   p[i].B_friction = 0.985;
-  p[i].B_penetrate = 0;
+  p[i].B_penetrate = false;
   p[i].B_color = "#d9d9d9";
+  p[i].B_seeking = 0;
 }
 
 function waveGun(i) {
@@ -130,6 +139,7 @@ function waveGun(i) {
   p[i].B_friction = 1;
   p[i].B_penetrate = 0;
   p[i].B_color = "rgb(255, 255, 255)";
+  p[i].B_seeking = 0;
 }
 
 function rocketGun(i) {
@@ -145,6 +155,7 @@ function rocketGun(i) {
   p[i].B_friction = 0.98;
   p[i].B_penetrate = 0;
   p[i].B_color = "white";
+  p[i].B_seeking = 0;
 }
 
 function whipGun(i) {
@@ -158,14 +169,62 @@ function whipGun(i) {
   p[i].B_spread = 0;
   p[i].B_number = 1;
   p[i].B_friction = 0.99;
-  p[i].B_penetrate = 1;
+  p[i].B_penetrate = true;
   p[i].B_color = "rgba(227, 0, 255, 1)";
+  p[i].B_seeking = 0;
 }
 
+function seekingGun(i) {
+  p[i].B_type = "seeking";
+  p[i].fireDelay = 3;
+  p[i].fireKnockBack = 0.15;
+  p[i].B_dmg = 0.01;
+  p[i].B_speed = 25;
+  p[i].B_totalCycles = 400;
+  p[i].B_r = 1;
+  p[i].B_spread = 0;
+  p[i].B_number = 1;
+  p[i].B_friction = 0.96;
+  p[i].B_penetrate = false;
+  p[i].B_color = 'rgb(252, 243, 0)';
+  p[i].B_seeking = 0.15;
+}
+
+function missilesGun(i) {
+  p[i].B_type = "missiles";
+  p[i].fireDelay = 50;
+  p[i].fireKnockBack = 0.3;
+  p[i].B_dmg = 0;
+  p[i].B_speed = 10;
+  p[i].B_totalCycles = 500;
+  p[i].B_r = 3;
+  p[i].B_spread = 1;
+  p[i].B_number = 5;
+  p[i].B_friction = 0.995;
+  p[i].B_penetrate = false;
+  p[i].B_color = 'rgb(237, 255, 125)';
+  p[i].B_seeking = 0.06;
+}
+
+function ghostGun(i) {
+  p[i].B_type = "ghost";
+  p[i].fireDelay = 70;
+  p[i].fireKnockBack = 0.5;
+  p[i].B_dmg = 0;
+  p[i].B_speed = 5;
+  p[i].B_totalCycles = 1300;
+  p[i].B_r = 9;
+  p[i].B_spread = 0;
+  p[i].B_number = 1;
+  p[i].B_friction = 0.986;
+  p[i].B_penetrate = true;
+  p[i].B_color = 'rgba(255, 245, 0, 0.35)';
+  p[i].B_seeking = 0.023;
+}
 
 function randomGun(i){
 //picks a random gun for each player at the start of the game
-  switch (Math.ceil(Math.random() * 7)) {
+  switch (Math.ceil(Math.random() * 10)) {
     case 1:
       beamGun(i);
       break;
@@ -187,10 +246,17 @@ function randomGun(i){
     case 7:
       whipGun(i);
       break;
+    case 8:
+      seekingGun(i);
+      break;
+    case 9:
+      missilesGun(i);
+      break;
+    case 9:
+      ghostGun(i);
+      break;
   }
 }
-
-
 
 function bullets(){
   var i = b.length;
@@ -203,6 +269,24 @@ function bullets(){
       //velocity moves the position every cycle
       b[i].x += b[i].Vx;
       b[i].y += b[i].Vy;
+      //if seeking move towards other player
+      if (b[i].seeking!==0){
+        var angle;
+        if (b[i].player === 0){
+          if (p[1].alive){
+            angle = Math.atan2(b[i].y - p[1].y, b[i].x - p[1].x);
+            b[i].Vx -= 0.2 * Math.cos(angle);
+            b[i].Vy -= 0.2 * Math.sin(angle);
+          }
+        } else if (b[i].player === 1){
+          if (p[0].alive){
+            angle = Math.atan2(b[i].y - p[0].y, b[i].x - p[0].x);
+            b[i].Vx -= b[i].seeking * Math.cos(angle);
+            b[i].Vy -= b[i].seeking * Math.sin(angle);
+          }
+        }
+
+      }
       //edge bounce X
       if (b[i].x > container.width - b[i].r) {
         b[i].x = container.width - b[i].r;
@@ -223,7 +307,7 @@ function bullets(){
       }
 
       //map collision detection (this needs to come after wall bounce to prevent out of array checks)
-      if (b[i].penetrate === 0) {
+      if (!b[i].penetrate) {
         var arrayY = Math.floor(b[i].y / container.height * physics.mapHeight) + 1;
         var arrayX = Math.floor((b[i].x + b[i].Vx) / container.width * physics.mapWidth);
         if (map[arrayY][arrayX]) {
@@ -240,7 +324,7 @@ function bullets(){
             }
           }
         }
-      } else if (b[i].penetrate === -1) {}
+      }
       //check for player collision and explode
       for (var j = 0; j < 2; j++) {
         if (p[j].alive) {
@@ -254,11 +338,7 @@ function bullets(){
             //p[j].Vx -= 2 * b[i].dmg * Math.cos(Math.atan2(b[i].y - p[j].y, b[i].x - p[j].x));
             //p[j].Vy -= 2 * b[i].dmg * Math.sin(Math.atan2(b[i].y - p[j].y, b[i].x - p[j].x));
             //lower player health
-            p[j].health -= damage;
-            //check if player dead
-            if (p[j].health < 0) {
-              playerDead(j);
-            }
+            playerDamage(j,damage);
             //switch bullet to explosion
             b[i].color = "rgba(255, 0, 0, 0.88)";
             //make radius proportional to damage done from speed*Radius + dmg

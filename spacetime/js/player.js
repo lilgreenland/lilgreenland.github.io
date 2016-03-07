@@ -29,7 +29,8 @@ p.push({
   B_number: 1,
   B_friction: 1,
   B_penetrate: 0, //-1 explode, 0 bounce, 1 penetrate
-  B_color: "white"
+  B_color: "white",
+  B_seeking: "false",
 });
 //add player 1
 p.push({
@@ -60,7 +61,8 @@ p.push({
   B_number: 1, //bullets per fire
   B_friction: 1, //slows bullets each cycle 1=no friction .99 = 1% slow each cycle
   B_penetrate: 0, //-1 explode, 0 bounce, 1 penetrate
-  B_color: "white"
+  B_color: "white",
+  B_seeking: "false",
 });
 //scales player radius and acceleration  only called inside resize function
 function scalePlayer() {
@@ -245,6 +247,15 @@ function playerCollision(){
       p[1].Vy += physics.playerKnockBack * Math.sin(Math.atan2(p[1].y - p[0].y, p[1].x - p[0].x));
     }
   }
+}
+
+function playerDamage(i,damage){
+  p[i].health -= damage;
+  //check if player dead
+  if (p[i].health < 0) {
+    playerDead(i);
+  }
+
 }
 
 

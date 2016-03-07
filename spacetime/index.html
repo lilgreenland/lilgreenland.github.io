@@ -8,8 +8,12 @@
   <body id="body">
     <canvas id="myCanvas"></canvas>
     <svg id="svg">
-      <g id="map">
-      </g>
+      <defs>
+        <polygon id="star" points="100,10 40,180 190,60 10,60 160,180 100,10" stroke-width="4"/>
+        <polygon id="smallstar" points="10,1 4,18 19,6 1,6 16,18 10,1"/>
+        <rect id ="rect" x="15" y="0" width="10" height="50" fill="#ffcc99"/>
+      </defs>
+      <g id="spawn"></g>
       <g id="player0">
         <g id="playerdir0">
           <g id="playersize0">
