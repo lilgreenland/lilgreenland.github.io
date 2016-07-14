@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>notes: motion 1 - intro</title>
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+</script>
+        <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+
+    <!--
+LaTex equations are form the mathjax library
+http://docs.mathjax.org/en/latest/#
+put LaTex between $$  $$      example:   $$v = \lambda f$$
+
+use this to generate LaTex
+http://www.hostmath.com/
+-->
+
+
+<div id='bodybox'>
+
+  <h1>Position</h1>
+  <p>In physics we use the symbol x for position. That means you shouldn't use x for an unknown unless you are solving for position. We generally use meters(m) as our units.</p>
+  <p>To represent a distance we subtract the final position from the inital position. We use the Δ symbol to show change.</p>
+
+  <h2>$$\Delta x = x_{f}-x_{i}$$</h2>
+  <p><b>Δx</b> = change in position, distance, length [m, meters]</p>
+  <p><b>x</b><sub>i</sub> = inital (starting) position [m, meters]</p>
+  <p><b>x</b><sub>f</sub> = final (ending) position [m, meters]</p>
+  <br>
+  <h1>Time</h1>
+  <p> We keep track of time in the same way as poistion. We use t for time and generally use seconds(s) as our units.</p>
+  <h2>$$\Delta t = t_{f}-t_{i}$$</h2>
+  <p><b>Δt</b> = change in time, time period [s, seconds]</p>
+  <p><b>t</b><sub>i</sub> = inital (starting) time [s, seconds]</p>
+  <p><b>t</b><sub>f</sub> = final (ending) time [s, seconds]</p>
+
+  <br>
+  <h1>Velocity</h1>
+  <p>Run the simulation below for about 10 seconds then click pause. What is the relationship between time, distance, and velocity?</p>
+  <p data-height="584" data-theme-id="0" data-slug-hash="OXxxKG" data-default-tab="result" data-user="lilgreenland" data-embed-version="2" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/lilgreenland/pen/OXxxKG/">1-D motion  (matter.js)</a> by lilgreenland (<a href="http://codepen.io/lilgreenland">@lilgreenland</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+  <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+  <br>
+  <br>
+  <p>Velocity is a measure of how much a position changes (Δx) over a period of time (Δt).</p>
+  <h2>$$v = \frac{\Delta x}{\Delta t}$$</h2>
+  <p><b>Δx</b> = distance [m, meters]</p>
+  <p><b>Δt</b> = time period [s, seconds]</p>
+  <p><b>v</b> = average velocity [m/s, meters per second]</p>
+  <br>
+  <br>
+  <p><b>Example:</b> A car is traveling at 20 m/s for 80 seconds. How far does the car travel?</p>
+  <details>
+    <summary>solution</summary>
+    $$v = \frac{\Delta x}{\Delta t}$$ $$20\frac{m}{s} = \frac{\Delta x}{80s}$$ $$20\frac{m}{s}80s = \Delta x$$ $$1600m = \Delta x$$
+  </details>
+
+  <p><b>Example:</b> Someone says they can run a 10k race in about an hour. What velocity is that? Is that fast? (1m/s is walking speed)</p>
+  <details>
+    <summary>solution</summary>
+    $$10 km = 10,000 m$$ $$1hour (\frac{60min}{1h})(\frac{60s}{1min}) = 3600s$$ $$v = \frac{\Delta x}{\Delta t}$$ $$v = \frac{10,000m}{3600s}$$ $$v = 2.7\small\frac{m}{s}$$
+  </details>
+
+  <p><b>Example:</b> Google maps says Los Vegas is 4 hours away from Los Angeles. Google says it is 270 miles away. How fast does google think I will drive on average? Answer this one in miles/hour.</p>
+  <details>
+    <summary>solution</summary>
+    $$v = \frac{\Delta x}{\Delta t}$$ $$v = \frac{270miles}{4hour}$$ $$v = 67.5\small\frac{miles}{hour}$$
+  </details>
+
+  <p><b>Example:</b> If I walk at a speed of 1.2m/s how long will it take for me to walk 2km?</p>
+  <details>
+    <summary>solution</summary>
+    $$2 km = 2,000 m$$ $$v = \frac{\Delta x}{\Delta t}$$ $$\Delta t = \frac{\Delta x}{v}$$ $$\Delta t = \frac{2,000m}{1.2\small\frac{m}{s}}$$ $$\Delta t = \frac{2,000}{1.2}s$$ $$\Delta t = 1666.\overline{6} s$$
+  </details>
+
+  <br>
+  <h1>Acceleration</h1>
+  <p>Just like velocity is a change in position over time, acceleration is a change in velocity over time.</p>
+  <h2>$$a = \frac{\Delta v}{\Delta t}$$</h2>
+  <h2>$$\Delta v = v_{f}-v_{i}$$</h2>
+  <p><b>Δv</b> = change in velocity [m/s] = v<sub>f</sub> - v<sub>i</sub></p>
+  <p><b>Δt</b> = time period [s, seconds]</p>
+  <p><b>a</b> = acceleration [m/s<sup>2</sup>, meters per second squared]</p>
+<br>
+  <br>
+  <p><b>Example:</b> A basket ball falls off a table and hits the floor in 0.45s.  The ball has a velocity of 4.43 right before it hits the ground.  What is the acceleration of the basketball?</p>
+  <details>
+    <summary>solution</summary>
+    $$a = \frac{\Delta v}{\Delta t}$$
+    $$a = \frac{4.43\small\frac{m}{s}}{0.45s}$$
+    $$a = 9.84\small\frac{m}{s^{2}}$$
+  </details>
+
+  <p><b>Example:</b> The internet says Tesla Model S can go from 0 to 60 miles per hour in 5.9s.  What is the acceleration in m/s<sup>2</sup>? (1 mile = 1609 meters)</p>
+  <details>
+    <summary>solution</summary>
+    $$ 60(\frac{miles}{hour})(\frac{1609 m}{1 mile})(\frac{1 hour}{3600s}) = 26.8\small\frac{m}{s} $$
+    $$a = \frac{\Delta v}{\Delta t}$$
+    $$a = \frac{26.8\small\frac{m}{s}}{5.9s}$$
+    $$a = 4.5\small\frac{m}{s^{2}}$$
+  </details>
+
+  <p><b>Example:</b> I start a velocity of 1 m/s.  I speed up to 3 m/s over 10 seconds.  What is my accleration?
+  </p>
+  <details>
+    <summary>solution</summary>
+    $$\Delta v = v_{f}-v_{i}$$
+    $$\Delta v = 3\small\frac{m}{s}-1\small\frac{m}{s}$$
+    $$\Delta v = 2\small\frac{m}{s}$$
+    $$a = \frac{\Delta v}{\Delta t}$$
+    $$a = \frac{2\small\frac{m}{s}}{10s}$$
+    $$a = 0.2\small\frac{m}{s^{2}}$$
+  </details>
+
+
+
+
+  <script type="text/javascript" id="WolframAlphaScript8b75f0c5f0a99a16ef024c5f4e46166b" src="//www.wolframalpha.com/widget/widget.jsp?id=8b75f0c5f0a99a16ef024c5f4e46166b&theme=black"></script>
+
+
+  <h1>Graphing Acceleration</h1>
+  <p>What would make the graph curve up?</p>
+  <p>What would make the graph curve down?</p>
+  <p>What would make the graph linear?</p>
+   <script type="text/javascript" id="WolframAlphaScriptd2a39f21af1565cf9a85f56e6c41ba3b" src="//www.wolframalpha.com/widget/widget.jsp?id=d2a39f21af1565cf9a85f56e6c41ba3b&theme=black&output=lightbox"></script>
+
+
+
+  </div>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>notes: motion 3 - Vectors and Scalors</title>
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+</script>
+
+
+
+        <link rel="stylesheet" href="../style.css">
+
+
+
+
+  </head>
+
+  <body>
+
+    <!--
+LaTex equations are form the mathjax library
+http://docs.mathjax.org/en/latest/#
+put LaTex between $$  $$      example:   $$v = \lambda f$$
+
+use this to generate LaTex
+http://www.hostmath.com/
+-->
+
+<body onload="vectorDiagram()">
+
+  <div id='bodybox'>
+    <h1> Scalors</h1>
+    <p>A scalor is a variable that only has a magnitude.</p>
+    <p><b>Examples:</b></p>
+    <table style="width:100%;text-align:left">
+      <tr>
+        <th>Variable</th>
+        <th>Magnitude</th>
+      </tr>
+      <tr>
+        <td>time</td>
+        <td>10s</td>
+      </tr>
+      <tr>
+        <td>air pressure</td>
+        <td>101.3kPa</td>
+      </tr>
+      <tr>
+        <td>temperature</td>
+        <td>21<sup>o</sup>C</td>
+      </tr>
+      <tr>
+        <td>price</td>
+        <td>$50</td>
+      </tr>
+      <tr>
+        <td>speed</td>
+        <td>10m/s (speed + direction is called velocity)</td>
+      </tr>
+    </table>
+
+    <h1> Vectors</h1>
+
+    <p>A vector is a variable that has a magnitude and direction. Temperature is just a scalar. You can't say it is 50<sup>o</sup> north. Velocity is a vector. You could say the velocity is 50m/s north.</p>
+    <p><b>Examples:</b></p>
+    <table style="width:100%;text-align:left">
+      <tr>
+        <th>Variable</th>
+        <th>Magnitude</th>
+        <th>Direction</th>
+      </tr>
+      <tr>
+        <td>distance</td>
+        <td>10m</td>
+        <td>West</td>
+      </tr>
+      <tr>
+        <td>velocity</td>
+        <td>20m/s</td>
+        <td>20 degrees above the x-axis</td>
+      </tr>
+      <tr>
+        <td>acceleration</td>
+        <td>9.8 m/s<sup>2</sup></td>
+        <td>down</td>
+      </tr>
+      <tr>
+        <td>distance</td>
+        <td>10m</td>
+        <td>up</td>
+      </tr>
+      <tr>
+        <td>velocity</td>
+        <td>3m/s</td>
+        <td>10 degrees above the horizon</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <h1>Vector Components</h1>
+    <p>If we think of a vector like the hypotenuse of a right triangle, then we can use SOH-CAH-TOA to find the lengths of the x and y components of the triangle.</p>
+
+    $$ cos \theta = \frac{adjacent}{hypotenuse} $$ $$ (hypotenuse)cos \theta = adjacent$$
+    <p>For a velocity vector the hypotenuse is v. The adjacent and opposite sides of the triangle are the x and y part of v.</p>
+    $$ (v)cos \theta = v_{x}$$ $$ (v)sin \theta = v_{y}$$
+    <p>For distance the equations are the same</p>
+    $$ (dist)cos \theta = x$$ $$ (dist)sin \theta = y$$
+    <p>In the simulation below position the mouse to around magnitude 250 and angle 14<sup>o</sup>. What are the x and y components of the vector?</p>
+    <p>At what angles are the magnitude and the x-component equal?</p>
+    <canvas id="myCanvas"> </canvas>
+    <p><b>Example:</b> A plane is taking off at an angle of 14<sup>o</sup> above the horizon. If the plane is moving at 250m/s how fast is it moving in only the vertical direction?</p>
+    <details>
+      <summary>solution</summary>
+      $$ (v)sin \theta = v_{y}$$ $$ (250)sin(14) = v_{y}$$ $$ 61 \small\frac{m}{s} = \normalsize v_{y}$$
+    </details>
+    <p><b>Example:</b>You want to walk to the closest pokemon gym. The compass on your phone says you have to walk north/west. You arrive at the gym after walking 75 meters. Sadly you find that you need to be level 5, but you are level 3. How far west did
+      you walk?</p>
+    <details>
+      <summary>solution</summary>
+      $$ (v)cos \theta = x$$ $$ (75)cos(45) = x$$ $$ 53m = x$$
+    </details>
+    <p><b>Example:</b>You walk 3 miles north and then 4 miles west. How far away are you from your starting location?</p>
+    <details>
+      <summary>solution</summary>
+      $$a^{2}+b^{2} = c^{2}$$ $$3^{2}+4^{2} = distance^{2}$$ $$25 = distance^{2}$$ $$5miles = distance$$
+
+    </details>
+    <br>
+    <br>
+    <script type="text/javascript" id="WolframAlphaScript165760e088f76be729a18658d17d93fa" src="//www.wolframalpha.com/widget/widget.jsp?id=165760e088f76be729a18658d17d93fa&theme=black&output=lightbox"></script>
+
+
+    <script type="text/javascript" id="WolframAlphaScript8b75f0c5f0a99a16ef024c5f4e46166b" src="//www.wolframalpha.com/widget/widget.jsp?id=8b75f0c5f0a99a16ef024c5f4e46166b&theme=black"></script>
+
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+        <script src="js/index.js"></script>
+
+
+
+
+  </body>
+</html>
