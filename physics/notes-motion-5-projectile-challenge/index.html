@@ -1,0 +1,37 @@
+<!--
+LaTex equations are form the mathjax library
+http://docs.mathjax.org/en/latest/#
+put LaTex between $$  $$      example:   $$v = \lambda f$$
+
+use this to generate LaTex
+http://www.hostmath.com/
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>notes: motion 4 - 2-D motion</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script src='../lib/matter.min.js'></script>
+    <script src='../lib/dat.gui.min.js'></script>
+
+</head>
+
+<body onload="MotionSimulation();MotionSimulationTwo();">
+    <div id="bodybox">
+      <h2 style = 'text-align: center;'>2-D Motion Challenge</h2>
+      Calculate the correct <b>initial vertical velocity</b> to clear the gap!
+      <br>Input the velocity and click fire in the top right to check your math.
+      <br>Reload the page to start over with new numbers.
+      <canvas id="canvas" width='700' height= '600'></canvas>
+      <br>The gap starts at <u id='ypos'></u>m high and <u id='xpos'></u>m away.
+      <br>The ball has a horizontal velocity of <u id='Vx'></u>m/s.
+    </div>
+<script src="fire.js"></script>
+</body>
+
+</html>
