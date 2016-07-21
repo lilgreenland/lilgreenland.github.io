@@ -1,0 +1,158 @@
+<!--
+LaTex equations are form the mathjax library
+http://docs.mathjax.org/en/latest/#
+put LaTex between $$  $$      example:   $$v = \lambda f$$
+
+use this to generate LaTex
+http://www.hostmath.com/
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>notes: motion 4 - 2-D motion</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+    MathJax.Hub.Config({
+      CommonHTML: {
+        scale: 150
+      }
+    });
+    </script>
+    <script src='../lib/matter.min.js'></script>
+
+</head>
+
+<body onload="MotionSimulation();MotionSimulationTwo();">
+    <div id="bodybox">
+      <h1>2-D motion</h1>
+      <p>Solving for 2-d motion uses the same techniques as in 1-D, but with added complexity so we need to track our variables better.  We will organize our information in an x column and y column with time separate.  The x information and y information are independent of each other except for time which they share.  Lets try an example problem. Click to watch again.</p>
+
+
+      <canvas id="myCanvas" width='700' height= '300'></canvas>
+      <p><b>Example</b>: A ball moving horizontally at 2m/s rolls off a table that is 1.5m high.  Find how far the ball travels horizontally before it hits the ground.</p>
+      <p>Here is the information we know from reading problem.  Anything directed down or left is negative and anything up or right is positive.</p>
+      <table style="width:100%;text-align:left;background-color:#eee;">
+        <tr>
+          <td colspan="2" style= 'text-align: center'>Δt = </td>
+        </tr>
+        <tr>
+          <th>x: horizontal (left/right)</th>
+          <th>y: vertical (up/down)</th>
+        </tr>
+        <tr>
+          <td>Δx = ?</td>
+          <td>Δy = -1.5m</td>
+        </tr>
+        <tr>
+          <td>v<sub>i</sub> = 2m/s</td>
+          <td>v<sub>i</sub> = 0</td>
+        </tr>
+        <tr>
+          <td>v<sub>f</sub> =  </td>
+          <td>v<sub>f</sub> =  </td>
+        </tr>
+        <tr>
+          <td>a = 0</td>
+          <td>a = -9.8 m/s<sup>2</sup></td>
+        </tr>
+      </table>
+      <p>There isn't enough information to solve the horizontal side.  Let start on the vertical.</p>
+      $$v_{f}^{2} = v_{i}^{2}+2a \Delta y$$
+      $$v_{f}^{2} = 0^{2}+2(-9.8)(-1.5)$$
+      $$v_{f}^{2} = 24.9$$
+      $$v_{f} = \sqrt{24.9}$$
+      $$v_{f} = \pm5.42 $$
+      $$v_{f} = -5.42 \small\frac{m}{s}$$
+      <p>We know the final velocity is down so after the square root we choose the negative value. Lets plug final velocity back in and solve for time.</p>
+      <br>
+      $$v_{f} = v_{i}+a \Delta t$$
+      $$-5.42 = 0+(-9.8)\Delta t$$
+      $$0.55s = \Delta t$$
+      <p> With this new information we can use time to solve on the horizontal side.</p>
+      <table style="width:100%;text-align:left;background-color:#eee;">
+        <tr>
+          <td colspan="2" style= 'text-align: center;color:#088;'>Δt = 0.55s</td>
+        </tr>
+        <tr>
+          <th>x: horizontal (left/right)</th>
+          <th>y: vertical (up/down)</th>
+        </tr>
+        <tr>
+          <td>Δx = ?</td>
+          <td>Δy = 1.5m</td>
+        </tr>
+        <tr>
+          <td>v<sub>i</sub> = 2m/s</td>
+          <td>v<sub>i</sub> = 0</td>
+        </tr>
+        <tr>
+          <td>v<sub>f</sub> = </td>
+          <td style="color:#088;">v<sub>f</sub> = 5.42m/s</td>
+        </tr>
+        <tr>
+          <td>a = 0</td>
+          <td>a = 9.8 m/s<sup>2</sup></td>
+        </tr>
+      </table>
+      $$\Delta x = v_{i}\Delta t + \small\frac{1}{2}a \Delta t^{2}$$
+      $$\Delta x = 2(0.55) + \small\frac{1}{2}(0)(0.55)^{2}$$
+      $$\Delta x = 1.1m$$
+<br>
+<hr>
+<br>
+<br>
+<br>
+<br>
+
+      <canvas id="myCanvas2"></canvas>
+      <p><b>Example</b>: A pokeball is thrown at an angle of 60<sup>o</sup> above the horizon and a speed of 10m/s.  If the ball is thrown from 2.0 meters above the ground how far does the ball go before it misses the charmander and hits the ground.<br>
+      <a href="../notes-motion-3-vectors-and-scalors/index.html">vector review</a></p>
+      <table style="width:100%;text-align:left;background-color:#eee;">
+        <tr>
+          <td colspan="2" style= 'text-align: center;'>Δt = ?</td>
+        </tr>
+        <tr>
+          <th>x: horizontal</th>
+          <th>y: vertical</th>
+        </tr>
+        <tr>
+          <td>Δx = ?</td>
+          <td>Δy = 2.0m</td>
+        </tr>
+        <tr>
+          <td>v<sub>i</sub> = 10 cos(60) = 5.0 m/s</td>
+          <td>v<sub>i</sub> = 10 sin(60) = 8.66 m/s</td>
+        </tr>
+        <tr>
+          <td>v<sub>f</sub> = ?</td>
+          <td>v<sub>f</sub> = ?</td>
+        </tr>
+        <tr>
+          <td>a = 0</td>
+          <td>a = 9.8 m/s<sup>2</sup></td>
+        </tr>
+      </table>
+      $$v_{f}^{2} = v_{i}^{2}+2a \Delta y$$
+      $$v_{f}^{2} = 8.66^{2}+2(9.8)(2.0)$$
+      $$v_{f}^{2} = 114$$
+      $$v_{f} = \pm10.7 \small\frac{m}{s}$$
+      $$v_{f} = -10.7 \small\frac{m}{s}$$
+      <br>
+      $$v_{f} = v_{i}+a \Delta t$$
+      $$-10.7 = 5.0+(-9.8)\Delta t$$
+      $$1.60s = \Delta t$$
+      <br>
+      $$\Delta x = v_{i}\Delta t + \small\frac{1}{2}a \Delta t^{2}$$
+      $$\Delta x = 2(1.60) + \small\frac{1}{2}(0)(1.60)^{2}$$
+      $$\Delta x = 3.2m$$
+
+    </div>
+<script src="2dMotion(Matter.js).js"></script>
+</body>
+
+</html>
