@@ -1,0 +1,81 @@
+<!--
+LaTex equations are form the mathjax library
+http://docs.mathjax.org/en/latest/#
+put LaTex between $$  $$      example:   $$v = \lambda f$$
+
+use this to generate LaTex
+http://www.hostmath.com/
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>notes: motion 4 - 2-D motion</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+    MathJax.Hub.Config({
+      CommonHTML: {
+        scale: 150
+      }
+    });
+    </script>
+    <script src='../../../lib/matter.min.js'></script>
+    <script src='../../../lib/randomColor.min.js'></script>
+
+</head>
+
+<body onload="collision();collisionEx1();">
+    <div id="bodybox">
+      <h1>Momentum</h1>
+      <p>Momentum is the product of mass and velocity.
+      <h1 style = 'text-align: center;font-family: "Times New Roman", Times, serif;'>p = mv </h1>
+        <b>p</b> = momentum [kg m/s] <i>vector</i>
+        <br><b>m</b> = mass [kg]
+        <br><b>v</b> = velocity[m/s] <i>vector</i>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      <h2>Conservation of Momentum</h2>
+      <canvas  id="canvas" width='700' height = '150' > </canvas>
+    <li>Momentum is an important concept in physics because the total momentum for a system of objects is <b>conserved</b>.  This means the sum of all momentums will be the same before a collision and after.</li>
+    <br>
+    <li>Click the simulation above a few times and note that the total momentum is the same before and after a collision.</li>
+    <br>
+      <li>To use conservation of momentum we pick two points in time and set the sum of the total momentums equal to each other.</li>
+        <h3 style = 'text-align: center;font-family: "Times New Roman", Times, serif;'>
+        initial momentum = final momentum&nbsp;&nbsp;
+        <br>p<sub>1</sub> + p<sub>2</sub> + ...  = p<sub>1</sub> + p<sub>2</sub> + ...
+        <br>m<sub>1</sub>u<sub>1</sub> + m<sub>2</sub>u<sub>2</sub> + ...  = m<sub>1</sub>v<sub>1</sub> + v<sub>2</sub>m<sub>2</sub> + ... </h3>
+    <li>To keep track of before and after velocity we will use u for velocity before and v for velocity after.</li>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<canvas id="canvas1" width='700' height = '150' > </canvas>
+<p><b>Example:</b> A green and white box collide.  The green box has a mass of 2kg and is moving to the right at 3m/s.  The white box is moving to the left at 1m/s and has a mass of 10kg.  If the white box has stopped after the collision what is the velocity of the green box?</p>
+<details>
+  <summary>solution</summary>
+  <p style = 'text-align: center;'>green + white = green + white</p>
+  $$m_{1}u_{1}+m_{2}u_{2}=m_{1}v_{1}+m_{2}v_{2}$$
+  $$(2)(3)+(10)(-1)=(2)v_{1}+(1)(0)$$
+  $$6-10=(2)v_{1}$$
+  $$-4=(2)v_{1}$$
+  $$-2=v_{1}$$
+  </details>
+
+
+
+    </div>
+<script src="elasticCollision(Matter.js).js"></script>
+<script src="elasticCollisionEx1(Matter.js).js"></script>
+</body>
+
+</html>
