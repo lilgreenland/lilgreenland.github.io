@@ -1,13 +1,17 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
 body {
-  font: 15px arial, sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 125%;
   background-color: white;
   padding-top: 0px;
+  color: #252c2f;
+  margin:0;
 }
 
 #bodybox {
-  margin: auto;
+  margin: 0 auto;
   max-width: 700px;
-  font: 20px arial, sans-serif;
   background-color: white;
 }
 
@@ -16,4 +20,33 @@ canvas {
   /*background-color: #f9f9f9;*/
   /*border-radius: 20px;*/
   /*cursor: crosshair;*/
+}
+
+h1,
+h2,
+strong {
+  color: #191b1b;
+}
+
+h2 {
+  margin-top: 1em;
+  padding-top: 1em;
+}
+
+
+code,
+pre {
+  background: #eee;
+}
+
+code {
+  padding: 2px 4px;
+  vertical-align: text-bottom;
+}
+
+pre {
+  padding: 1em;
+}
+a {
+  color: #207ea7;
 }

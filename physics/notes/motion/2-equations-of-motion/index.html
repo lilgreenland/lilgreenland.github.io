@@ -39,12 +39,16 @@ http://www.hostmath.com/
 
 
   <h2>$$v_{f} = v_{i}+a \Delta t$$
-  $$\Delta x = v_{i}\Delta t + \small\frac{1}{2}a \Delta t^{2}$$
-  $$\Delta x = \small\frac{1}{2}\normalsize(v_{f}+v_{i})\Delta t$$
-  $$v_{f}^{2} = v_{i}^{2}+2a \Delta x$$
-  $$\Delta x = v_{f}\Delta t - \small\frac{1}{2}a \Delta t^{2}$$
+  $$\Delta x = u\Delta t + \small\frac{1}{2}a \Delta t^{2}$$
+  $$\Delta x = \small\frac{1}{2}\normalsize(v+u)\Delta t$$
+  $$v^{2} = u^{2}+2a \Delta x$$
+  $$\Delta x = v\Delta t - \small\frac{1}{2}a \Delta t^{2}$$
   </h2>
-
+  <b>Δx</b> = distance [m] <i>vector</i>
+  <br><b>Δt</b> = time [s]
+  <br><b>v</b> = final velocity [m/s] <i>vector</i>
+  <br><b>u</b> = initial velocity [m/s] <i>vector</i>
+  <br><b>a</b> = acceleration [m/s<sup>2</sup>] <i>vector</i>
   <p>To choose which equation to use write down the one unknown and all the known variables. Match your variables to one of the equations above.</p>
   <br>
   <br>
@@ -59,8 +63,8 @@ http://www.hostmath.com/
         <th>algebra</th>
       </tr>
       <tr>
-        <td>\( v_{i} = 400 \small\frac{m}{s}\)</td>
-        <td>\(\Delta x = v_{i}\Delta t + \small\frac{1}{2}\normalsize a \Delta t^{2}\)</td>
+        <td>\( u = 400 \small\frac{m}{s}\)</td>
+        <td>\(\Delta x = u\Delta t + \small\frac{1}{2}\normalsize a \Delta t^{2}\)</td>
       </tr>
       <tr>
         <td>\( a = -9.8 \small\frac{m}{s^{2}} \)</td>
@@ -87,16 +91,16 @@ http://www.hostmath.com/
         <th>algebra</th>
       </tr>
       <tr>
-        <td>\( v_{i} = 30 \small\frac{m}{s}\)</td>
-        <td>\(v_{f}^{2} = v_{i}^{2}+2a \Delta x\)</td>
+        <td>\( u = 30 \small\frac{m}{s}\)</td>
+        <td>\(v^{2} = u^{2}+2a \Delta x\)</td>
       </tr>
       <tr>
         <td>\( a = ? \)</td>
-        <td>\(v_{f}^{2} - v_{i}^{2}=2a \Delta x\)</td>
+        <td>\(v^{2} - u^{2}=2a \Delta x\)</td>
       </tr>
       <tr>
-        <td>\(v_{f} = 0\)</td>
-        <td>\(\large\frac{v_{f}^{2} - v_{i}^{2}}{2 \Delta x}\normalsize=a\)</td>
+        <td>\(v = 0\)</td>
+        <td>\(\large\frac{v^{2} - u^{2}}{2 \Delta x}\normalsize=a\)</td>
       </tr>
       <tr>
         <td>\(\Delta x = 10m\)</td>
@@ -123,19 +127,19 @@ http://www.hostmath.com/
         <th>algebra</th>
       </tr>
       <tr>
-        <td>\( v_{f} = 170 (\frac{miles}{hour})(\frac{1609m}{1miles})(\frac{1hour}{3600s})\)</td>
+        <td>\( v = 170 (\frac{miles}{hour})(\frac{1609m}{1miles})(\frac{1hour}{3600s})\)</td>
         <td>\( a = ? \)</td>
-        <td>\(v_{f}^{2} = v_{i}^{2}+2a \Delta x\)</td>
+        <td>\(v^{2} = u^{2}+2a \Delta x\)</td>
       </tr>
       <tr>
-        <td>\( v_{f} = 76 \small\frac{m}{s}\)</td>
-        <td>\( v_{i} = rest = 0\)</td>
-        <td>\(v_{f}^{2} - v_{i}^{2}=2a \Delta x\)</td>
+        <td>\( v = 76 \small\frac{m}{s}\)</td>
+        <td>\( u = rest = 0\)</td>
+        <td>\(v^{2} - u^{2}=2a \Delta x\)</td>
       </tr>
       <tr>
         <td>\( \Delta x = 6000ft (\frac{1m}{3.3ft})\)</td>
-        <td>\(v_{f} = 76 \small\frac{m}{s}\)</td>
-        <td>\(\large\frac{v_{f}^{2} - v_{i}^{2}}{2 \Delta x}\normalsize=a\)</td>
+        <td>\(v = 76 \small\frac{m}{s}\)</td>
+        <td>\(\large\frac{v^{2} - u^{2}}{2 \Delta x}\normalsize=a\)</td>
       </tr>
       <tr>
         <td>\( \Delta x = 1818m \)</td>
@@ -178,12 +182,12 @@ http://www.hostmath.com/
         <th>algebra</th>
       </tr>
       <tr>
-        <td>\(v_{i} = rest = 0\)</td>
-        <td>\( v_{f} = v_{i}+a \Delta t \)</td>
+        <td>\(u = rest = 0\)</td>
+        <td>\( v = u+a \Delta t \)</td>
       </tr>
       <tr>
-        <td>\( v_{f} = -6.0\small\frac{m}{s} \)</td>
-        <td>\(\large\frac{v_{f} - v_{i}}{a}\normalsize= \Delta t\)</td>
+        <td>\( v = -6.0\small\frac{m}{s} \)</td>
+        <td>\(\large\frac{v - u}{a}\normalsize= \Delta t\)</td>
       </tr>
       <tr>
         <td>\( a = -9.8 \small\frac{m}{s^{2}} \)</td>
@@ -202,27 +206,27 @@ http://www.hostmath.com/
     <table style="width:100%;text-align:left">
       <tr>
         <th>variables</th>
-        <th>v<sub>f</sub> algebra</th>
+        <th>v algebra</th>
         <th> Δt algebra</th>
       </tr>
       <tr>
-        <td>\(v_{i} = rest = 0\)</td>
-        <td>\(v_{f}^{2} = v_{i}^{2}+2a \Delta x\)</td>
-        <td>\(v_{f} = v_{i}+a \Delta t\)</td>
+        <td>\(u = rest = 0\)</td>
+        <td>\(v^{2} = u^{2}+2a \Delta x\)</td>
+        <td>\(v = u+a \Delta t\)</td>
       </tr>
       <tr>
         <td>\(\Delta x = 4,000m\)</td>
-        <td>\(v_{f}^{2} = 0^{2}+2(4.313)(4,000)\)</td>
-        <td>\(\large \frac{v_{f} - v_{i}}{a} \normalsize = \Delta t\)</td>
+        <td>\(v^{2} = 0^{2}+2(4.313)(4,000)\)</td>
+        <td>\(\large \frac{v - u}{a} \normalsize = \Delta t\)</td>
       </tr>
       <tr>
-        <td>\(v_{f} = ?\)</td>
-        <td>\(v_{f}^{2} = 34504\)</td>
+        <td>\(v = ?\)</td>
+        <td>\(v^{2} = 34504\)</td>
         <td>\(\large \frac{185.8 - 0}{4.313} \normalsize = \Delta t\)</td>
       </tr>
       <tr>
         <td>\(\Delta t = ?\)</td>
-        <td>\(v_{f} = 185.8\frac{m}{s}\)</td>
+        <td>\(v = 185.8\frac{m}{s}\)</td>
         <td>\(43.1s = \Delta t\)</td>
       </tr>
       <tr>

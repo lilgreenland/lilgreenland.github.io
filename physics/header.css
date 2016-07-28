@@ -1,0 +1,40 @@
+
+header img {
+  display: inline-block;
+  height: 120px;
+  vertical-align: top;
+  width: 120px;
+}
+
+header {
+  background-color: #263d36;
+  background-image: url("satpic.jpeg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  line-height: 0.6;
+  padding: 100px 0px 200px 0px;
+  text-align: center;
+}
+
+header a {
+  border-radius: 290486px;
+  color: white;
+  font-size: 0.6em;
+  letter-spacing: 0.2em;
+  padding: 1em 2em;
+  text-decoration: none;
+  transition: none 200ms ease-out;
+  transition-property: color, background;
+}
+
+header a:hover {
+  background:  #207ea7;
+  color: white;
+}
+
+header h1 {
+  color: white;
+  font-size: 6em;
+  font-weight: 300;
+}
