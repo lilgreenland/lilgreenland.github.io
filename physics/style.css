@@ -2,7 +2,7 @@
 
 body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-size: 125%;
+  font-size: 110%;
   background-color: white;
   padding-top: 0px;
   color: #252c2f;
@@ -13,6 +13,13 @@ body {
   margin: 0 auto;
   max-width: 700px;
   background-color: white;
+}
+
+.definition{
+  background-color: #e5eef2;
+  padding: 20px 20px 20px 20px;
+  margin: 30px 30px 30px 30px;
+  border-radius: 15px;
 }
 
 canvas {
@@ -27,12 +34,6 @@ h2,
 strong {
   color: #191b1b;
 }
-
-h2 {
-  margin-top: 1em;
-  padding-top: 1em;
-}
-
 
 code,
 pre {
@@ -49,4 +50,21 @@ pre {
 }
 a {
   color: #207ea7;
+}
+
+summary {
+    cursor: pointer;
+}
+
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-item {
+    margin: 10px;
+}
+th {
+    text-align: left;
 }

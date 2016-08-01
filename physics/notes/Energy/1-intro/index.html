@@ -1,0 +1,73 @@
+<!--
+LaTex equations are form the mathjax library
+http://docs.mathjax.org/en/latest/#
+put LaTex between $$  $$      example:   $$v = \lambda f$$
+
+use this to generate LaTex
+http://www.hostmath.com/
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>notes: motion 4 - 2-D motion</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
+        MathJax.Hub.Config({
+            CommonHTML: {
+                scale: 150
+            }
+        });
+    </script>
+    <script src='../../../lib/matter.min.js'></script>
+    <script src='../../../lib/randomColor.min.js'></script>
+
+</head>
+
+<body onload="energy0();">
+    <div id="bodybox">
+        <h1>What is Energy in physics</h1>
+        <p>Energy is a scalar.  Not having to work with vectors can make solving problems with energy much easier then a vector based method.</p>
+        <h1>Types of Energy</h1>
+        <h1>Kinetic Energy</h1>
+        <h2>Rotational Energy</h2>
+        <h1>Potential Energy</h1>
+        <h2>Gravitational Potential Energy</h2>
+        <h2>Elastic Potential Energy</h2>
+
+        <h1>Conservation of Energy</h1>
+
+        <div class="flex-container">
+            <div class="flex-item">
+              <button id="pause">pause</button><br>
+              <canvas id="canvas0"  width='300' height='600'> </canvas></div>
+            <div class="flex-item">
+              <p>Energy, like momentum, is conserved.  This means that if we add up the total energy of a system it will always be the same value, unless something enters or leaves the system.</p>
+              <p>As the ball bounces energy transfers form kinetic to gravitational.</p>
+              <p>When is kinetic energy the highest?</p>
+              <p>When is gravitational energy the highest?</p>
+              <p>When is rotational energy the hightest?</p>
+              <p>How is the total energy decreasing?  Isn't energy conserved?</p>
+              <br>
+            </div>
+        </div>
+        <p>We can build an equation that sets the total energy at one moment in time equal to the total energy at another moment in time.
+        </p>
+        <div class='definition'>
+          <h1 style='text-align: center;font-family: "Times New Roman", Times, serif;'>E<sub>i</sub> = E<sub>f</sub> </h1>
+          <b>E<sub>i</sub></b> = total initial energy [J] <i>scalar</i>
+          <br><b>E<sub>f</sub></b> = mass [kg]
+          <br><b>v</b> = velocity[m/s] <i>vector</i>
+        </div>
+
+
+
+    </div>
+    <script src="energy(Matter.js).js"></script>
+</body>
+
+</html>

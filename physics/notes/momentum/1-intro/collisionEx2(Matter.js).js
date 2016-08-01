@@ -123,7 +123,7 @@ Engine.run(engine);
     // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.lineWidth = 1;
-    ctx.strokeStyle = '#000000';
+    ctx.strokeStyle = '#000';
     for (var i = 0; i < bodies.length; i += 1) {
       var vertices = bodies[i].vertices;
       ctx.beginPath();
@@ -138,7 +138,7 @@ Engine.run(engine);
       ctx.fillStyle = '#ccc'
     }
       ctx.fill();
-      //ctx.stroke();
+      ctx.stroke();
     }
 
 

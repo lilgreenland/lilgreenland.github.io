@@ -46,8 +46,8 @@ document.getElementById(canvasID).addEventListener("mousedown", function(){
 spawnList();
 function spawnList(){
   var Ypos = canvas.height/2;
-  var len1 = 20+Math.ceil(Math.random()*60)
-  var len2 = 20+Math.ceil(Math.random()*60)
+  var len1 = 30+Math.ceil(Math.random()*50)
+  var len2 = 30+Math.ceil(Math.random()*50)
   var v = Math.ceil((Math.random()-0.5)*60)
   spawnMass(350-len1/1.4, Ypos, v, 0, len1, 4,0.1);
   spawnMass(350+len2/1.4, Ypos, v, 0, len2, 4,1.5);
@@ -135,7 +135,7 @@ Engine.run(engine);
       ctx.fillStyle = '#ccc'
     }
       ctx.fill();
-      //ctx.stroke();
+      ctx.stroke();
     }
 
 

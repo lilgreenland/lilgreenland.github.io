@@ -1,19 +1,7 @@
 
-header img {
-  display: inline-block;
-  height: 120px;
-  vertical-align: top;
-  width: 120px;
-}
-
 header {
-  background-color: #263d36;
-  background-image: url("satpic.jpeg");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  line-height: 0.6;
-  padding: 100px 0px 200px 0px;
+  background-color: #222;
+  padding: 1px 0px 10px 0px;
   text-align: center;
 }
 

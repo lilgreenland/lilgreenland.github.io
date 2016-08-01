@@ -1,6 +1,6 @@
-function stickyCollision(){
+function collisionEx3(){
 //set up canvas
-var canvasID = "canvas"
+var canvasID = "canvas3"
 var canvas = document.getElementById(canvasID);
 var ctx = canvas.getContext("2d");
 var id = document.getElementById(canvasID).parentNode.id;
@@ -36,44 +36,50 @@ engine.world.gravity.y = 0;
 
 var mass = [];
 
-document.getElementById(canvasID).addEventListener("mousedown", function(){
-  World.clear(engine.world, true); //clear matter engine, leave static
-  mass = []; //clear mass array
-  spawnList();
+document.getElementById("pause").addEventListener("click", function() {
+    //slow timeScale changes the value of velocity while in slow timeScale so divide by engine.timing.timeScale to set velocity normal
+    if (engine.timing.timeScale === 1) {
+      engine.timing.timeScale = 0.00001
+      document.getElementById("pause").innerHTML = "unpause";
+    } else {
+      engine.timing.timeScale = 1;
+      document.getElementById("pause").innerHTML = "pause";
+    }
 });
-spawnList();
-function spawnList(){
-  var Ypos = canvas.height/2;
-  spawnMass(100, Ypos, Math.ceil(Math.random()*10)*15, 0, 25+Math.ceil(Math.random()*60),8,0.1);
-  spawnMass(600, Ypos, -Math.ceil(Math.random()*10)*15, 0, 30+Math.ceil(Math.random()*50),4,1.5);
-  var vel = (mass[0].mass*mass[0].velocity.x+mass[1].mass*mass[1].velocity.x)/(mass[0].mass+mass[1].mass);
-  //write a problem based on the values in the spawn
-  document.getElementById("ex").innerHTML = "<p><b>Random Problem:</b> A "
-  +mass[0].mass.toFixed(2)+"kg <a style='color: "+mass[0].color+"'>octogon</a> moving at "+ mass[0].velocity.x.toFixed(2)+"m/s collides and sticks to a "+mass[1].mass.toFixed(2)+"kg <a style='color: "+mass[1].color+"'>square</a> moving at "+ mass[1].velocity.x.toFixed(2)+"m/s. What is the velocity of the objects after they collide?</p><details> <summary>solution</summary><p style='text-align: center;'>octogon + square = octogon + square</p>$$m_{1}u_{1}+m_{2}u_{2}=(m_{1}+m_{2})v$$ $$("+mass[0].mass.toFixed(2)+")("+mass[0].velocity.x.toFixed(2)+")+("+mass[1].mass.toFixed(2)+")("+mass[1].velocity.x.toFixed(2)+")=("+mass[0].mass.toFixed(2)+"+"+mass[1].mass.toFixed(2)+")v$$ $$"+vel.toFixed(2)+" \\small\\frac{m}{s}=\\normalsize v$$</details>"
-  //reencodes the mathjax into math, makes the $$ $$ work
-  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
+document.getElementById(canvasID).addEventListener("mousedown", function(){
+  if (engine.timing.timeScale === 1){
+    World.clear(engine.world, true); //clear matter engine, leave static
+    mass = []; //clear mass array
+    spawn()
+  }
+});
+
+spawn()
+function spawn(){
+  spawnMass(100, 100, 180, 0,  40,'lightgreen');
+  spawnMass(300, 100, 120, 0,  70,'#419eff');
+  spawnMass(600, 100, -60, 0, 60,'orange');
 }
-function spawnMass(xIn, yIn, VxIn, VyIn, length,sides,angle) {
+
+function spawnMass(xIn, yIn, VxIn, VyIn, length,color) {
   //spawn mass
     var i = mass.length
     mass.push();
-    mass[i] = Bodies.polygon(xIn * scale, yIn*scale,sides,length * scale, {
+    mass[i] = Bodies.rectangle(xIn * scale, yIn*scale,length * scale ,length * scale, {
       friction: 0,
       frictionStatic: 0,
       frictionAir: 0,
-      restitution: 0,
+      restitution: .988,
       length: length,
-      color: randomColor({
-          luminosity: 'light',
-      }),
+      color: color,
     });
 
     Body.setVelocity(mass[i], {
       x: VxIn / 60 * scale,
       y: -VyIn / 60 * scale
     });
-    //Matter.Body.setAngle(mass[i], angle)
-    //Matter.Body.setAngularVelocity(mass[i], -0.004   );
+    //Matter.Body.setAngularVelocity(mass[i], 0.4);
     World.add(engine.world, mass[i]);
   }
 
@@ -102,6 +108,22 @@ function spawnMass(xIn, yIn, VxIn, VyIn, length,sides,angle) {
 //   })
 // ]);
 
+
+
+function edgeBounce(){
+  for (var k = 0, length = mass.length; k<length; k++){
+    if (mass[k].position.x-mass[k].length/2 < 0) {
+      Matter.Body.setPosition(mass[k], {x:mass[k].length/2, y:mass[k].position.y})
+      Matter.Body.setVelocity(mass[k], {x:Math.abs(mass[k].velocity.x), y:0})
+    }
+    if (mass[k].position.x+mass[k].length/2 > canvas.width) {
+      Matter.Body.setPosition(mass[k], {x:canvas.width-mass[k].length/2, y:mass[k].position.y})
+      Matter.Body.setVelocity(mass[k], {x:-Math.abs(mass[k].velocity.x), y:0})
+    }
+  }
+
+
+}
 
 // run the engine
 Engine.run(engine);
@@ -146,21 +168,16 @@ Engine.run(engine);
     ctx.textAlign="center";
     ctx.font="15px Arial";
     ctx.fillStyle="#000";
-    var px = 0;
-    var py = 0;
+    var p = 0;
     for (var k = 0, length = mass.length; k<length; k++){
-      ctx.fillText(mass[k].mass.toFixed(2)+'kg',mass[k].position.x,mass[k].position.y);
-      //ctx.fillText(mass[k].velocity.x.toFixed(2)+'m/s',mass[k].position.x,mass[k].position.y+9);
-      px += mass[k].mass*mass[k].velocity.x;
-      py += mass[k].mass*(-mass[k].velocity.y);
+      ctx.fillText(mass[k].mass.toFixed(2)+'kg',mass[k].position.x,mass[k].position.y-mass[k].length/2-18);
+      ctx.fillText((mass[k].velocity.x/engine.timing.timeScale).toFixed(2)+'m/s',mass[k].position.x,mass[k].position.y-mass[k].length/2-2);
+      p += mass[k].mass*mass[k].velocity.x/engine.timing.timeScale;
     }
-    // ctx.textAlign="left";
-    // ctx.fillText('mv + mv = total horizontal momentum ',5,13);
-    // ctx.fillText('(' + mass[0].mass.toFixed(2)+')('+mass[0].velocity.x.toFixed(2) +') + ('
-    // +mass[1].mass.toFixed(2)+') ('+mass[1].velocity.x.toFixed(2)+') = '      +px.toFixed(2),5,30);
-    // ctx.textAlign="right";
-    // ctx.fillText('mv + mv = total vertical momentum',canvas.width-5,13);
-    // ctx.fillText('(' + mass[0].mass.toFixed(2)+')('+-mass[0].velocity.y.toFixed(2) +') + ('
-    // +mass[1].mass.toFixed(2)+') ('+-mass[1].velocity.y.toFixed(2)+') = '      +py.toFixed(2),canvas.width-5,30);
+    ctx.textAlign="left";
+    ctx.fillText('mv + mv + mv = total momentum',5,13);
+    ctx.fillText('(' + mass[0].mass.toFixed(2)+')('+(mass[0].velocity.x/engine.timing.timeScale).toFixed(2) +') + ('
+    +mass[1].mass.toFixed(2)+') ('+(mass[1].velocity.x/engine.timing.timeScale).toFixed(2)+') + ('+ mass[2].mass.toFixed(2)+')('+(mass[2].velocity.x/engine.timing.timeScale).toFixed(2) +') = '      +p.toFixed(2),5,30);
+    //edgeBounce();
   })();
 }
