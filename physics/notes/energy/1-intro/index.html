@@ -1,73 +1,280 @@
-<!--
-LaTex equations are form the mathjax library
-http://docs.mathjax.org/en/latest/#
-put LaTex between $$  $$      example:   $$v = \lambda f$$
-
-use this to generate LaTex
-http://www.hostmath.com/
--->
-
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>notes: motion 4 - 2-D motion</title>
+    <title>Energy</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../../style.css">
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
-        MathJax.Hub.Config({
-            CommonHTML: {
-                scale: 150
-            }
-        });
-    </script>
     <script src='../../../lib/matter.min.js'></script>
     <script src='../../../lib/randomColor.min.js'></script>
-
 </head>
 
-<body onload="energy0();">
-    <div id="bodybox">
-        <h1>What is Energy in physics</h1>
-        <p>Energy is a scalar.  Not having to work with vectors can make solving problems with energy much easier then a vector based method.</p>
-        <h1>Types of Energy</h1>
-        <h1>Kinetic Energy</h1>
-        <h2>Rotational Energy</h2>
-        <h1>Potential Energy</h1>
-        <h2>Gravitational Potential Energy</h2>
-        <h2>Elastic Potential Energy</h2>
+<body onload="particles();">
+    <div id='bodybox'>
 
+        <h1>What is Energy?</h1>
+        <p>Energy is one concept, but we can track it in many forms.</p>
+        <p>wiki: <a href='https://en.wikipedia.org/wiki/Forms_of_energy'>Forms of energy</a></p>
+        <p>In physics, the law of <b>conservation of energy</b> states that the total energy of an isolated system remains constant—it is said to be conserved over time. </p>
+        <div class='definition'>
+            <h3>Energy can be neither created nor be destroyed, but it transforms from one form to another.</h3>
+        </div>
+        <p><b>Example:</b> Chemical energy is converted to kinetic energy in the explosion of a stick of dynamite.</p>
+
+        <p><b>Example:</b> As an object falls the gravitation potential energy of position is converted to kinetic energy.</p>
+
+        <p><b>Example:</b> A microwave converts electical energy into Electro-magnetic microwave energy and then into the energy of heat as food heats up.</p>
+
+        <p><b>Example:</b> Chemical energy stored in methane is burned to form heat energy. That heat energy expands and rises up to pass through a fan. The fan spins around to make rotational kinetic energy. That energy is turned into electrical energy
+            because of magnets pulling on the electrons in a wire. This makes electrical energy. That energy flows down the wire, ultimatly powering my computer, which turns that enegy into heat.</p>
+
+        <p>Energy tends to spread out evenly, but we can only use energy when it is concetrated. Capturing the heat energy from burning gasoline is only possible because of the energy difference between the hot and cold air around the burning gasoline.</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>Kinetic Energy</h1>
+        <div class='definition'>
+            <h1>$$KE = \frac{1}{2}mv^{2}$$</h1>
+
+            <b>KE</b> = kinetic energy [J, Joules] <i>scalar</i>
+            <br><b>m</b> = mass [kg] <i>scalar</i>
+            <br><b>v²</b> = velocity*velocity [m²/s²]<i>scalar</i>
+        </div>
+        <p>Kinetic energy is the energy massive objects have from motion.</p>
+        <p>Energy has units of Joules in the metric system. 1 Joule is the energy of a 2kg mass moving at 1m/s. Other units of energy are: kilowatt-hour, Btu, pounds of TNT, and calorie. </p>
+
+        <p>Energy is a <b>scalar</b>. It has no direction. Not having to work with vectors can make solving some problems with energy easier then with the equations of motion.</p>
+        <br>
+        <br>
+
+        <p><b>Example:</b> What is the kinetic energy of Zoe running at 5m/s to the right? (Zoe is a <a href='https://www.google.com/search?q=nova+scotia+duck+tolling+retriever&rlz=1C1CHFX_enUS532US532&biw=1280&bih=679&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjGwb-xoa3OAhVG8WMKHVRWCBkQ_AUIBigB'>dog</a>.
+        She has a mass of 20kg. She is 0.56 meters tall. She has reddish fur, like a fox.)</p>
+        <details>
+            <summary>solution</summary>
+            $$KE = \frac{1}{2}mv^{2}$$ $$KE = \frac{1}{2}(20)(5)^{2}$$ $$KE = 250J$$
+        </details>
+        <br>
+        <br>
+        <p><b>Example:</b> What is the kinetic energy of Zoe running at 5m/s to the <b>left</b>?</p>
+        <details>
+            <summary>solution</summary>
+            $$KE = \frac{1}{2}mv^{2}$$ $$KE = \frac{1}{2}(20)(-5)^{2}$$
+            <p>Energy is a scalar so direction doesn't matter. The negative sign on the velocity goes away because it is squared, and we get the same answer.</p>
+            $$KE = 250J$$
+        </details>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>Potential Energy</h1>
+        <p>Potential energy is energy that could potentially turn into another form of energy. We can track some forms of potential energy.</p>
+
+        <h2>Gravitational Potential Energy</h2>
+        <p>If you drop a massive object it will gain kinetic energy as it falls. We call the potential for the energy of its position to turn into kinetic energy gravitational potential energy</p>
+        <div class='definition'>
+            <h1>$$PE_{grav} = mgh$$</h1>
+
+            <b>PE</b> = gravitational potential energy [J, Joules] <i>scalar</i>
+            <br><b>m</b> = mass [kg] <i>scalar</i>
+            <br><b>g</b> = acceleration from graivty (on earth = 9.8) [m/s²] <i>vector</i>
+            <br><b>h</b> = height [m]<i>vector</i>
+        </div>
+        <p><b>Height</b> is the tricky part of this equation, because at the zero point is unclear. The floor can be the zero point, or the floor of the basement or the top of a table, or any point. You choose a zero point that makes the problem less complex.</p>
+
+
+
+        <p>Which of these three zero points seem the best choice?</p>
+<table style = 'width:100%'>
+  <tr>
+    <th>
+      <svg width="150" height="200" class='svgDiagram' version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <rect id='ground' x="0" y="160" width="150" height="200" style="fill:#cba" />
+          <rect x="0" y="0" width="60" height="60" style="stroke:black;stroke-width:2;fill:#cff " />
+          <text x="30" y="30" fill="black" text-anchor="middle" alignment-baseline="middle">5kg</text>
+          <line x1="70" y1="60" x2="70" y2="160" style="stroke:#444;stroke-width:2" />
+          <line x1="65" y1="160" x2="75" y2="160" style="stroke:#444;stroke-width:2" />
+          <line x1="65" y1="60" x2="75" y2="60" style="stroke:#444;stroke-width:2" />
+          <text x="80" y="70" fill="black" text-anchor="start">y = 100m</text>
+          <text x="80" y="155" text-anchor="start" style = 'fill:red'>y = 0m</text>
+          <text x="5" y="180" fill="black" text-anchor="start">g = 9.8m/s²</text>
+      </svg>
+      <br>
+      <br>
+      $$PE_{grav} = mgh$$
+        $$PE_{grav} = (5)(9.8)(100)$$
+        $$PE_{grav} = 4900J$$
+    </th>
+    <th>
+      <svg width="150" height="200" class='svgDiagram' version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <rect id='ground' x="0" y="160" width="150" height="200" style="fill:#cba" />
+          <rect x="0" y="0" width="60" height="60" style="stroke:black;stroke-width:2;fill:#cff " />
+          <text x="30" y="30" fill="black" text-anchor="middle" alignment-baseline="middle">5kg</text>
+          <line x1="70" y1="60" x2="70" y2="160" style="stroke:#444;stroke-width:2" />
+          <line x1="65" y1="160" x2="75" y2="160" style="stroke:#444;stroke-width:2" />
+          <line x1="65" y1="60" x2="75" y2="60" style="stroke:#444;stroke-width:2" />
+          <text x="80" y="70" text-anchor="start" style = 'fill:red'>y = 0</text>
+          <text x="80" y="155" fill="black" text-anchor="start">y = -100m</text>
+          <text x="5" y="180" fill="black" text-anchor="start">g = 9.8m/s²</text>
+      </svg>
+      <br>
+      <br>
+      $$PE_{grav} = mgh$$
+        $$PE_{grav} = (5)(9.8)(0)$$
+        $$PE_{grav} = 0J$$
+      </th>
+    <th>
+      <svg width="150" height="200" class='svgDiagram' version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <rect id='ground' x="0" y="160" width="150" height="200" style="fill:#cba" />
+          <rect x="0" y="0" width="60" height="60" style="stroke:black;stroke-width:2;fill:#cff " />
+          <text x="30" y="30" fill="black" text-anchor="middle" alignment-baseline="middle">5kg</text>
+          <line x1="70" y1="60" x2="70" y2="160" style="stroke:#444;stroke-width:2" />
+          <line x1="65" y1="160" x2="75" y2="160" style="stroke:#444;stroke-width:2" />
+          <line x1="65" y1="60" x2="75" y2="60" style="stroke:#444;stroke-width:2" />
+          <text x="80" y="70" fill="black" text-anchor="start">y = 50m</text>
+          <text x="80" y="115" text-anchor="start" style = 'fill:red'>y = 0</text>
+          <text x="80" y="155" fill="black" text-anchor="start">y = -50m</text>
+          <text x="5" y="180" fill="black" text-anchor="start">g = 9.8m/s²</text>
+      </svg>
+      <br>
+      <br>
+        $$PE_{grav} = mgh$$
+        $$PE_{grav} = (5)(9.8)(50)$$
+        $$PE_{grav} = 2450J$$
+      </th>
+  </tr>
+</table>
+
+<p>We get 3 different answers because of the different zero points.  Unlike kinetic energy, gravitational potential energy isn't consistant, but we can still use it to find a <b>change in gravitational potential energy</b>.</p>
+<br>
+<p><b>Example:</b> How much energy does it take for an elevator to bring a 100kg person from the 1st story to the 6th story?
+   <a href = 'https://www.google.com/search?q=HOw+long+is+a+story&rlz=1C1CHFX_enUS532US532&oq=HOw+long+is+a+story&aqs=chrome..69i57.525j0j7&sourceid=chrome&ie=UTF-8#q=1+story+in+meters'> convert 1 story to meters</a>
+  <details>
+      <summary>solution</summary>
+      <table style="width:100%">
+        <tr>
+          <td>      $$ \left(6 story-1 story \right) \left(\frac{3m}{1story}\right) = 15m$$
+                $$PE_{grav} = mgh$$
+                $$PE_{grav} = (100)(9.8)(15)$$
+                $$PE_{grav} = 14700J$$</td>
+          <td><svg width="150" height="200" class='svgDiagram' version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <rect id='ground' x="-50" y="160" width="400" height="200" style="fill:#cba" />
+              <rect x="0" y="0" width="60" height="60" style="stroke:black;stroke-width:2;fill:#fdd" />
+              <rect x="0" y="100" width="60" height="60" style="stroke:grey;stroke-width:0.5;fill:white" />
+              <text x="30" y="30" fill="black" text-anchor="middle" alignment-baseline="middle">100kg</text>
+              <line x1="70" y1="60" x2="70" y2="160" style="stroke:#444;stroke-width:2" />
+              <line x1="65" y1="160" x2="75" y2="160" style="stroke:#444;stroke-width:2" />
+              <line x1="65" y1="60" x2="75" y2="60" style="stroke:#444;stroke-width:2" />
+              <text x="80" y="70" fill="black" text-anchor="start">y = 15</text>
+              <text x="80" y="155" fill="black" text-anchor="start">y = 0m</text>
+              <text x="5" y="180" fill="black" text-anchor="start">g = 9.8m/s²</text>
+          </svg></td>
+          </tr>
+      </table>
+
+
+
+
+  </details>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+<p><b>Example:</b> How much gravitational energy is lost as a 80.0kg person rides down from the top (h = 400ft) of the roller coaster <i>LEX LUTHOR: Drop of Doom</i>. <a href = 'https://www.google.com/search?q=convert+ft+to+m&rlz=1C1CHFX_enUS532US532&oq=convert+ft+to+m&aqs=chrome..69i57j69i64j0l4.2375j0j7&sourceid=chrome&ie=UTF-8'> convert ft to m </a>
+  <details>
+      <summary>solution</summary>
+
+      <table style="width:100%">
+        <tr>
+          <td>
+            $$ -400ft\left(\frac{0.3048m}{1ft}\right) = -122m$$
+            $$PE_{grav} = mgh$$
+            $$PE_{grav} = (80.0)(9.8)(-122)$$
+            $$PE_{grav} = -95648J$$
+            </td>
+          <td><svg width="150" height="200" class='svgDiagram' version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <rect id='ground' x="-50" y="160" width="400" height="200" style="fill:#cba" />
+              <rect x="0" y="0" width="60" height="60" style="stroke:grey;stroke-width:0.5;fill:#fff" />
+              <rect x="0" y="100" width="60" height="60" style="stroke:black;stroke-width:2;fill:#ccc" />
+              <text x="30" y="130" fill="black" text-anchor="middle" alignment-baseline="middle">80kg</text>
+              <line x1="70" y1="60" x2="70" y2="160" style="stroke:#444;stroke-width:2" />
+              <line x1="65" y1="160" x2="75" y2="160" style="stroke:#444;stroke-width:2" />
+              <line x1="65" y1="60" x2="75" y2="60" style="stroke:#444;stroke-width:2" />
+              <text x="80" y="70" fill="black" text-anchor="start">y = 0</text>
+              <text x="80" y="155" fill="black" text-anchor="start">y = -122m</text>
+              <text x="5" y="180" fill="black" text-anchor="start">g = 9.8m/s²</text>
+          </svg></td>
+          </tr>
+      </table>
+  </details>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <h1>Conservation of Energy</h1>
+        <br>
 
         <div class="flex-container">
             <div class="flex-item">
-              <button id="pause">pause</button><br>
-              <canvas id="canvas0"  width='300' height='600'> </canvas></div>
+                <button id="pause">pause</button>
+                <button id="energy">friction: OFF</button>
+                <br>
+                <canvas id="canvas0" width='300' height='600'> </canvas>
+            </div>
             <div class="flex-item">
-              <p>Energy, like momentum, is conserved.  This means that if we add up the total energy of a system it will always be the same value, unless something enters or leaves the system.</p>
-              <p>As the ball bounces energy transfers form kinetic to gravitational.</p>
-              <p>When is kinetic energy the highest?</p>
-              <p>When is gravitational energy the highest?</p>
-              <p>When is rotational energy the hightest?</p>
-              <p>How is the total energy decreasing?  Isn't energy conserved?</p>
-              <br>
+                <p>Energy, like momentum, is conserved. This means that if we add up the total energy of a system it will always be the same value, unless something enters or leaves the system.</p>
+                <p>As the ball bounces energy transfers form kinetic to gravitational.</p>
+                <p>When is kinetic energy the highest?</p>
+                <p>When is gravitational energy the highest?</p>
+                <p>When is rotational energy the hightest?</p>
+                <p>How is the total energy decreasing? Isn't energy conserved?</p>
+                <br>
             </div>
         </div>
         <p>We can build an equation that sets the total energy at one moment in time equal to the total energy at another moment in time.
         </p>
         <div class='definition'>
-          <h1 style='text-align: center;font-family: "Times New Roman", Times, serif;'>E<sub>i</sub> = E<sub>f</sub> </h1>
-          <b>E<sub>i</sub></b> = total initial energy [J] <i>scalar</i>
-          <br><b>E<sub>f</sub></b> = mass [kg]
-          <br><b>v</b> = velocity[m/s] <i>vector</i>
+            <h1>$$E_{i} = E_{f}$$ </h1> \( E_{i} \) = total initial energy [J] <i>scalar</i>
+            <br>\( E_{f} \) = total final energy [J] <i>scalar</i>
+            <br>\( v \) = velocity[m/s] <i>vector</i>
         </div>
-
-
-
     </div>
-    <script src="energy(Matter.js).js"></script>
+    <script src="energy.js"></script>
+    <script>
+        renderMathInElement(document.body);
+    </script>
 </body>
 
 </html>
