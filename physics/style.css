@@ -1,25 +1,30 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400';
 
 body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 110%;
   background-color: white;
   padding-top: 0px;
-  color: #252c2f;
+  color: #333;
   margin:0;
+  background-color: #fff;
 }
 
-#bodybox {
+#bodybox{
+  padding: 10px 10px 10px 10px;
   margin: 0 auto;
   max-width: 700px;
-  background-color: white;
 }
 
 .definition{
-  background-color: #e5eef2;
+  background-color: #dbe9f0;
   padding: 20px 20px 20px 20px;
   margin: 30px 30px 30px 30px;
   border-radius: 15px;
+}
+.definition i{
+  color: #888;
+  font-weight: 300;
 }
 
 canvas {
@@ -29,25 +34,6 @@ canvas {
   /*cursor: crosshair;*/
 }
 
-h1,
-h2,
-strong {
-  color: #191b1b;
-}
-
-code,
-pre {
-  background: #eee;
-}
-
-code {
-  padding: 2px 4px;
-  vertical-align: text-bottom;
-}
-
-pre {
-  padding: 1em;
-}
 a {
   color: #207ea7;
 }
@@ -55,7 +41,6 @@ a {
 summary {
     cursor: pointer;
 }
-
 
 .flex-container {
     display: -webkit-flex;
@@ -67,4 +52,71 @@ summary {
 }
 th {
     text-align: left;
+}
+
+details p {
+  text-align: center;
+}
+
+.units {
+
+}
+
+.units th{
+  background-color: #ddd;
+  padding: 15px 15px 15px 15px;
+}
+
+.units td{
+  background-color: #eee;
+
+}
+.units a{
+  padding: 1px 1px 1px 1px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.units a:hover {
+  background:  #207ea7;
+  color: white;
+}
+
+
+
+
+header {
+  background-color: #222;
+  padding: 1px 0px 10px 0px;
+  text-align: center;
+}
+
+header a {
+  border-radius: 290486px;
+  color: white;
+  font-size: 0.6em;
+  letter-spacing: 0.2em;
+  padding: 1em 2em;
+  text-decoration: none;
+  transition: none 200ms ease-out;
+  transition-property: color, background;
+}
+
+header a:hover {
+  background:  #207ea7;
+  color: white;
+}
+
+header h1 {
+  color: white;
+  font-size: 6em;
+  font-weight: 300;
+}
+
+
+.svgDiagram {
+  padding: 20px 20px 20px 20px;
+}
+.svgDiagram:hover {
+  background:  #fef;
 }

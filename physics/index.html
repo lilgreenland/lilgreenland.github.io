@@ -4,83 +4,202 @@
 <head>
     <meta charset="UTF-8">
     <title>Physics frontpage</title>
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
-    MathJax.Hub.Config({
-      CommonHTML: {
-        scale: 140
-      }
-    });
-    </script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="header.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+
 </head>
 
 <body>
-  <header>
+    <header>
+        <h2 style="position: absolute;right: 2em;top: 8em;color:#888;"><span id="KaTex_1">...</span></h2>
+        <script>
+            katex.render("\\sum F=ma", KaTex_1, {
+                displayMode: false
+            });
+        </script>
+        <h2 style="position: absolute;left: 2em;top: 8em;color:#888;"><span id="KaTex_2">...</span></h2>
+        <script>
+            katex.render("F_{s}=\\mu F_{N}", KaTex_2, {
+                displayMode: false
+            });
+        </script>
 
-        <h1>Physics</h1>
+        <img src="media/FBDstaticFric.svg" width="250px" height="220px" style="position: absolute;left: 0;top: 0;">
+
+        <svg width="300" height="220" viewBox="-15 0 285 120"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          style="position: absolute;right: 0;top: 0;">
+            <defs>
+                <g id="vector">
+                    <line x1="0" y1="0" x2="0" y2="45" style="stroke:#888;stroke-width:2" />
+                    <polygon points="0,0 -6,-12 0,-10 6,-12" transform='translate(0 50)' style="fill:#888;" />
+                </g>
+                <g id="box">
+                    <rect x="0" y="0" width="80" height="80" style="stroke:#888;stroke-width:2;fill:black;fill-opacity:0" />
+                    <text x="40" y="40" fill="#888" text-anchor="middle" alignment-baseline="middle">10kg</text>
+                </g>
+            </defs>
+            <use x='100' y='20' xlink:href="#box" />
+            <rect x="0" y="100" width="300" height="110" style="stroke:#888;stroke-width:2;fill:black;fill-opacity:0" />
+            <use xlink:href="#vector" transform='translate(100 60) rotate(90)' />
+            <text x="10" y="53" fill="#888">F=2000N</text>
+            <use xlink:href="#vector" transform='translate(180 60) rotate(-90)' />
+            <text x="200" y="53" fill="#888">F=1900N</text>
+        </svg>
+
+
+        <h1 style="position: relative;">Physics</h1>
         <h3><a href="mailto:rlandgreen@newwestcharter.org?Subject=physics%20class" target="_top">rlandgreen@newwestcharter.org</a></h3>
-</header>
+    </header>
     <div id="bodybox">
-      <p><b>Physics is science.</b> Physics is the natural science that involves the study of matter and its motion through space and time, along with related concepts such as energy and force. One of the most fundamental scientific disciplines, the main
-          goal of physics is to understand how the universe behaves.
-      </p>
-      <p><b>Physics is technology.</b> Physics is behind all the different technologies in a cell phone.  Students will be able to explain how electromagnetic waves encode information between a cell
-          phone and tower, how electricity in the computer chips is controlled by transistors, resistors, and other elements, how you hear your phone's speaker produces changing waves of air pressure, how your phone uses GPS to know its position, and more!
-      </p>
-      <p><b>Physics is engineering.</b> Students will discover and observe physics directly in the lab. This class will reward a curious mind that wants to apply their knowledge of physics to design, build, tinker, and experiment.
-      </p>
+        <p><b>Physics is science.</b> Physics is the natural science that involves the study of matter and its motion through space and time, along with related concepts such as energy and force. One of the most fundamental scientific disciplines, the main
+            goal of physics is to understand how the universe behaves.
+        </p>
+        <p><b>Physics is technology.</b> For example, physics is behind all the different technologies in a cell phone. We will study how electromagnetic waves encode information between a cell phone and tower, how electricity in the computer chips is
+            controlled by transistors, resistors, and other elements, how a phone's speaker produces changing waves of air pressure, how a phone uses GPS to know its position, and more!
+        </p>
+        <p><b>Physics is engineering.</b> This class will reward a curious mind that wants to apply their knowledge of physics to design, build, tinker, and experiment.
+        </p>
 
-      <p><b>Physics is math.</b> Students will hone their math skills on real world situations. Solving grounded physics problems gives your math ability a relevance and fluidity.  Physics makes math less abstract and more concrete.
-            <h2>Units</h2>
-            Motion
-            <a href="notes/motion/1-intro/index.html">1</a>
-            <a href="notes/motion/2-equations-of-motion/index.html">2</a>
-            <a href="notes/motion/3-vectors-and-scalors/index.html">3</a>
-            <a href="notes/motion/4-2D-motion/index.html">4</a>
-            <a href="notes/motion/5-projectile-challenge1/index.html">5</a>
-            <a href="notes/motion/6-projectile-challenge2/index.html">6</a>
-            <a href="notes/motion/7-projectile-challenge3/index.html">7</a>
+        <p><b>Physics is math.</b> Physics makes math less abstract and more concrete. Students will hone their math skills on real world problems giving their math skills a greater relevance and fluidity.</p>
+        <br>
+        <br>
+        <a id="units"></a>
+        <table class='units'>
+            <tr>
+                <th style='background-color: white'>
 
-            <br>Forces
-            <a href="notes/force/1-intro/index.html">1</a>
-            <a href="notes/force/2-weight-and-mass/index.html">2</a>
-            <a href="notes/force/3-friction/index.html">3</a>
+                </th>
+                <th>
+                    notes
+                </th>
+                <th>
+                    videos
+                </th>
+                <th>
+                    files
+                </th>
+            </tr>
+            <th>Motion:</th>
+            <td>
+                <a href="notes/motion/1-intro/index.html">time, position, and velocity</a>
+                <br><a href="notes/motion/2-equations-of-motion/index.html">equations of motion</a>
+                <br><a href="notes/motion/3-vectors-and-scalors/index.html">vectors</a>
+                <br><a href="notes/motion/4-2D-motion/index.html">2-D motion</a>
+                <br>challenge <a href="notes/motion/5-projectile-challenge1/index.html">#1</a>,
+                <a href="notes/motion/6-projectile-challenge2/index.html">#2</a>,
+                <a href="notes/motion/7-projectile-challenge3/index.html">#3</a>
+                <br>
+            </td>
+            <td>
+                <a href="https://www.youtube.com/watch?v=ZM8ECpBuQYE&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=1">Motion</a>
+                <br><a href="https://www.youtube.com/watch?v=w3BhzYI6zXU&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=4">2-D motion</a>
 
-            <br>Momentum and Collisions
-            <a href="notes/momentum/1-intro/index.html">1</a>
-            <a href="notes/momentum/2-collisionTypes/index.html">2</a>
+            </td>
 
-            <br>Conservation of Energy
-            <a href="notes/energy/1-intro/index.html">1</a>
+            <tr>
+                <th>Forces:</th>
+                <td><a href="notes/force/1-intro/index.html">Newton's Laws</a>
+                    <br><a href="notes/force/2-weight-and-mass/index.html">forces</a>
 
-            <br>Universal Gravitation
-            <br>Electrostatics
-            <br>Magnetism
-            <br>Circuits
-            <br>Waves
-            <br>Relativity
+                    <br><a href="notes/force/3-friction/index.html">friction</a>
+                </td>
+                <td>
+                    <a href="https://www.youtube.com/watch?v=kKKM8Y-u7ds&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=5">Newton's Laws</a>
+                    <br><a href="https://www.youtube.com/watch?v=TRAbZxQHlVw&index=7&list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL">Gravity (asty)</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Momentum:</th>
+                <td>
+                    <a href="notes/momentum/1-intro/index.html">momentum</a>
+                    <br><a href="notes/momentum/2-collisionTypes/index.html">sticky collisions</a>
+                </td>
+                <td>
+                    <a href="https://www.youtube.com/watch?v=Y-QOfc2XqOk&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=10">Collisions</a>
+                </td>
+            </tr>
 
-            <h2>Materials</h2>
-            <b>notebook</b>: I recommend a 3 ring binder with pockets.
-            <br><b>graph paper</b>:
-            <br><b>scientific calculator</b>: The <a href="http://www.amazon.com/Texas-Instruments-Scientific-Calculator-Accents/dp/B00000JBNX?ie=UTF8&*Version*=1&*entries*=0">TI-30XIIS</a> is a good choice.
-            <br><b>pen or pencil</b>: I use a pen for the contrast, but pencils are good too.
-            <br><b>highlighter</b>:
+            <tr>
+                <th>Energy:</th>
+                <td><a href="notes/energy/1-intro/index.html">energy</a></td>
+                <td>
+                    <a href="https://www.youtube.com/watch?v=w4QFJb9a8vo&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=9">Energy</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Gravity:</th>
+                <td></td>
+                <td>
+                    <a href="https://www.youtube.com/watch?v=7gf6YpdvtE0&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=8">Gravity (phys)</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Electrostatics:</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Magnetism:</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Circuits:</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Waves:</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Relativity:</th>
+                <td></td>
+            </tr>
+        </table>
+        <br>
+        <br>
 
-            <h2>Links</h2>
-            <a href="http://www.nextgenscience.org/">next generation science standards</a>
-            <br><a href="http://www.physicsclassroom.com/">the physics classroom</a>
-            <br><a href="http://physics.info/">the physics hypertextbook</a>
-            <br><a href="http://www.wolframalpha.com/">wolfram alpha:</a> a computational search engine
-            <br><a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV">crashcourse physics</a>
-            <br><a href="https://www.youtube.com/user/scishow">sci show</a>
-            <br><a href="https://www.youtube.com/user/physicswoman">physics girl</a>
-            <br><a href="https://www.youtube.com/user/minutephysics">minute physics</a>
 
-            <h2>Contact</h2>
-            <p>The best time to talk to me about the class is after school or by e-mail. If you were absent check in to see what you missed.</p>
-            <h3><a href="mailto:rlandgreen@newwestcharter.org?Subject=physics%20class" target="_top">rlandgreen@newwestcharter.org</a></h3>
+
+        <h2>Materials</h2>
+        <b>notebook</b>: I recommend a 3 ring binder with pockets.
+        <br><b>graph paper</b>:
+        <br><b>scientific calculator</b>: The <a href="http://www.amazon.com/Texas-Instruments-Scientific-Calculator-Accents/dp/B00000JBNX?ie=UTF8&*Version*=1&*entries*=0">TI-30XIIS</a> is a good choice.
+        <br><b>pen or pencil</b>: I use a pen for the contrast, but pencils are good too.
+        <br><b>highlighter</b>:
+
+        <h2>Links</h2>
+        <a href="http://www.nextgenscience.org/">next generation science standards</a>
+        <br><a href="http://www.physicsclassroom.com/">the physics classroom</a>
+        <br><a href="http://physics.info/">the physics hypertextbook</a>
+        <br><a href="http://www.wolframalpha.com/">wolfram alpha:</a> a computational search engine
+        <br><a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV">crashcourse physics</a>
+        <br><a href="https://www.youtube.com/user/scishow">sci show</a>
+        <br><a href="https://www.youtube.com/user/physicswoman">physics girl</a>
+        <br><a href="https://www.youtube.com/user/minutephysics">minute physics</a>
+
+        <h2>Contact</h2>
+        <p>The best time to talk to me about the class is after school or by e-mail. If you were absent check in to see what you missed.</p>
+        <h3><a href="mailto:rlandgreen@newwestcharter.org?Subject=physics%20class" target="_top">rlandgreen@newwestcharter.org</a></h3>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
+    <script>
+        renderMathInElement(document.body);
+    </script>
 </body>
+
 </html>

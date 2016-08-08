@@ -2,27 +2,15 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>notes: motion 3 - Vectors and Scalors</title>
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
-    MathJax.Hub.Config({
-      CommonHTML: {
-        scale: 150
-      }
-    });
-    </script>
-        <link rel="stylesheet" href="../../../style.css">
+    <title>vectors and scalors</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../../../style.css">
   </head>
 
   <body>
 
-    <!--
-LaTex equations are form the mathjax library
-http://docs.mathjax.org/en/latest/#
-put LaTex between $$  $$      example:   $$v = \lambda f$$
-
-use this to generate LaTex
-http://www.hostmath.com/
--->
 
 <body onload="vectorDiagram()">
 
@@ -45,7 +33,7 @@ http://www.hostmath.com/
       </tr>
       <tr>
         <td>temperature</td>
-        <td>21<sup>o</sup>C</td>
+        <td>21°C</td>
       </tr>
       <tr>
         <td>price</td>
@@ -63,7 +51,7 @@ http://www.hostmath.com/
 
     <h1> Vectors</h1>
 
-    <p>A vector is a variable that has a magnitude and direction. Temperature is just a scalar. You can't say it is 50<sup>o</sup> north. Velocity is a vector. You could say the velocity is 50m/s north.</p>
+    <p>A vector is a variable that has a magnitude and direction. Temperature is just a scalar. You can't say it is 50° north. Velocity is a vector. You could say the velocity is 50m/s north.</p>
     <p><b>Examples:</b></p>
     <table style="width:100%;text-align:left">
       <tr>
@@ -83,7 +71,7 @@ http://www.hostmath.com/
       </tr>
       <tr>
         <td>acceleration</td>
-        <td>9.8 m/s<sup>2</sup></td>
+        <td>9.8 m/s²</td>
         <td>down</td>
       </tr>
       <tr>
@@ -108,7 +96,7 @@ http://www.hostmath.com/
     <p>For displacement the equations are the same</p>
     $$ (dist)cos \theta = x$$ $$ (dist)sin \theta = y$$
     <hr>
-    <p>In the simulation below position the mouse to around magnitude 250 and angle 14<sup>o</sup>. What are the x and y components of the vector?</p>
+    <p>In the simulation below position the mouse to around magnitude 250 and angle 14°. What are the x and y components of the vector?</p>
     <p>At what angles are the magnitude and the x-component equal?</p>
     <p>What does a negative sign mean for a vector? </p>
     <canvas id="myCanvas"> </canvas>
@@ -116,7 +104,7 @@ http://www.hostmath.com/
 
     <br>
     <br>
-    <p><b>Example:</b> A plane is taking off at an angle of 14<sup>o</sup> above the horizon. If the plane is moving at 250m/s how fast is it moving in only the vertical direction?</p>
+    <p><b>Example:</b> A plane is taking off at an angle of 14° above the horizon. If the plane is moving at 250m/s how fast is it moving in only the vertical direction?</p>
     <details>
       <summary>solution</summary>
       $$ (v)sin \theta = v_{y}$$ $$ (250)sin(14) = v_{y}$$ $$ 61 \small\frac{m}{s} = \normalsize v_{y}$$
@@ -150,5 +138,6 @@ http://www.hostmath.com/
   <br>
   <br>
   <script src="vectorDiagram.js"></script>
+  <script>renderMathInElement(document.body);</script>
   </body>
 </html>

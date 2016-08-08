@@ -85,7 +85,7 @@ function energy0() {
             y: -VyIn / 60 * scale
         });
         //Matter.Body.setAngle(mass[i], angle)
-        Matter.Body.setAngularVelocity(mass[i], (0.5-Math.random())*0.2   );
+        Matter.Body.setAngularVelocity(mass[i], (0.5-Math.random())*0.1   );
         World.add(engine.world, mass[i]);
     }
 
@@ -120,8 +120,8 @@ function energy0() {
 function calcEnergy(){
   energy.speed = mass[0].speed * 60 / scale / engine.timing.timeScale;
   energy.height = ((canvas.height - mass[0].position.y) / scale - mass[0].radius)+0.486; //0.48g is to correct for octogon hieght vs circle height
-  energy.angularSpeed = mass[0].angularSpeed * 60 / scale / engine.timing.timeScale;
-  energy.angular = 0.5 * mass[0].inertia*energy.angularSpeed*energy.angularSpeed;
+  energy.angularSpeed = mass[0].angularSpeed * 60 / engine.timing.timeScale;
+  energy.angular = 0.5 * mass[0].inertia / scale * energy.angularSpeed*energy.angularSpeed;
   energy.ke = 0.5 * mass[0].mass * energy.speed * energy.speed;
   energy.pe = mass[0].mass * engine.world.gravity.y * energy.height;
 }
@@ -187,12 +187,12 @@ function calcEnergy(){
         //write energy text
         ctx.textAlign = "left";
         ctx.fillStyle = "#000";
-        ctx.fillText('RE = (1/2)('+mass[0].inertia.toFixed(0)+')('+energy.angularSpeed.toFixed(2)+')^2 = ' +energy.angular.toFixed(0) + 'J', 5, 10);
+        ctx.fillText('RE = (1/2)('+(mass[0].inertia/scale).toFixed(0)+')('+energy.angularSpeed.toFixed(2)+')^2 = ' +energy.angular.toFixed(0) + 'J', 5, 10);
         ctx.fillText('KE = (1/2)(' + mass[0].mass.toFixed(1) + ')(' + (energy.speed * energy.speed).toFixed(1) + ')^2 = ' + energy.ke.toFixed(0) + 'J', 5, 30);
         ctx.fillText('PE = (' + mass[0].mass.toFixed(1) + ')(' + engine.world.gravity.y + ')(' + energy.height.toFixed(1) + ') = ' + energy.pe.toFixed(0) + 'J', 5, 50);
         ctx.fillText('PE + KE + RE = ' + (energy.pe + energy.ke + energy.angular).toFixed(0) + 'J', 5, 70);
         ctx.textAlign = "right";
-        ctx.fillText((energy.max - energy.pe - energy.ke- energy.angular).toFixed(0) + 'J = Heat', canvas.width-5, 90);
+        ctx.fillText( (energy.max - (energy.pe + energy.ke + energy.angular)).toFixed(0) + 'J = Heat', canvas.width-5, 90);
 
         //ctx.fillText('1/2Iω^2 = (1/2)('+mass[0].inertia.toFixed(0)+')('+energy.angularSpeed.toFixed(3)+')^2 = ' +energy.angular.toFixed(2) + 'J', 5, 90);
         // ctx.textAlign="right";

@@ -2,20 +2,16 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>notes: motion 1 - intro</title>
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
-    MathJax.Hub.Config({
-      CommonHTML: {
-        scale: 150
-      }
-    });
-    </script>
-        <link rel="stylesheet" href="../../../style.css">
+    <title>intro to motion</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../../../style.css">
   </head>
   <body>
 
     <!--
-LaTex equations are form the mathjax library
+LaTex equations are from the mathjax library
 http://docs.mathjax.org/en/latest/#
 put LaTex between $$  $$      example:   $$v = \lambda f$$
 
@@ -23,38 +19,58 @@ use this to generate LaTex
 http://www.hostmath.com/
 -->
 
-
+<a href="../../../index.html#units">Back to Physics Units</a>
 <div id='bodybox'>
 
   <h1>Position</h1>
   <p>In physics we use the symbol x for position. That means you shouldn't use x for an unknown unless you are solving for position. We generally use meters(m) as our units.</p>
   <p>To represent a distance we subtract the final position from the initial position. We use the Δ symbol to show change.</p>
   <div class='definition'>
-  <h2>$$\Delta x = x_{f}-x_{i}$$</h2>
-  <p><b>Δx</b> = change in position, distance, length [m, meters]</p>
+  <h1><span id="KaTex_1">...</span></h1>
+  <script>
+      katex.render("\\Delta x = x_{f}-x_{i}", KaTex_1, {
+          displayMode: true
+      });
+  </script>
+  <p><b>Δx</b> = change in position, distance, displacement, length [m, meters]</p>
   <p><b>x</b><sub>i</sub> = initial (starting) position [m, meters]</p>
   <p><b>x</b><sub>f</sub> = final (ending) position [m, meters]</p>
 </div>
-  <br>
+<br>
+<br>
+<br>
   <h1>Time</h1>
   <p> We keep track of time in the same way as position. We use t for time and generally use seconds(s) as our units.</p>
 <div class='definition'>
-  <h2>$$\Delta t = t_{f}-t_{i}$$</h2>
+  <h1><span id="KaTex_2">...</span></h1>
+  <script>
+      katex.render("\\Delta t = t_{f}-t_{i}", KaTex_2, {
+          displayMode: true
+      });
+  </script>
   <p><b>Δt</b> = change in time, time period [s, seconds]</p>
   <p><b>t</b><sub>i</sub> = initial (starting) time [s, seconds]</p>
   <p><b>t</b><sub>f</sub> = final (ending) time [s, seconds]</p>
 </div>
   <br>
+  <br>
+  <br>
   <h1>Velocity</h1>
-  <p>Run the simulation below for about 10 seconds then click pause. What is the relationship between time, distance, and velocity?</p>
-  <p data-height="584" data-theme-id="0" data-slug-hash="OXxxKG" data-default-tab="result" data-user="lilgreenland" data-embed-version="2" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/lilgreenland/pen/OXxxKG/">1-D motion  (matter.js)</a> by lilgreenland (<a href="http://codepen.io/lilgreenland">@lilgreenland</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-  <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-  <br>
-  <br>
   <p>Velocity is a measure of how much a position changes (Δx) over a period of time (Δt).</p>
   <div class='definition'>
-  <h2>$$v = \frac{\Delta x}{\Delta t}$$</h2>
+  <h1><span id="KaTex_3">...</span></h1>
+  <script>
+      katex.render("v = \\frac{\\Delta x}{\\Delta t}", KaTex_3, {
+          displayMode: true
+      });
+  </script>
+  <h1><span id="KaTex_4">...</span></h1>
+  <script>
+      katex.render("\\Delta v = v_{f}-v_{i}", KaTex_4, {
+          displayMode: true
+      });
+  </script>
+
   <p><b>Δx</b> = distance [m, meters]</p>
   <p><b>Δt</b> = time period [s, seconds]</p>
   <p><b>v</b> = average velocity [m/s, meters per second]</p>
@@ -89,11 +105,15 @@ http://www.hostmath.com/
   <h1>Acceleration</h1>
   <p>Just like velocity is a change in position over time, acceleration is a change in velocity over time.</p>
   <div class='definition'>
-  <h2>$$a = \frac{\Delta v}{\Delta t}$$</h2>
-  <h2>$$\Delta v = v_{f}-v_{i}$$</h2>
+  <h1><span id="KaTex_5">...</span></h1>
+  <script>
+      katex.render("a = \\frac{\\Delta v}{\\Delta t}", KaTex_5, {
+          displayMode: true
+      });
+  </script>
   <p><b>Δv</b> = change in velocity [m/s] = v<sub>f</sub> - v<sub>i</sub></p>
   <p><b>Δt</b> = time period [s, seconds]</p>
-  <p><b>a</b> = acceleration [m/s<sup>2</sup>, meters per second squared]</p>
+  <p><b>a</b> = acceleration [m/s², meters per second squared]</p>
 </div>
 <br>
   <br>
@@ -105,10 +125,10 @@ http://www.hostmath.com/
     $$a = 9.84\small\frac{m}{s^{2}}$$
   </details>
 
-  <p><b>Example:</b> The internet says Tesla Model S can go from 0 to 60 miles per hour in 5.9s.  What is the acceleration in m/s<sup>2</sup>? (1 mile = 1609 meters)</p>
+  <p><b>Example:</b> The internet says Tesla Model S can go from 0 to 60 miles per hour in 5.9s.  What is the acceleration in m/s²? (1 mile = 1609 meters)</p>
   <details>
     <summary>solution</summary>
-    $$ 60(\frac{miles}{hour})(\frac{1609 m}{1 mile})(\frac{1 hour}{3600s}) = 26.8\small\frac{m}{s} $$
+    $$ 60\left(\frac{miles}{hour}\right)\left(\frac{1609 m}{1 mile}\right)\left(\frac{1 hour}{3600s}\right) = 26.8\small\frac{m}{s} $$
     $$a = \frac{\Delta v}{\Delta t}$$
     $$a = \frac{26.8\small\frac{m}{s}}{5.9s}$$
     $$a = 4.5\small\frac{m}{s^{2}}$$
@@ -129,17 +149,15 @@ http://www.hostmath.com/
 
 
 
-  <script type="text/javascript" id="WolframAlphaScript8b75f0c5f0a99a16ef024c5f4e46166b" src="//www.wolframalpha.com/widget/widget.jsp?id=8b75f0c5f0a99a16ef024c5f4e46166b&theme=black"></script>
-
-
-  <h1>Graphing Acceleration</h1>
+  <h1>make a section on Graphing Acceleration</h1>
   <p>What would make the graph curve up?</p>
   <p>What would make the graph curve down?</p>
   <p>What would make the graph linear?</p>
-   <script type="text/javascript" id="WolframAlphaScriptd2a39f21af1565cf9a85f56e6c41ba3b" src="//www.wolframalpha.com/widget/widget.jsp?id=d2a39f21af1565cf9a85f56e6c41ba3b&theme=black&output=lightbox"></script>
+
 
 
 
   </div>
+  <script>renderMathInElement(document.body);</script>
   </body>
 </html>

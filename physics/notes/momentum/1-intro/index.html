@@ -1,31 +1,15 @@
-<!--
-LaTex equations are form the mathjax library
-http://docs.mathjax.org/en/latest/#
-put LaTex between $$  $$      example:   $$v = \lambda f$$
-
-use this to generate LaTex
-http://www.hostmath.com/
--->
-
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>notes: motion 4 - 2-D motion</title>
-    <link rel="stylesheet" type="text/css" href="../../../style.css">
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
-        MathJax.Hub.Config({
-            CommonHTML: {
-                scale: 150
-            }
-        });
-    </script>
+    <title>momentum</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../../../style.css">
     <script src='../../../lib/matter.min.js'></script>
     <script src='../../../lib/randomColor.min.js'></script>
-
 </head>
 
 <body onload="collisionDemo();collisionDemo2();collisionEx1();collisionEx2();collisionEx3();">
@@ -33,14 +17,14 @@ http://www.hostmath.com/
         <h1>Momentum</h1>
         <p>Momentum is defined as the product of mass and velocity. For example, a heavy truck moving rapidly has a large momentum—it takes a large or prolonged force to get the truck up to this speed, and it takes a large or prolonged force to bring it to a stop afterwards. If the truck were lighter, or moving more slowly, then it would have less momentum.</p>
         <div class='definition'>
-        <h1 style='text-align: center;font-family: "Times New Roman", Times, serif;'>p = mv </h1>
+        <h1>$$p = mv$$</h1>
         <b>p</b> = momentum [kg m/s] <i>vector</i>
         <br><b>m</b> = mass [kg]
         <br><b>v</b> = velocity[m/s] <i>vector</i>
       </div>
         <br>
         <br>
-        <h2>Conservation of Momentum</h2>
+        <h2>conservation of momentum</h2>
         <p>Momentum is useful because the total momentum for a system of objects is <b>conserved</b>. This means the sum of all momentums will be not change even if the objects collide.</p>
         <canvas id="canvas" width='700' height='170'> </canvas>
         <p>Click the simulation above a few times and note that the total momentum is the same before and after a collision.</p>
@@ -52,13 +36,14 @@ http://www.hostmath.com/
         <br>
         <br>
 
-        <p>Conservation of momentum means we can set the total momentums at two points in time equal to each other.</p>
+        <p>Conservation of momentum means we can set the total momentums at two points in time equal to each other. (as long as there are no outside forces)</p>
         <div class='definition'>
-        <h2 style='text-align: center;font-family: "Times New Roman", Times, serif;'>
-        initial momentum = final momentum&nbsp;&nbsp;
-        <br>p<sub>1</sub> + p<sub>2</sub> + ...  = p<sub>1</sub> + p<sub>2</sub> + ...
-        <br>m<sub>1</sub>u<sub>1</sub> + m<sub>2</sub>u<sub>2</sub> + ...  = m<sub>1</sub>v<sub>1</sub> + v<sub>2</sub>m<sub>2</sub> + ...
+        <h2>
+          $$p_{initial} = p_{final}$$
+          $$p_{1i}+p_{2i}+...=p_{1f}+p_{2f}+...$$
+          $$m_{1}u_{1}+m_{2}u_{2}+...=m_{1}v_{1}+m_{2}v_{2}+...$$
         </h2>
+
         <b>u</b> = initial velocity [m/s] <i>vector</i>
         <br><b>v</b> = final velocity [m/s] <i>vector</i>
         <br><b>m</b> = mass [kg]
@@ -70,37 +55,13 @@ http://www.hostmath.com/
         <br>
         <br>
         <canvas id="canvas1" width='700' height='160'> </canvas>
-        <p><b>Example:</b> A green and white box collide. The green box has a mass of 2kg and is moving to the right at 3m/s. The white box is moving to the left at 1m/s and has a mass of 10kg. If the white box has stopped after the collision what is the
+        <p><b>Example:</b> A <a style='color: green'>green</a> and <a style='color: white;background-color: lightgrey;'>white</a> box collide. The green box has a mass of 2kg and is moving to the right at 3m/s. The white box is moving to the left at 1m/s and has a mass of 10kg. If the white box has stopped after the collision what is the
             velocity of the green box?</p>
         <details>
             <summary>solution</summary>
             <p style='text-align: center;'>initial momentum = final momentum</p>
             <p style='text-align: center;'>green + white = green + white</p>
             $$m_{1}u_{1}+m_{2}u_{2}=m_{1}v_{1}+m_{2}v_{2}$$ $$(2)(3)+(10)(-1)=(2)v_{1}+(1)(0)$$ $$6-10=(2)v_{1}$$ $$-4=(2)v_{1}$$ $$-2 \small\frac{m}{s}=\normalsize v_{1}$$
-        </details>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <canvas id="canvas2" width='700' height='300'> </canvas>
-        <p><b>Example:</b> A <a style='color: pink'>pink</a> hexagon and a <a style='color: cyan'>cyan</a> triangle collide. Before the collision the hexagon has a mass of 5.20kg and is moving to the right at 2m/s. The cyan triangle is moving to the left
-            at 1m/s and has a mass of 1.17kg. If the triangle bounces off the hexagon at 2.92 m/s to the right what is the horizontal velocity of the hexagon? (ignore the vertical information)</p>
-        <details>
-            <summary>solution</summary>
-            <p style='text-align: center;'>initial momentum = final momentum</p>
-            <p style='text-align: center;'>hexagon + triangle = hexagon + triangle</p>
-            $$m_{1}u_{1}+m_{2}u_{2}=m_{1}v_{1}+m_{2}v_{2}$$ $$(5.20)(2)+(1.17)(-1)=(5.20)v_{1}+(1.17)(2.92)$$ $$10.40-1.17=(5.20)v_{1}+3.42$$ $$5.81=(5.20)v_{1}$$ $$1.12 \small\frac{m}{s}=\normalsize v_{1}$$
-        </details>
-        <p><b>Example:</b> Lets take a look at the vertical aspect of the <a style='color: pink'>pink</a> hexagon and <a style='color: cyan'>cyan</a> triangle collide. Before the collision the hexagon has a mass of 5.20kg and is not moving up or down. The final vertical velocity of the hexgon is 0.23 down.  The final vertical velocity of the triangle is 0.67 up.  What is the triangle's initial vertical velocity. </p>
-        <details>
-            <summary>solution</summary>
-            <p style='text-align: center;'>initial momentum = final momentum</p>
-            <p style='text-align: center;'>hexagon + triangle = hexagon + triangle</p>
-            $$m_{1}u_{1}+m_{2}u_{2}=m_{1}v_{1}+m_{2}v_{2}$$
-            $$(5.20)(0)+(1.17)(u_{2})=(5.20)(-0.23)+(1.17)(0.67)$$
-            $$(1.17)(u_{2})=-0.41$$
-            $$u_{2}=-0.35\small\frac{m}{s}$$
         </details>
         <br>
         <br>
@@ -122,14 +83,14 @@ http://www.hostmath.com/
             <td>m = 3.60kg</td>
           </tr>
           <tr>
-            <td>v<sub>i</sub> = 3.0m/s</td>
-            <td>v<sub>i</sub> = 2.0m/s</td>
-            <td>v<sub>i</sub> = -1.0m/s</td>
+            <td>u = 3.0m/s</td>
+            <td>u = 2.0m/s</td>
+            <td>u = -1.0m/s</td>
           </tr>
           <tr>
-            <td><b>v<sub>f</sub> = ???</b></td>
-            <td>v<sub>f</sub> = 1.18m/s</td>
-            <td>v<sub>f</sub> = 1.58m/s</td>
+            <td><b>v = ???</b></td>
+            <td>v = 1.18m/s</td>
+            <td>v = 1.58m/s</td>
           </tr>
         </table>
 
@@ -144,12 +105,40 @@ http://www.hostmath.com/
             $$11=1.6v_{1}+11.47$$
             $$-0.29\small\frac{m}{s}=\normalsize v_{1}$$
         </details>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2>2-D conservation of momentum</h2>
+        <p>Momentum is a vector.  It has a direction and a magnitude. We can solve for the horizontal and vertical components separatly just like how we solved 2-d Motion problems.  Although in this case there isn't a time variable to link up the vertical and horizontal equations.</p>
+
+        <canvas id="canvas2" width='700' height='300'> </canvas>
+        <p><b>Horizontal Example:</b> A <a style='color: pink'>pink</a> hexagon and a <a style='color: cyan'>cyan</a> triangle collide. Before the collision the hexagon has a mass of 5.20kg and is moving to the right at 2m/s. The cyan triangle is moving to the left
+            at 1m/s and has a mass of 1.17kg. If the triangle bounces off the hexagon at 2.92 m/s to the right what is the horizontal velocity of the hexagon? (ignore the vertical information)</p>
+        <details>
+            <summary>solution</summary>
+            <p style='text-align: center;'>initial momentum = final momentum</p>
+            <p style='text-align: center;'>hexagon + triangle = hexagon + triangle</p>
+            $$m_{1}u_{1}+m_{2}u_{2}=m_{1}v_{1}+m_{2}v_{2}$$ $$(5.20)(2)+(1.17)(-1)=(5.20)v_{1}+(1.17)(2.92)$$ $$10.40-1.17=(5.20)v_{1}+3.42$$ $$5.81=(5.20)v_{1}$$ $$1.12 \small\frac{m}{s}=\normalsize v_{1}$$
+        </details>
+        <p><b>Vertical Example:</b> Lets take a look at the vertical aspect of the <a style='color: pink'>pink</a> hexagon and <a style='color: cyan'>cyan</a> triangle collide. Before the collision the hexagon has a mass of 5.20kg and is not moving up or down. The final vertical velocity of the hexgon is 0.23 down.  The final vertical velocity of the triangle is 0.67 up.  What is the triangle's initial vertical velocity. </p>
+        <details>
+            <summary>solution</summary>
+            <p style='text-align: center;'>initial momentum = final momentum</p>
+            <p style='text-align: center;'>hexagon + triangle = hexagon + triangle</p>
+            $$m_{1}u_{1}+m_{2}u_{2}=m_{1}v_{1}+m_{2}v_{2}$$
+            $$(5.20)(0)+(1.17)(u_{2})=(5.20)(-0.23)+(1.17)(0.67)$$
+            $$(1.17)(u_{2})=-0.41$$
+            $$u_{2}=-0.35\small\frac{m}{s}$$
+        </details>
     </div>
     <script src="collisionDemo(Matter.js).js"></script>
     <script src="collisionDemo2(Matter.js).js"></script>
     <script src="collisionEx1(Matter.js).js"></script>
     <script src="collisionEx2(Matter.js).js"></script>
     <script src="collisionEx3(Matter.js).js"></script>
+    <script>renderMathInElement(document.body);</script>
 </body>
 
 </html>

@@ -48,7 +48,7 @@ function spawnList(){
   spawnMass(600, Ypos, -Math.ceil(Math.random()*10)*15, 0, 30+Math.ceil(Math.random()*50),4,1.5);
   var vel = (mass[0].mass*mass[0].velocity.x+mass[1].mass*mass[1].velocity.x)/(mass[0].mass+mass[1].mass);
   //write a problem based on the values in the spawn
-  document.getElementById("ex").innerHTML = "<p><b>Random Problem:</b> A "
+  document.getElementById("ex").innerHTML = "<p><b>Randomized Problem:</b> A "
   +mass[0].mass.toFixed(2)+"kg <a style='color: "+mass[0].color+"'>octogon</a> moving at "+ mass[0].velocity.x.toFixed(2)+"m/s collides and sticks to a "+mass[1].mass.toFixed(2)+"kg <a style='color: "+mass[1].color+"'>square</a> moving at "+ mass[1].velocity.x.toFixed(2)+"m/s. What is the velocity of the objects after they collide?</p><details> <summary>solution</summary><p style='text-align: center;'>octogon + square = octogon + square</p>$$m_{1}u_{1}+m_{2}u_{2}=(m_{1}+m_{2})v$$ $$("+mass[0].mass.toFixed(2)+")("+mass[0].velocity.x.toFixed(2)+")+("+mass[1].mass.toFixed(2)+")("+mass[1].velocity.x.toFixed(2)+")=("+mass[0].mass.toFixed(2)+"+"+mass[1].mass.toFixed(2)+")v$$ $$"+vel.toFixed(2)+" \\small\\frac{m}{s}=\\normalsize v$$</details>"
   //reencodes the mathjax into math, makes the $$ $$ work
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);

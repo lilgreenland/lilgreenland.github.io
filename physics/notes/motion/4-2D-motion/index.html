@@ -1,35 +1,14 @@
-<!--
-LaTex equations are form the mathjax library
-http://docs.mathjax.org/en/latest/#
-put LaTex between $$  $$      example:   $$v = \lambda f$$
-
-use this to generate LaTex
-http://www.hostmath.com/
-
-
-
-
-<body onload="MotionSimulation();MotionSimulationTwo();">
-
--->
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>notes: motion 4 - 2-D motion</title>
-    <link rel="stylesheet" type="text/css" href="../../../style.css">
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
-    MathJax.Hub.Config({
-      CommonHTML: {
-        scale: 150
-      }
-    });
-    </script>
+    <title>2D motion</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../../../style.css">
     <script src='../../../lib/matter.min.js'></script>
-
-
 </head>
 
 <body>
@@ -63,7 +42,7 @@ http://www.hostmath.com/
         </tr>
         <tr>
           <td>a = 0</td>
-          <td>a = -9.8 m/s<sup>2</sup></td>
+          <td>a = -9.8 m/s²</td>
         </tr>
       </table>
       <p>There isn't enough information to solve the horizontal side.  Let start on the vertical.</p>
@@ -101,7 +80,7 @@ http://www.hostmath.com/
         </tr>
         <tr>
           <td>a = 0</td>
-          <td>a = 9.8 m/s<sup>2</sup></td>
+          <td>a = 9.8 m/s²</td>
         </tr>
       </table>
       $$\Delta x = u\Delta t + \small\frac{1}{2}a \Delta t^{2}$$
@@ -115,7 +94,7 @@ http://www.hostmath.com/
 <br>
 
       <canvas id="myCanvas2" width='700' height= '300'></canvas>
-      <p><b>Example</b>: A pokeball is thrown at an angle of 60<sup>o</sup> above the horizon and a speed of 10m/s.  If the ball is thrown from 2.0 meters above the ground how far does the ball go before it misses the charmander and hits the ground.<br>
+      <p><b>Example</b>: A pokeball is thrown at an angle of 60² above the horizon and a speed of 10m/s.  If the ball is thrown from 2.0 meters above the ground how far does the ball go before it misses the charmander and hits the ground.<br>
       <a href="../notes-motion-3-vectors-and-scalors/index.html">vector review</a></p>
       <table style="width:100%;text-align:left;background-color:#eee;">
         <tr>
@@ -139,7 +118,7 @@ http://www.hostmath.com/
         </tr>
         <tr>
           <td>a = 0</td>
-          <td>a = -9.8 m/s<sup>2</sup></td>
+          <td>a = -9.8 m/s²</td>
         </tr>
       </table>
       $$v^{2} = u^{2}+2a \Delta y$$
@@ -160,6 +139,7 @@ http://www.hostmath.com/
 <br>
     </div>
 <script src="2dMotion(Matter.js).js"></script>
+<script>renderMathInElement(document.body);</script>
 </body>
 
 </html>

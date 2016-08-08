@@ -1,35 +1,23 @@
-<!--
-LaTex equations are form the mathjax library
-http://docs.mathjax.org/en/latest/#
-put LaTex between $$  $$      example:   $$v = \lambda f$$
-
-use this to generate LaTex
-  http://www.hostmath.com/
--->
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>notes: force 1 - introduction</title>
-    <link rel="stylesheet" type="text/css" href="../../../style.css">
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full">
-        MathJax.Hub.Config({
-            CommonHTML: {
-                scale: 150
-            }
-        });
-    </script>
+    <title>Newton's Laws</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../../../style.css">
 </head>
 
 <body>
     <div id="bodybox">
         <h1>Newton's Laws</h1>
+        Crash Course youtube video on <a href="https://www.youtube.com/watch?v=kKKM8Y-u7ds&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=5">Newton's Laws</a>
         <h2>Newton's First law: Inertia</h2>
         <p><i>When viewed in an inertial reference frame, an object either remains at rest or continues to move at a constant velocity, unless acted upon by an external force.</i></p>
 
-        <li>Objects keep moving in a straight line at a constant velocity unless they have a force acting on them.</li>
-        <li>Inertia is the resistance of any physical object to any change in speed or direction.</li>
+        <p>Objects keep moving in a straight line at a constant velocity unless they have a force acting on them. Inertia is the resistance of any physical object to any change in speed or direction.</p>
         <br>
         <br>
         <br>
@@ -37,14 +25,29 @@ use this to generate LaTex
         <h2>Newton's Second law: Force</h2>
         <p><i>The vector sum of the external forces F on an object is equal to the mass m of that object multiplied by the acceleration vector of the object.</i></p>
         <div class='definition'>
-            <h2>$$\sum F=ma$$</h2>
-            <p><b>Σ = sigma</b> The greek letter Sigma represents a summation of numbers. In this equation it means add up all the forces to get a total force. $$\sum F=F_{1}+F_{2}+F_{3}+...$$</p>
-            <p><b>F = force</b> [N, Newtons, kg m/s<sup>2</sup>] <i>vector</i></p>
-            <br>A force is something that will try to accelerate an object. Like a push or a pull.</p>
+
+            <h2><span id="KaTex_1">...</span></h2>
+            <script>
+                katex.render("\\sum F=ma", KaTex_1, {
+                    displayMode: true
+                });
+            </script>
+
+
+            <p><b>Σ = sigma</b> The greek letter Sigma represents a summation of numbers. In this equation it means add up all the forces to get a total force. Sometimes this is called net Force.</p>
+
+            <h2><span id="KaTex_2">...</span></h2>
+            <script>
+                katex.render("\\sum F=F_{1}+F_{2}+F_{3}+... = F_{net}", KaTex_2, {
+                    displayMode: true
+                });
+            </script>
+
+            <p><b>F = force</b> [N, Newtons, kg m/s²] <i>vector</i>
+            <br>Force is a push or a pull.  Force accelerates an object.</p>
             <p><b>m = mass</b> [kg, kilogram]
-                <br>Mass is a measure of an object's resistance to acceleration when a force is applied.</p>
-            <p><b>a = acceleration</b> [m/s<sup>2</sup>] <i>vector</i>
-                <br>Acceleration is the change in velocity over time.
+                <br>Mass is a measure of an object's resistance to acceleration.</p>
+            <p><b>a = acceleration</b> [m/s²] <i>vector</i>
         </div>
         <br>
         <br>
@@ -57,7 +60,7 @@ use this to generate LaTex
             <summary>solution</summary>
             $$F=ma$$ $$\frac{F}{m}=a$$ $$\frac{1}{0.43}=a$$ $$2.33\small\frac{m}{s^{2}}=\normalsize a$$
             <br>
-            <p style='text-align: center;'>\(a=2.33\), \(\Delta t=1.5\), \(\Delta x=?\), \(v_{i}=0\)</p>
+            <p>\(a=2.33\), \(\Delta t=1.5\), \(\Delta x=?\), \(v_{i}=0\)</p>
             $$\Delta x = v_{i}\Delta t + \small\frac{1}{2}a \Delta t^{2}$$ $$\Delta x = 0(1.5) + \small\frac{1}{2}(2.33) (1.5)^{2}$$ $$\Delta x = 2.62 m$$
         </details>
         <br>
@@ -65,7 +68,7 @@ use this to generate LaTex
         <svg width="300" height="120" viewBox="-15 0 285 120" style="outline: 0px solid black;float: right;">
           <defs>
               <g id="vector">
-                <line x1="0" y1="0" x2="0" y2="50" style="stroke:#000;stroke-width:2" />
+                <line x1="0" y1="0" x2="0" y2="45" style="stroke:#000;stroke-width:2" />
                 <polygon points="0,50 -5,42 5,42" style="fill:#000;" />
               </g>
               <g id="box">
@@ -84,7 +87,7 @@ use this to generate LaTex
         <details>
             <summary>solution</summary>
             $$\sum F=ma$$ $$-2000+1900=(10)(a)$$ $$-2000+1900=(10)(a)$$ $$-10\small\frac{m}{s^{2}}=\normalsize a$$
-            <p style='text-align: center;'>The mass will accelerate to the left.</p>
+            <p>The mass will accelerate to the left.</p>
         </details>
 
         <br>
@@ -93,12 +96,6 @@ use this to generate LaTex
         <hr>
         <h2>Newton's Third law: equal and Opposite Forces</h2>
         <svg width="300" height="150" style="outline: 0px solid black;float: right;">
-          <defs>
-              <g id="vector">
-                <line x1="0" y1="0" x2="0" y2="50" style="stroke:#000;stroke-width:2" />
-                <polygon points="0,50 -5,42 5,42" style="fill:#000;" />
-              </g>
-          </defs>
             <rect x="60" y="50" width="80" height="80" style="stroke:black;stroke-width:2;fill:#cfe2f6" />
             <rect x="140" y="50" width="80" height="80" style="stroke:black;stroke-width:2;fill:#cff6d7" />
             <rect x="0" y="130" width="300" height="110" style="fill:#ccc" />
@@ -113,20 +110,20 @@ use this to generate LaTex
         <p><b>Example:</b> You push down on the ground with a 1000N force. Describe the magnitude and direction of the force the ground pushes on you.</p>
         <details>
             <summary>solution</summary>
-            The force the ground applies is equal and opposite to the force you apply on the ground.
-            <br>The magnitude is 1000N.
-            <br>The direction is up.
+            <p>The force the ground applies is equal and opposite to the force you apply on the ground.</p>
+            <p>The magnitude is 1000N.</p>
+            <p>The direction is up.</p>
         </details>
         <br>
         <br>
         <p><b>Example:</b> A boxer's glove applies a 140N force to the face of another boxer. Describe the magnitude of the force the face applies to the glove.</p>
         <details>
             <summary>solution</summary>
-            The force is equal and opposite.
-            <br>The magnitude is 140N.
+            <p>The force is equal and opposite.</p>
+            <p>The magnitude is 140N.</p>
         </details>
     </div>
-    <!-- <script src="2dMotion(Matter.js).js"></script> -->
+    <script>renderMathInElement(document.body);</script>
 </body>
 
 </html>
