@@ -46,13 +46,45 @@ summary {
 }
 
 .flex-container {
-    display: -webkit-flex;
-    display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
 
 .flex-item {
     margin: 10px;
 }
+
+.flex-container-units {
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-item-units {
+  border: 2px solid #666;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 5px 5px 5px;
+    min-width: 160px;
+}
+
+
+
+hr {
+  border: 0;
+  border-bottom: 2px solid #666;
+}
+
+
 th {
     text-align: left;
 }
