@@ -27,6 +27,9 @@ body {
   font-weight: 300;
 }
 
+.katex { font-size: 1.5em !important; }
+details .katex { font-size: 2em !important; }
+
 canvas {
   border:1px solid black;
   /*background-color: #f9f9f9;*/
@@ -116,7 +119,11 @@ header h1 {
 
 .svgDiagram {
   padding: 20px 20px 20px 20px;
+  transition: all 100ms ease-in;
 }
 .svgDiagram:hover {
-  background:  #fef;
+  z-index: 2;
+  background:  #fff;
+  border:1px solid black;
+  transform: scale(1.5);
 }
