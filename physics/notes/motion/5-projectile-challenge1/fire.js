@@ -47,7 +47,7 @@ document.getElementById("ypos").innerHTML = (settings.gapY/scale).toFixed(1);
 document.getElementById("Vx").innerHTML = (settings.Vx).toFixed(1);
 
 //dat GUI setup
-var gui = new dat.GUI();
+var gui = new dat.GUI( { autoplace: false, width: 400 });
 //gui.close();
 
 settings.fire = function() {
