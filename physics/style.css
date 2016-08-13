@@ -1,138 +1,150 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400';
-
 :root {
     --accent-color: #207ea7;
+    /*--accent-color: red;*/
     --accent-color-light: #e6f3f9;
     --font: "Roboto", "Helvetica", "Arial", sans-serif;
-  /*--accent-color: #a72020;*/
+    /*--accent-color: #a72020;*/
 }
+/************Reset**************/
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html, body, div, object, iframe, fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+ol, ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+header, footer, nav, section, article, hgroup, figure {
+	display: block;
+}
+legend {
+	display: none;
+}
+/************End Reset**************/
+
 
 body {
-  font-family: var(--font);
-  font-size: 110%;
-  background-color: white;
-  padding-top: 0px;
-  color: #333;
-  margin:0;
-  background-color: #fff;
+    font-family: var(--font);
+    font-size: 110%;
+    background-color: white;
+    padding-top: 0px;
+    color: #333;
+    margin: 0;
+    background-color: #fff;
 }
-
 button {
-  font-family: var(--font);
-  font-size: 100%;
+    font-family: var(--font);
+    font-size: 100%;
 }
-
 input {
-  font-family: var(--font);
-  font-size: 100%;
+    font-family: var(--font);
+    font-size: 100%;
 }
-
-#bodybox{
-  padding: 10px 10px 10px 10px;
-  margin: 0 auto;
-  max-width: 700px;
+#bodybox {
+    padding: 10px 10px 10px 10px;
+    margin: 0 auto;
+    max-width: 700px;
 }
-
-.definition{
-  background-color: var(--accent-color-light);
-  padding: 20px 20px 20px 20px;
-  margin: 30px 60px 30px 60px;
-  border-radius: 15px;
+.definition {
+    background-color: var(--accent-color-light);
+    padding: 20px;
+    margin: 30px 60px 30px 60px;
+    border-radius: 15px;
 }
-.definition i{
-  color: #888;
-  font-weight: 300;
+.definition i {
+    color: #888;
+    font-weight: 300;
 }
-
 .derive {
-  text-align: center;
-  background-color: #e6f9f0;
-  padding: 20px 20px 20px 20px;
-  border-radius: 15px;
+    text-align: center;
+    background-color: #e6f9f0;
+    padding: 20px;
+    border-radius: 15px;
 }
-
-.katex { font-size: 1.5em !important; }
-details .katex { font-size: 2em !important; }
-
+.katex {
+    font-size: 1.5em !important;
+}
+details .katex {
+    font-size: 2em !important;
+}
 canvas {
-  border:1px solid black;
-  /*background-color: #f9f9f9;*/
-  /*border-radius: 20px;*/
-  /*cursor: crosshair;*/
+    border: 1px solid black;
+    /*background-color: #f9f9f9;*/
+    /*border-radius: 20px;*/
+    /*cursor: crosshair;*/
 }
-
 a {
-  color: var(--accent-color);
+    color: var(--accent-color);
 }
-
 summary {
     cursor: pointer;
 }
-
 .flex-container {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
-
 .flex-item {
     margin: 10px;
 }
-
 hr {
-  border: 0;
-  border-bottom: 2px solid #666;
+    border: 0;
+    border-bottom: 2px solid #666;
 }
-
 th {
     text-align: left;
 }
-
 details p {
-  text-align: center;
+    text-align: center;
 }
-
-
 header {
-  background-color: #222;
-  padding: 1px 0px 0px 0px;
-  text-align: center;
+    background-color: #222;
+    padding: 1px 0px 0px 0px;
+    text-align: center;
 }
-
 .e-mail-link {
-  border-radius: 290486px;
-  color: white;
-  font-size: 0.6em;
-  letter-spacing: 0.2em;
-  padding: 1em 2em;
-  text-decoration: none;
-  transition: none 200ms ease-out;
-  transition-property: color, background;
+    border-radius: 290486px;
+    color: white;
+    font-size: 0.6em;
+    letter-spacing: 0.2em;
+    padding: 1em 2em;
+    text-decoration: none;
+    transition: none 200ms ease-out;
+    transition-property: color, background;
 }
-
 .e-mail-link:hover {
-  background-color: var(--accent-color);
-  color: white;
+    background-color: var(--accent-color);
+    color: white;
 }
-
 header h1 {
-  color: white;
-  font-size: 5em;
-  font-weight: 300;
+    color: white;
+    font-size: 5em;
+    font-weight: 300;
 }
-
-
 .svgDiagram {
-  padding: 20px 20px 20px 20px;
-  transition: all 100ms ease-in;
+    padding: 20px;
+    margin: 20px;
+    transition: all 100ms ease-in;
 }
 .svgDiagram:hover {
-  z-index: 2;
-  background:  #fff;
-  border:1px solid black;
-  transform: scale(1.5);
+    z-index: 2;
+    background: #fff;
+    border: 1px solid black;
+    transform: scale(1.5);
 }
 
 
@@ -143,12 +155,9 @@ header h1 {
     overflow: hidden;
     background-color: #222;
 }
-
 .nav li {
     float: center;
-
 }
-
 .dropbtn, .nav a {
     display: inline-block;
     color: white;
@@ -156,23 +165,19 @@ header h1 {
     padding: 14px 25px;
     text-decoration: none;
 }
-
 .nav a:hover, .dropdown:hover .dropbtn {
     background-color: var(--accent-color);
 }
-
 li.dropdown {
     display: inline-block;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f2f2f2;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
-
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
@@ -180,9 +185,65 @@ li.dropdown {
     display: block;
     text-align: left;
 }
-
-.dropdown-content a:hover {background-color: #ddd}
-
+.dropdown-content a:hover {
+    background-color: #ddd
+}
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+
+
+
+.grid {
+    overflow: hidden;
+    padding: 0.5em 0 0 0.5em;
+    max-width: 76em;
+    margin: 0 auto;
+}
+
+ol, ul, li {
+  	margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.grid h2 {
+    border-bottom: solid #666;
+}
+.grid a {
+    text-decoration: none;
+    color: #666;
+}
+.grid a:hover {
+    color: red;
+}
+.grid li {
+    padding: 0 0.5em 0.5em 0;
+}
+.grid li> div {
+    padding: 1em 1em;
+}
+@media all and (min-width: 27em) {
+    .grid li {
+        width: 50%;
+        float: left;
+    }
+}
+@media all and (min-width: 40em) {
+    .grid li {
+        width: 33.3333333%;
+    }
+    .grid li.wide {
+        width: 66.666666%;
+    }
+}
+@media all and (min-width: 60em) {
+    .grid li {
+        width: 25%;
+    }
+    .grid li.wide {
+        width: 50%;
+    }
 }
