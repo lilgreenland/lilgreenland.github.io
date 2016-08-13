@@ -4,7 +4,6 @@ var particles = function() {
     var canvas = document.getElementById(canvasID);
     var ctx = canvas.getContext("2d");
     ctx.font = "15px Arial";
-    //document.body.appendChild(canvas);
 
     var pause = false;
 

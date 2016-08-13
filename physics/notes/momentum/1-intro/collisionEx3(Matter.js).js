@@ -3,17 +3,6 @@ function collisionEx3(){
 var canvasID = "canvas3"
 var canvas = document.getElementById(canvasID);
 var ctx = canvas.getContext("2d");
-var id = document.getElementById(canvasID).parentNode.id;
-ctx.canvas.width = document.getElementById(id).clientWidth;
-//ctx.canvas.width = window.innerWidth;
-//ctx.canvas.height = window.innerHeight;
-
-window.onresize = function(event) {
-  var id = document.getElementById(canvasID).parentNode.id;
-  ctx.canvas.width = document.getElementById(id).clientWidth;
-  //ctx.canvas.width = window.innerWidth;
-  //ctx.canvas.height = window.innerHeight;
-};
 
 // module aliases
   var Engine = Matter.Engine,

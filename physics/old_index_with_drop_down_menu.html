@@ -1,3 +1,52 @@
+
+<!--   css style for menu
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #222;
+}
+.nav li {
+    float: center;
+}
+.dropbtn, .nav a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 25px;
+    text-decoration: none;
+}
+.nav a:hover, .dropdown:hover .dropbtn {
+    background-color: var(--accent-color);
+}
+li.dropdown {
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f2f2f2;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #ddd
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+} -->
+
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +63,6 @@
 
 <body>
     <header>
-      <div class='head_graphics'>
         <h2 style="position: absolute;right: 1em;top: 5em;color:#444;">
           $$\sum F=ma$$
         </h2>
@@ -42,11 +90,84 @@
             <use xlink:href="#vector" transform='translate(180 60) rotate(-90)' />
             <text x="200" y="53" fill="#444">F=1900N</text>
         </svg>
-      </div>
+
 
 
         <h1 style="position: relative;">Physics</h1>
         <h3><a style="position: relative;" class='e-mail-link' href="mailto:rlandgreen@newwestcharter.org?Subject=physics%20class" target="_top">rlandgreen@newwestcharter.org</a></h3>
+
+        <ul class='nav'>
+            <li class="dropdown">
+                <a href="">Motion</a>
+                <div class="dropdown-content">
+                    <a href="notes/motion/1-intro/index.html">time, position, and velocity</a>
+                    <a href="notes/motion/2-equations-of-motion/index.html">equations of motion</a>
+                    <a href="notes/motion/3-vectors-and-scalors/index.html">vectors</a>
+                    <a href="notes/motion/4-2D-motion/index.html">2-D motion</a>
+                    <hr>
+                    <a href="notes/motion/5-projectile-challenge1/index.html">challenge #1</a>
+                    <a href="notes/motion/6-projectile-challenge2/index.html">challenge #2</a>
+                    <a href="notes/motion/7-projectile-challenge3/index.html">challenge #3</a>
+                    <hr>
+                    <a href="https://www.youtube.com/watch?v=ZM8ECpBuQYE&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=1">CC: Motion</a>
+                    <a href="https://www.youtube.com/watch?v=w3BhzYI6zXU&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=4">CC: 2-D motion</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="">Force</a>
+                <div class="dropdown-content">
+                    <a href="notes/force/1-intro/index.html">Newton's Laws</a>
+                    <a href="notes/force/2-weight-and-mass/index.html">forces</a>
+                    <a href="notes/force/3-friction/index.html">friction</a>
+                    <hr>
+                    <a href="https://www.youtube.com/watch?v=kKKM8Y-u7ds&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=5">CC: Newton's Laws</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="">Momentum</a>
+                <div class="dropdown-content">
+                    <a href="notes/momentum/1-intro/index.html">momentum</a>
+                    <a href="notes/momentum/2-collisionTypes/index.html">sticky collisions</a>
+                    <hr>
+                    <a href="https://www.youtube.com/watch?v=Y-QOfc2XqOk&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=10">CC: Collisions</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="">Energy</a>
+                <div class="dropdown-content">
+                    <a href="notes/energy/1-intro/index.html">energy</a>
+                    <a href="notes/energy/2-conservation/index.html">conservation of energy</a>
+                    <hr>
+                    <a href="https://www.youtube.com/watch?v=w4QFJb9a8vo&list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV&index=9">CC: Energy</a>
+                </div>
+            </li>
+            <!--
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Gravitation</a>
+                <div class="dropdown-content">
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">E&M</a>
+                <div class="dropdown-content">
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Circuits</a>
+                <div class="dropdown-content">
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Waves</a>
+                <div class="dropdown-content">
+
+                </div>
+            </li>
+          -->
+        </ul>
     </header>
     <ul class="grid">
         <li>
@@ -99,10 +220,6 @@
         <li>
             <div>
                 <h2>Gravitation</h2>
-                <p><a href="http://codepen.io/lilgreenland/full/pbyprV/">sim: gravity</a>
-                  <br><a href="https://scratch.mit.edu/projects/80302834/">sim: orbits</a>
-                <br><a href="http://lilgreenland.github.io/planetesimals/">game: planetesimals</a>
-                </p>
             </div>
         </li>
         <li>
@@ -113,8 +230,6 @@
         <li>
             <div>
                 <h2>Magnetism</h2>
-                <p><a href="http://codepen.io/lilgreenland/full/dMYLNr/">sim: magnetic particles</a>
-                </p>
             </div>
         </li>
         <li>
@@ -125,19 +240,15 @@
         <li>
             <div>
                 <h2>Waves</h2>
-                <p><a href="http://codepen.io/lilgreenland/full/vGXYam/">sim: Waves</a>
-                </p>
             </div>
         </li>
         <li>
             <div>
                 <h2>Relativity</h2>
-                <p><a href="http://codepen.io/lilgreenland/full/EKpjxq">sim: relativity</a>
-                </p>
             </div>
         </li>
     </ul>
-    <article>
+    <div id='bodybox'>
         <p><b>Physics is science.</b> Physics is the natural science that involves the study of matter and its motion through space and time, along with related concepts such as energy and force. One of the most fundamental scientific disciplines, the main
             goal of physics is to understand how the universe behaves.
         </p>
@@ -192,7 +303,7 @@
         <br>
         <br>
         <br>
-    </article>
+    </div>
     <script>
         renderMathInElement(document.body);
     </script>

@@ -6,34 +6,36 @@
     --font: "Roboto", "Helvetica", "Arial", sans-serif;
     /*--accent-color: #a72020;*/
 }
+
 /************Reset**************/
+
 * {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 html, body, div, object, iframe, fieldset {
-	margin: 0;
-	padding: 0;
-	border: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 ol, ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 header, footer, nav, section, article, hgroup, figure {
-	display: block;
+    display: block;
 }
 legend {
-	display: none;
+    display: none;
 }
-/************End Reset**************/
 
+/************End Reset**************/
 
 body {
     font-family: var(--font);
@@ -52,11 +54,38 @@ input {
     font-family: var(--font);
     font-size: 100%;
 }
-#bodybox {
+
+article {
     padding: 10px 10px 10px 10px;
     margin: 0 auto;
-    max-width: 700px;
+    max-width: 45em;
 }
+
+canvas {
+    border: 1px solid black;
+    /*background-color: #f9f9f9;*/
+    /*border-radius: 20px;*/
+    /*cursor: crosshair;*/
+}
+a {
+    color: var(--accent-color);
+}
+summary {
+    cursor: pointer;
+}
+hr {
+    border: 0;
+    border-bottom: 2px solid #666;
+}
+th {
+    text-align: left;
+}
+details p {
+    text-align: center;
+}
+
+/*classes_________________________________________*/
+
 .definition {
     background-color: var(--accent-color-light);
     padding: 20px;
@@ -73,23 +102,14 @@ input {
     padding: 20px;
     border-radius: 15px;
 }
+
+/*math setup ____________________________________*/
+
 .katex {
     font-size: 1.5em !important;
 }
 details .katex {
     font-size: 2em !important;
-}
-canvas {
-    border: 1px solid black;
-    /*background-color: #f9f9f9;*/
-    /*border-radius: 20px;*/
-    /*cursor: crosshair;*/
-}
-a {
-    color: var(--accent-color);
-}
-summary {
-    cursor: pointer;
 }
 .flex-container {
     display: -webkit-box;
@@ -101,19 +121,12 @@ summary {
 .flex-item {
     margin: 10px;
 }
-hr {
-    border: 0;
-    border-bottom: 2px solid #666;
-}
-th {
-    text-align: left;
-}
-details p {
-    text-align: center;
-}
+
+/* Header setup_________________________________*/
+
 header {
     background-color: #222;
-    padding: 1px 0px 0px 0px;
+    padding: 1em 0em 0.5em 0em;
     text-align: center;
 }
 .e-mail-link {
@@ -135,6 +148,15 @@ header h1 {
     font-size: 5em;
     font-weight: 300;
 }
+
+@media screen and (max-width: 600px) {
+  .head_graphics {
+    visibility: hidden;
+  }
+}
+
+/* svg setup_________________________________*/
+
 .svgDiagram {
     padding: 20px;
     margin: 20px;
@@ -147,53 +169,7 @@ header h1 {
     transform: scale(1.5);
 }
 
-
-.nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #222;
-}
-.nav li {
-    float: center;
-}
-.dropbtn, .nav a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 25px;
-    text-decoration: none;
-}
-.nav a:hover, .dropdown:hover .dropbtn {
-    background-color: var(--accent-color);
-}
-li.dropdown {
-    display: inline-block;
-}
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f2f2f2;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-.dropdown-content a:hover {
-    background-color: #ddd
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-
-
+/* grid setup ---------------------------- */
 
 .grid {
     overflow: hidden;
@@ -201,23 +177,18 @@ li.dropdown {
     max-width: 76em;
     margin: 0 auto;
 }
+.grid h3, .grid h2 {
+    border-bottom: 1px solid #999;
+    font-weight: 400;
 
-ol, ul, li {
-  	margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-
-.grid h2 {
-    border-bottom: solid #666;
 }
 .grid a {
     text-decoration: none;
     color: #666;
 }
 .grid a:hover {
-    color: red;
+    color: var(--accent-color);
+    text-decoration: underline;
 }
 .grid li {
     padding: 0 0.5em 0.5em 0;

@@ -10,27 +10,12 @@ function vectorDiagram() {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   //find the width of the parent node and set the canvas to that wdith
-  var id = document.getElementById("myCanvas").parentNode.id
-  ctx.canvas.width = document.getElementById(id).clientWidth;
-  ctx.canvas.height = 400; //window.innerHeight;
   ctx.font = '15px Arial';
 
   var settings = {
     x: canvas.width * 0.5,
     y: canvas.height * 0.5,
   }
-
-  window.onresize = function(event) {
-    var id = document.getElementById("myCanvas").parentNode.id
-    ctx.canvas.width = document.getElementById(id).clientWidth;
-    ctx.canvas.height = 400; //window.innerHeight;
-    ctx.font = '15px Arial';
-    settings = {
-      x: canvas.width * 0.5,
-      y: canvas.height * 0.5,
-    }
-    cycle();
-  };
 
   var vector = {
     x: 0,
