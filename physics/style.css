@@ -7,6 +7,7 @@
     /*--accent-color: #a72020;*/
 }
 
+
 /************Reset**************/
 
 * {
@@ -33,6 +34,10 @@ header, footer, nav, section, article, hgroup, figure {
 }
 legend {
     display: none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
 }
 
 /************End Reset**************/
@@ -68,9 +73,15 @@ canvas {
     /*border-radius: 20px;*/
     /*cursor: crosshair;*/
 }
+
 a {
+    text-decoration: none;
     color: var(--accent-color);
 }
+a:hover {
+    text-decoration: underline;
+}
+
 summary {
     cursor: pointer;
 }
@@ -188,12 +199,10 @@ header h1 {
 
 }
 .grid a {
-    text-decoration: none;
     color: #666;
 }
 .grid a:hover {
     color: var(--accent-color);
-    text-decoration: underline;
 }
 .grid li {
     padding: 0 0.5em 0.5em 0;
