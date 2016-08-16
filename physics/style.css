@@ -1,7 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400';
 :root {
-    --accent-color: #207ea7;
-    /*--accent-color: red;*/
+    /*--accent-color: #207ea7;*/
+    /*--accent-color: #026a99;*/
+    --accent-color: red;
     --accent-color-light: #e6f3f9;
     --font: "Roboto", "Helvetica", "Arial", sans-serif;
     /*--accent-color: #a72020;*/
@@ -170,6 +171,7 @@ header {
     transition-property: color, background;
 }
 .e-mail-link:hover {
+    text-decoration: none;
     background-color: var(--accent-color);
     color: white;
 }

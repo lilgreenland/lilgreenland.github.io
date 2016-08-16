@@ -4,19 +4,6 @@ function MotionSimulation(){
 var canvasID = "myCanvas"
 var canvas = document.getElementById(canvasID);
 var ctx = canvas.getContext("2d");
-var id = document.getElementById(canvasID).parentNode.id;
-ctx.canvas.width = document.getElementById(id).clientWidth;
-ctx.canvas.height = 300; //window.innerHeight;
-//canvas.width = window.innerWidth;
-//canvas.height = window.innerHeight;
-
-window.onresize = function(event) {
-  var id = document.getElementById(canvasID).parentNode.id;
-  ctx.canvas.width = document.getElementById(id).clientWidth;
-  ctx.canvas.height = 300;
-  //ctx.canvas.width = window.innerWidth;
-  //ctx.canvas.height = window.innerHeight;
-};
 
 // module aliases
 var Engine = Matter.Engine,
@@ -38,19 +25,19 @@ var mass = [];
 document.getElementById(canvasID).addEventListener("mousedown", function(){
   World.clear(engine.world, true); //clear matter engine, leave static
   mass = []; //clear mass array
-  spawnMass(0, 1.5, 2, 0, 0.1);
+  spawnMass(0, 1.8, 2, 0, 0.2);
 });
 
-spawnMass(0, 1.5, 2, 0, 0.1);
+spawnMass(0, 1.8, 2, 0, 0.2);
 function spawnMass(xIn, yIn, VxIn, VyIn, radius) {
   //spawn mass
     var i = mass.length
     mass.push();
     mass[i] = Bodies.circle(xIn * scale, canvas.height - (yIn - radius)*scale, radius * scale, {
-      friction: 0.002,
-      frictionStatic: 0.1,
-      frictionAir: 0.001,
-      restitution: 0.5,
+      friction: 0.3,
+      frictionStatic: 0.6,
+      frictionAir: 0,
+      restitution: 0.7,
     });
 
     Matter.Body.setVelocity(mass[i], {
@@ -58,7 +45,7 @@ function spawnMass(xIn, yIn, VxIn, VyIn, radius) {
       y: -VyIn / 60 * scale
     });
     //Matter.Body.setAngularVelocity(mass[i], 0.3);
-    Matter.Body.setAngularVelocity(mass[i], 0.4);
+    Matter.Body.setAngularVelocity(mass[i], 0.25);
     World.add(engine.world, mass[i]);
   }
 
@@ -150,19 +137,6 @@ function MotionSimulationTwo(){
 var canvasID = "myCanvas2"
 var canvas = document.getElementById(canvasID);
 var ctx = canvas.getContext("2d");
-var id = document.getElementById(canvasID).parentNode.id;
-ctx.canvas.width = document.getElementById(id).clientWidth;
-ctx.canvas.height = 300; //window.innerHeight;
-//canvas.width = window.innerWidth;
-//canvas.height = window.innerHeight;
-
-window.onresize = function(event) {
-  var id = document.getElementById(canvasID).parentNode.id;
-  ctx.canvas.width = document.getElementById(id).clientWidth;
-  ctx.canvas.height = 300;
-  //ctx.canvas.width = window.innerWidth;
-  //ctx.canvas.height = window.innerHeight;
-};
 
 // module aliases
 var Engine = Matter.Engine,
@@ -184,19 +158,19 @@ var mass = [];
 document.getElementById(canvasID).addEventListener("mousedown", function(){
   World.clear(engine.world, true); //clear matter engine, leave static
   mass = []; //clear mass array
-spawnMass(0, 2, 5, 8.66, 0.2);
+spawnMass(0, 2, 5, 8.66, 0.4);
 });
 
-spawnMass(0, 2, 5, 8.66, 0.2);
+spawnMass(0, 2, 5, 8.66, 0.4);
 function spawnMass(xIn, yIn, VxIn, VyIn, radius) {
   //spawn mass
     var i = mass.length
     mass.push();
     mass[i] = Bodies.circle(xIn * scale, canvas.height - (yIn - radius)*scale, radius * scale, {
-      friction: 0.6,
-      frictionStatic: 0.1,
+      friction: 0.3,
+      frictionStatic: 0.6,
       frictionAir: 0,
-      restitution: 0.5,
+      restitution: 0.4,
     });
 
     Matter.Body.setVelocity(mass[i], {
